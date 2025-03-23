@@ -1,0 +1,9 @@
+<div *ngIf="!user">
+    <button (click)="login('github')">Login with GitHub</button>
+    <button (click)="login('aad')">Login with AAD</button>
+</div>
+<p>login works</p>
+<div *ngIf="user">
+    <p>Welcome, {{user.clientPrincipal.userDetails}}</p>
+    <button (click)="logout()">Logout</button>
+</div>
