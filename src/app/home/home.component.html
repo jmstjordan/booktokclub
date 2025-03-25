@@ -1,0 +1,9 @@
+<div *ngIf="user">
+    <h2>{{basePath | titlecase}}</h2>
+    <p>Welcome, {{user.clientPrincipal.userDetails}} </p>
+</div>
+<button (click)="logout()">Logout</button>
+
+<div *ngIf="basePath == 'author'">
+    <app-author></app-author>
+</div>

@@ -1,0 +1,25 @@
+<form [formGroup]="adForm" (ngSubmit)="onSubmit()">
+    <label for="asin">ASIN:</label>
+    <input id="asin" formControlName="asin" required />
+    <br /><br />
+  
+    <label for="ad-date">Ad Date:</label>
+    <input id="ad-date" type="date" formControlName="adDate" required />
+    <br /><br />
+  
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category" required>
+      <option value="" disabled>Select a category</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+    <br /><br />
+  
+    <label for="productSource">Source</label>
+    <select id="productSource" formControlName="productSource" required>
+      <option *ngFor="let productSource of productSources" [value]="productSource">{{ productSource }}</option>
+    </select>
+    <br /><br />
+  
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,24 +12,23 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
   user: any;
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
+    
     this.authService.getUser().subscribe((user) => {
       console.log(user);
       if(user.clientPrincipal !== null){
         this.user = user;
+        // maybe revisit this. what default behavior do we want?
+        // this.router.navigate(['/author/home']);
       }else{
         this.user = null;
       }
     });
   }
 
-  login(provider: string): void {
-    this.authService.login(provider);
-  }
-
-  logout(): void {
-    this.authService.logout();
+  login(provider: string, role: string): void {
+    this.authService.login(provider, role);
   }
 }

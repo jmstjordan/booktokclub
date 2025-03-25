@@ -9,8 +9,8 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(provider: string): void {
-    window.location.href = `${window.location.origin}/.auth/login/${provider}?post_login_redirect_uri=/`;
+  login(provider: string, role: string): void {
+    window.location.href = `${window.location.origin}/.auth/login/${provider}?post_login_redirect_uri=/${role}/home`;
   }
 
   logout(): void {
