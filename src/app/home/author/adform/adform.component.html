@@ -1,6 +1,8 @@
 <form [formGroup]="adForm" (ngSubmit)="onSubmit()">
     <label for="asin">ASIN:</label>
     <input id="asin" formControlName="asin" required />
+    <button (click)="checkProductId()">Validate</button>
+    <p *ngIf="checkTitle">{{checkTitle}}</p>
     <br /><br />
   
     <label for="ad-date">Ad Date:</label>

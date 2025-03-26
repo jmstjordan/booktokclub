@@ -20,6 +20,8 @@ export enum ProductSource {
 export interface Ad {
     adDate: Date;
     created: Date;
+    user: string;
+    product: any;
     genre: Genre;
     state: AdState;
 }
@@ -33,4 +35,9 @@ export interface AdUpload {
     adDate: Date;
     productUpload: ProductUpload
     genre: Genre
+}
+
+export interface ProductUpload {
+    productId: string;
+    productSource: ProductSource;
 }

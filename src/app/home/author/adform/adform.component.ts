@@ -14,6 +14,7 @@ export class AdformComponent {
 
   @Output() adCreate = new EventEmitter<any>();
   adForm!: FormGroup;
+  checkTitle!: string;
 
   categories = [
     "Romance",
@@ -37,6 +38,19 @@ export class AdformComponent {
       category: ['', Validators.required],
       productSource: ['', Validators.required]
     });
+  }
+
+  checkProductId(){
+    if(this.adForm.value["asin"] !== "" && this.adForm.value["productSource"] !== ""){
+      let upload = {
+        productId: this.adForm.value["asin"],
+        productSource: this.adForm.value["productSource"]
+      } as ProductUpload;
+      this.bookBoostService.getProduct(upload).subscribe((data) => {
+        console.log(data);
+        this.checkTitle = data["title"];
+      });
+    }
   }
 
   onSubmit(): void {
