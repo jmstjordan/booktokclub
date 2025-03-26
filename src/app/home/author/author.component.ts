@@ -11,17 +11,19 @@ import { BookBoostService } from '../../../services/bookboost.service';
 })
 export class AuthorComponent implements OnInit{
 
-  ads!: any;
+  ads!: any[];
 
   constructor(private bookboostService: BookBoostService){}
 
   ngOnInit(): void {
-      this.bookboostService.getAds().subscribe((data) =>
-      {
-        console.log(data);
-        this.ads = data;
-      },
-      (error) => {console.error(error)}
-      )
+    this.bookboostService.getAds().subscribe((data) => {
+      this.ads = data;
+      console.log(this.ads);
+    });
+  }
+
+  receiveCreateAd(ad: any){
+    console.log(ad);
+    this.ads.push(ad);
   }
 }

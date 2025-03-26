@@ -2,4 +2,4 @@
 <ul>
     <li *ngFor="let ad of ads">{{ ad.product.title }}</li>
 </ul>
-<app-adform></app-adform>
+<app-adform (adCreate)="receiveCreateAd($event)"></app-adform>
