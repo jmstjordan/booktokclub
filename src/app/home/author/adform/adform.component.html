@@ -9,10 +9,10 @@
     <input id="ad-date" type="date" formControlName="adDate" required />
     <br /><br />
   
-    <label for="category">Category:</label>
-    <select id="category" formControlName="category" required>
-      <option value="" disabled>Select a category</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    <label for="genre">Genre:</label>
+    <select (change)="getGenreAvailability($event)" id="genre" formControlName="genre" required>
+      <option value="" disabled>Select a Genre</option>
+      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
     </select>
     <br /><br />
   

@@ -1,20 +1,20 @@
 export enum Genre {
-    Romance = 1,
-    Fantasy = 2,
-    MysteryThriller = 3,
-    ScienceFiction = 4,
-    YoungAdult = 5,
-    NonFiction = 6
+    Romance,
+    Fantasy,
+    MysteryThriller,
+    ScienceFiction,
+    YoungAdult,
+    NonFiction
 }
 
 export enum AdState {
-    Pending = 1,
-    Declined = 2,
-    Accepted = 3
+    Pending,
+    Declined,
+    Accepted
 }
 
 export enum ProductSource {
-    Amazon = 1
+    Amazon
 }
 
 export interface Ad {
@@ -40,4 +40,9 @@ export interface AdUpload {
 export interface ProductUpload {
     productId: string;
     productSource: ProductSource;
+}
+
+export interface AdAvailability {
+    adDate: string;
+    count: number;
 }

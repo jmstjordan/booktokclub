@@ -1,3 +1,5 @@
+
+<button (click)="swapPortal()">{{otherPath | titlecase}} Portal</button>
 <div *ngIf="user">
     <h2>{{basePath | titlecase}}</h2>
     <p>Welcome, {{user.clientPrincipal.userDetails}} </p>
@@ -6,4 +8,7 @@
 
 <div *ngIf="basePath == 'author'">
     <app-author></app-author>
+</div>
+<div *ngIf="basePath == 'reader'">
+    <app-reader></app-reader>
 </div>

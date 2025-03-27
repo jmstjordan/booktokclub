@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdUpload, ProductUpload } from '../interfaces';
+import { Ad, AdAvailability, AdUpload, Genre, ProductUpload } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,10 @@ export class BookBoostService {
   createAd(adUpload: AdUpload){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.apiUrl}/Ad`, adUpload, { headers });
+  }
+
+  getAdAvailability(genre: string): Observable<AdAvailability[]>{
+    return this.http.get<AdAvailability[]>(`${this.apiUrl}/Ad/Availability/${genre}`);
   }
 
 }

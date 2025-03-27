@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../../services/bookboost.service';
-import { AdUpload, ProductUpload } from '../../../../interfaces';
+import { AdAvailability, AdUpload, ProductUpload } from '../../../../interfaces';
 
 @Component({
   selector: 'app-adform',
@@ -15,8 +15,9 @@ export class AdformComponent {
   @Output() adCreate = new EventEmitter<any>();
   adForm!: FormGroup;
   checkTitle!: string;
+  adAvailability!: AdAvailability[];
 
-  categories = [
+  genres = [
     "Romance",
     "Fantasy",
     "MysteryThriller",
@@ -35,7 +36,7 @@ export class AdformComponent {
     this.adForm = this.fb.group({
       asin: ['', Validators.required],
       adDate: ['', Validators.required],
-      category: ['', Validators.required],
+      genre: ['', Validators.required],
       productSource: ['', Validators.required]
     });
   }
@@ -52,20 +53,29 @@ export class AdformComponent {
       });
     }
   }
+  
+  getGenreAvailability(event: Event){
+    const selectElement = event.target as HTMLSelectElement;
+    let genre = selectElement.value;
+    this.bookBoostService.getAdAvailability(genre).subscribe((data) =>{
+      this.adAvailability = data;
+      console.log(this.adAvailability);
+    });
+  }
 
   onSubmit(): void {
     if (this.adForm.valid) {
       const formData = this.adForm.value;
 
       // Access individual values
-      const { asin, adDate, category, productSource } = formData;
+      const { asin, adDate, genre, productSource } = formData;
       let adUpload = {
         adDate: adDate,
         productUpload: {
           productId: asin,
           productSource: productSource
         } as ProductUpload,
-        genre: category
+        genre: genre
       } as AdUpload;
       console.log(adUpload);
       this.bookBoostService.createAd(adUpload).subscribe((result) => {
