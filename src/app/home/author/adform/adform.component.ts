@@ -53,7 +53,7 @@ export class AdformComponent {
       } as ProductUpload;
       this.bookBoostService.getProduct(upload).subscribe((data) => {
         console.log(data);
-        this.checkTitle = data["title"];
+        this.checkTitle = data.title;
       });
     }
   }
@@ -88,6 +88,7 @@ export class AdformComponent {
           this.stripe.redirectToCheckout({ sessionId: response.sessionId })
             .subscribe((result) => {
               console.log(result);
+
               if (result.error) {
                 this.errorMessage = result.error.message as string;
               }
@@ -96,29 +97,5 @@ export class AdformComponent {
           this.errorMessage = 'Failed to create checkout session';
         }
       });
-  }
-
-  onSubmit(): void {
-    if (this.adForm.valid) {
-      const formData = this.adForm.value;
-
-      // Access individual values
-      const { asin, adDate, genre, productSource } = formData;
-      let adUpload = {
-        adDate: adDate,
-        productUpload: {
-          productId: asin,
-          productSource: productSource
-        } as ProductUpload,
-        genre: genre
-      } as AdUpload;
-      console.log(adUpload);
-      this.bookBoostService.createAd(adUpload).subscribe((result) => {
-        // snack bar of success
-        this.adCreate.emit(result);
-      });
-    } else {
-      console.log('Form is invalid');
-    }
   }
 }

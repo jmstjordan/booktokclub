@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, AdUpload, Genre, ProductUpload } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductUpload } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -11,32 +11,34 @@ export class BookBoostService {
   apiUrl = "https://localhost:7042"
   constructor(private http: HttpClient) {}
 
-  getAds(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/api/Ad`);
+  getAds(): Observable<Ad[]> {
+    return this.http.get<Ad[]>(`${this.apiUrl}/api/Ad`);
   }
 
-  getProduct(productUpload: ProductUpload): Observable<any> {
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/api/Product`);
+  }
+
+  getPrices(): Observable<{}> {
+    return this.http.get<{}>(`${this.apiUrl}/api/Payment/Prices`);
+  }
+
+  getProduct(productUpload: ProductUpload): Observable<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Ad>(`${this.apiUrl}/api/Product`, productUpload, { headers });
+    return this.http.post<Product>(`${this.apiUrl}/api/Product`, productUpload, { headers });
   }
 
   createCheckoutSession(metadata: {}){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/api/Ad/create-checkout-session`, metadata, { headers });
+    return this.http.post(`${this.apiUrl}/api/Payment/CreateAdCheckoutSession`, metadata, { headers });
   }
 
-  verifySession(sessionId: string){
+  verifyAdPurchase(sessionId: string): Observable<Ad> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(`${this.apiUrl}/api/Ad/verify-session/${sessionId}`, { headers });
-  }
-
-  createAd(adUpload: AdUpload){
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(`${this.apiUrl}/api/Ad`, adUpload, { headers });
+    return this.http.get<Ad>(`${this.apiUrl}/api/Payment/VerifySession/${sessionId}`, { headers });
   }
 
   getAdAvailability(genre: string): Observable<AdAvailability[]>{
     return this.http.get<AdAvailability[]>(`${this.apiUrl}/api/Ad/Availability/${genre}`);
   }
-
 }

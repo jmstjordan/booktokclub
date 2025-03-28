@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BookBoostService } from '../../../services/bookboost.service';
+import { Ad } from '../../../interfaces';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-success',
+  imports: [CommonModule],
   templateUrl: './success.component.html',
 })
 export class SuccessComponent implements OnInit {
-  paymentStatus: string = '';
+  ad!: Ad;
 
-  constructor(private bookBoostService: BookBoostService) {}
+  constructor(private bookBoostService: BookBoostService, private router: Router) {}
 
   ngOnInit() {
     const urlParams = new URLSearchParams(window.location.search);
     const sessionId = urlParams.get('session_id');
 
     if (sessionId) {
-      this.bookBoostService.verifySession(sessionId).subscribe((response) => {
-        console.log(response);
+      this.bookBoostService.verifyAdPurchase(sessionId).subscribe((response) => {
+        if(response){
+          console.log(response);
+          this.ad = response;
+        }
         // response.
         // if (response[""] === 'succeeded') {
         //   this.paymentStatus = 'Payment was successful!';
@@ -25,8 +31,9 @@ export class SuccessComponent implements OnInit {
         //   this.paymentStatus = 'Payment failed or was canceled.';
         // }
       });
-    } else {
-      this.paymentStatus = 'No session ID found.';
     }
+  }
+  authorPortal(){
+    this.router.navigate([`home/author`]);
   }
 }

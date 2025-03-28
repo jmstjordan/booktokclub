@@ -17,11 +17,33 @@ export enum ProductSource {
     Amazon
 }
 
+export interface Product {
+
+    productId: string;
+    productSource: ProductSource;
+    title: string;
+    description: string;
+    descriptionView: string;
+    link: string;
+    price: Price;
+    rating: number;
+    numReviews: number;
+    image: string;
+}
+
+export interface Price {
+    symbol: string;
+    listPrice: string;
+    currency: string;
+    raw: string;
+    value: number;
+}
+
 export interface Ad {
     adDate: Date;
     created: Date;
     user: string;
-    product: any;
+    product: Product;
     genre: Genre;
     state: AdState;
 }

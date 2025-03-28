@@ -1,0 +1,1 @@
+swa start http://localhost:4200 --run "ng serve"

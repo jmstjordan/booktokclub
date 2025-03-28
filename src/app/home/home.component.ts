@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit{
   basePath!: string;
   otherPath!: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private bookService: BookBoostService){
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService){
     this.route.url.subscribe(segments => {
       const path = segments.map(segment => segment.path);
       this.basePath = path[1];

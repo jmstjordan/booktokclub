@@ -1,12 +1,16 @@
+
+
 <form [formGroup]="adForm" (ngSubmit)="startExpressCheckout()">
+    <label for="productSource">Source</label>
+    <select id="productSource" formControlName="productSource" required>
+      <option *ngFor="let productSource of productSources" [value]="productSource">{{ productSource }}</option>
+    </select>
+    <br /><br />
+
     <label for="asin">ASIN:</label>
     <input id="asin" formControlName="asin" required />
-    <button (click)="checkProductId()">Validate</button>
+    <button type="button" (click)="checkProductId()">Validate</button>
     <p *ngIf="checkTitle">{{checkTitle}}</p>
-    <br /><br />
-  
-    <label for="ad-date">Ad Date:</label>
-    <input id="ad-date" type="date" formControlName="adDate" required />
     <br /><br />
   
     <label for="genre">Genre:</label>
@@ -15,14 +19,13 @@
       <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
     </select>
     <br /><br />
-  
-    <label for="productSource">Source</label>
-    <select id="productSource" formControlName="productSource" required>
-      <option *ngFor="let productSource of productSources" [value]="productSource">{{ productSource }}</option>
-    </select>
+
+    <label for="ad-date">Ad Date:</label>
+    <input id="ad-date" type="date" formControlName="adDate" required />
     <br /><br />
   
     <!-- Submit Button -->
     <button type="submit">Submit</button>
   </form>
+  
   <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
