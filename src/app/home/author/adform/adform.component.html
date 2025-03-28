@@ -1,4 +1,4 @@
-<form [formGroup]="adForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="adForm" (ngSubmit)="startExpressCheckout()">
     <label for="asin">ASIN:</label>
     <input id="asin" formControlName="asin" required />
     <button (click)="checkProductId()">Validate</button>
@@ -25,3 +25,4 @@
     <!-- Submit Button -->
     <button type="submit">Submit</button>
   </form>
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>

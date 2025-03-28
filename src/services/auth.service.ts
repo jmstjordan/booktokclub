@@ -10,7 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(provider: string, role: string): void {
-    window.location.href = `${window.location.origin}/.auth/login/${provider}?post_login_redirect_uri=/${role}/home`;
+    window.location.href = `${window.location.origin}/.auth/login/${provider}?post_login_redirect_uri=/home/${role}`;
   }
 
   logout(): void {

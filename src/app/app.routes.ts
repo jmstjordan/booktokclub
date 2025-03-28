@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 export const routes: Routes = [
     {path: '', component: LoginComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'author/home', component: HomeComponent},
-    {path: 'reader/home', component: HomeComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'home/success', component: HomeComponent},
+    {path: 'home/author', component: HomeComponent},
+    {path: 'home/reader', component: HomeComponent},
 ];

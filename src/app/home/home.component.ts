@@ -5,10 +5,11 @@ import { AuthService } from '../../services/auth.service';
 import { BookBoostService } from '../../services/bookboost.service';
 import { AuthorComponent } from './author/author.component';
 import { ReaderComponent } from './reader/reader.component';
+import { SuccessComponent } from './success/success.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, AuthorComponent, ReaderComponent],
+  imports: [CommonModule, AuthorComponent, ReaderComponent, SuccessComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -21,8 +22,8 @@ export class HomeComponent implements OnInit{
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private bookService: BookBoostService){
     this.route.url.subscribe(segments => {
       const path = segments.map(segment => segment.path);
-      this.basePath = path[0];
-      this.checkOtherPath(path[0]);
+      this.basePath = path[1];
+      this.checkOtherPath(path[1]);
     });  
   }
 
@@ -43,11 +44,13 @@ export class HomeComponent implements OnInit{
       this.otherPath = 'reader';
     }else if (path == 'reader'){
       this.otherPath = 'author';
+    }else if(path == 'success'){
+      this.otherPath = 'author';
     }
   }
 
   swapPortal(){
-    this.router.navigate([`${this.otherPath}/home`]);
+    this.router.navigate([`home/${this.otherPath}`]);
   }
 
   logout(): void {

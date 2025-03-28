@@ -3,10 +3,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../../services/bookboost.service';
 import { AdAvailability, AdUpload, ProductUpload } from '../../../../interfaces';
+import { StripeService } from 'ngx-stripe';
 
 @Component({
   selector: 'app-adform',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule, ReactiveFormsModule
+ ],
   templateUrl: './adform.component.html',
   styleUrl: './adform.component.scss'
 })
@@ -16,7 +19,6 @@ export class AdformComponent {
   adForm!: FormGroup;
   checkTitle!: string;
   adAvailability!: AdAvailability[];
-
   genres = [
     "Romance",
     "Fantasy",
@@ -30,7 +32,9 @@ export class AdformComponent {
     "Amazon"
   ];
 
-  constructor(private fb: FormBuilder, private bookBoostService: BookBoostService) {}
+  errorMessage!: string;
+
+  constructor(private fb: FormBuilder, private bookBoostService: BookBoostService, public stripe: StripeService) {}
 
   ngOnInit(): void {
     this.adForm = this.fb.group({
@@ -61,6 +65,37 @@ export class AdformComponent {
       this.adAvailability = data;
       console.log(this.adAvailability);
     });
+  }
+
+  startExpressCheckout() {
+    const formData = this.adForm.value;
+
+    // Access individual values
+    const { asin, adDate, genre, productSource } = formData;
+    let adUpload = {
+      adDate: adDate,
+      productUpload: {
+        productId: asin,
+        productSource: productSource
+      } as ProductUpload,
+      genre: genre
+    } as AdUpload;
+    console.log(adUpload);
+
+    this.bookBoostService.createCheckoutSession(adUpload)
+      .subscribe((response: any) => {
+        if (response?.sessionId) {
+          this.stripe.redirectToCheckout({ sessionId: response.sessionId })
+            .subscribe((result) => {
+              console.log(result);
+              if (result.error) {
+                this.errorMessage = result.error.message as string;
+              }
+            });
+        } else {
+          this.errorMessage = 'Failed to create checkout session';
+        }
+      });
   }
 
   onSubmit(): void {
