@@ -16,7 +16,10 @@
     <label for="genre">Genre:</label>
     <select (change)="getGenreAvailability($event)" id="genre" formControlName="genre" required>
       <option value="" disabled>Select a Genre</option>
-      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      <option *ngFor="let item of adPrices | keyvalue" [value]="item.key">{{ item.value / 100 | currency }} {{ item.key }}</option>
+      <tr *ngFor="let item of adPrices | keyvalue">
+      </tr>
+
     </select>
     <br /><br />
 

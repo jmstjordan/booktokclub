@@ -1,1 +1,31 @@
-<p>user works!</p>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="genres">
+        <label>
+          <input type="checkbox" formControlName="romance" />
+          Romance
+        </label>
+        <label>
+          <input type="checkbox" formControlName="fantasy" />
+          Fantasy
+        </label>
+        <label>
+          <input type="checkbox" formControlName="mysterythriller" />
+          MysteryThriller
+        </label>
+        <label>
+          <input type="checkbox" formControlName="sciencefiction" />
+          ScienceFiction
+        </label>
+        <label>
+          <input type="checkbox" formControlName="" />
+          YoungAdult
+        </label>
+        <label>
+          <input type="checkbox" formControlName="5" />
+          NonFiction
+        </label>
+      </div>
+  
+    <button type="submit">Submit</button>
+</form>

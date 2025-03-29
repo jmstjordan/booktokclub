@@ -6,12 +6,12 @@ import { AuthorComponent } from './author/author.component';
 import { SuccessComponent } from './success/success.component';
 import { ReaderComponent } from './reader/reader.component';
 import { BookBoostService } from '../../services/bookboost.service';
-import { User } from '../../interfaces';
+import { Genre, User } from '../../interfaces';
 import { UserComponent } from './user/user.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, AuthorComponent, SuccessComponent, ReaderComponent, UserComponent],
+  imports: [CommonModule, AuthorComponent, SuccessComponent, ReaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit{
   userData!: User;
   basePath!: string;
   otherPath!: string;
+  genres!: string[];
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private bookboostService: BookBoostService){
     this.route.url.subscribe(segments => {
@@ -39,6 +40,10 @@ export class HomeComponent implements OnInit{
         this.user = null;
         this.router.navigate(['/login']);
       }
+    });
+    this.bookboostService.getGenres().subscribe((data) =>{
+      this.genres = data;
+      console.log(data);
     });
   }
 

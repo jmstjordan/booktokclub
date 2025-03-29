@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../../services/bookboost.service';
 import { AdAvailability, AdUpload, ProductUpload } from '../../../../interfaces';
@@ -16,22 +16,12 @@ import { StripeService } from 'ngx-stripe';
 export class AdformComponent {
 
   @Output() adCreate = new EventEmitter<any>();
+  @Input() adPrices!: {};
+  @Input() productSources!: string[];
   adForm!: FormGroup;
   checkTitle!: string;
   adAvailability!: AdAvailability[];
-  genres = [
-    "Romance",
-    "Fantasy",
-    "MysteryThriller",
-    "ScienceFiction",
-    "YoungAdult",
-    "NonFiction"
-  ];
-
-  productSources = [
-    "Amazon"
-  ];
-
+  
   errorMessage!: string;
 
   constructor(private fb: FormBuilder, private bookBoostService: BookBoostService, public stripe: StripeService) {}

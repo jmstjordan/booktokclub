@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AdformComponent } from './adform/adform.component';
 import { BookBoostService } from '../../../services/bookboost.service';
-import { PricesComponent } from './prices/prices.component';
 import { Ad } from '../../../interfaces';
 
 @Component({
   selector: 'app-author',
-  imports: [CommonModule, AdformComponent, PricesComponent],
+  imports: [CommonModule, AdformComponent],
   templateUrl: './author.component.html',
   styleUrl: './author.component.scss'
 })
 export class AuthorComponent implements OnInit{
 
   ads!: Ad[];
-
+  adPrices = {};
+  productSources!: string[];
+  
   constructor(private bookboostService: BookBoostService){}
 
   ngOnInit(): void {
@@ -22,6 +23,8 @@ export class AuthorComponent implements OnInit{
       this.ads = data;
       console.log(this.ads);
     });
+    this.bookboostService.getPrices().subscribe((adPrices) => this.adPrices = adPrices);
+    this.bookboostService.getProductSources().subscribe((productSources) => this.productSources = productSources);
   }
 
   receiveCreateAd(ad: any){

@@ -5,7 +5,7 @@
     <p>Welcome, {{user.clientPrincipal.userDetails}} </p>
 </div>
 <button (click)="logout()">Logout</button>
-<app-user *ngIf="user" [user]="user"></app-user>
+<!-- <app-user *ngIf="user" [user]="user"></app-user> -->
 <div *ngIf="basePath == 'author'">
     <app-author></app-author>
 </div>
