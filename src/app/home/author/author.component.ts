@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AdformComponent } from './adform/adform.component';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { Ad } from '../../../interfaces';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-author',
@@ -15,10 +17,14 @@ export class AuthorComponent implements OnInit{
   ads!: Ad[];
   adPrices = {};
   productSources!: string[];
+  userId!: string;
   
-  constructor(private bookboostService: BookBoostService){}
+  constructor(private bookboostService: BookBoostService, private route: ActivatedRoute, private authService: AuthService){}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(async params=> {
+      this.userId = params.get("id") as string;
+    });
     this.bookboostService.getAds().subscribe((data) => {
       this.ads = data;
       console.log(this.ads);

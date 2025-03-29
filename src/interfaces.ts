@@ -72,10 +72,13 @@ export interface AdAvailability {
 export interface User {
     username: string;
     userId: string;
-    preferences: UserPreferences;
+    authorConfig: AuthorConfig;
+    readerConfig: ReaderConfig;
 }
 
-export interface UserPreferences {
+export interface AuthorConfig {
+}
+
+export interface ReaderConfig {
     genres: Genre[];
 }
-

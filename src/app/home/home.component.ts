@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { BookBoostService } from '../../services/bookboost.service';
 import { User } from '../../interfaces';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, LoginComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -15,9 +16,8 @@ export class HomeComponent implements OnInit{
 
   user: any;
   userData!: User;
-  genres!: string[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private bookboostService: BookBoostService){
+  constructor(private router: Router, private authService: AuthService, private bookboostService: BookBoostService){
 
   }
 
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit{
           (user) => {
             console.log(user);
             this.userData = user;
+            // this.router.navigate([`/reader/${this.user.clientPrincipal.userId}`]);
           },
           (error) => {
             if(error.status == 404){
@@ -38,22 +39,27 @@ export class HomeComponent implements OnInit{
                 username: this.user.clientPrincipal.userDetails
               } as User;
               this.bookboostService.upsertUser(newUser).subscribe(data => console.log(data));
+              // this.router.navigate([`/reader/${this.user.clientPrincipal.userId}`]);
+
             }
           }
         );
       }else{
         this.user = null;
-        this.router.navigate(['/login']);
       }
     });
   }
 
+  login(provider: string, role: string): void {
+    this.authService.login(provider, role);
+  }
+
   reader(){
-    this.router.navigate(['/reader']);
+    this.router.navigate([`/reader/${this.user.clientPrincipal.userId}`]);
   }
 
   author(){
-    this.router.navigate(['/author']);
+    this.router.navigate([`/author/${this.user.clientPrincipal.userId}`]);
   }
 
   logout(): void {

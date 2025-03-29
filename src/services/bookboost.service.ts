@@ -15,8 +15,8 @@ export class BookBoostService {
     return this.http.get<Ad[]>(`${this.apiUrl}/api/Ad`);
   }
 
-  getUser(username: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/api/User/${username}`);
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/api/User/${userId}`);
   }
 
   upsertUser(user: User): Observable<any> {

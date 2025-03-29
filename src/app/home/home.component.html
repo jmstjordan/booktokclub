@@ -1,11 +1,14 @@
-
-<button (click)="author()">Author Portal</button>
-<button (click)="reader()">Reader Portal</button>
-<div *ngIf="userData">
-    <p>Welcome, {{userData.username}} </p>
+<div *ngIf="user">
+    <div *ngIf="userData">
+        <p>Welcome, {{userData.username}} </p>
+    </div>
+    <button (click)="logout()">Logout</button>
 </div>
-<button *ngIf="user" (click)="logout()">Logout</button>
+<p>---TOPNAV---</p>
 <router-outlet></router-outlet>
+<p>---Footer---</p>
+<button (click)="login('github', 'author')">Login with GitHub</button>
+<button (click)="login('aad', 'author')">Login with AAD</button>
 <!-- <app-user *ngIf="user" [user]="user"></app-user> -->
 <!-- <div *ngIf="basePath == 'author'">
     <app-author></app-author>

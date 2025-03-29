@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { Ad } from '../../../interfaces';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class SuccessComponent implements OnInit {
   ad!: Ad;
+  userId!: string;
 
-  constructor(private bookBoostService: BookBoostService, private router: Router) {}
+  constructor(private bookBoostService: BookBoostService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -32,8 +33,11 @@ export class SuccessComponent implements OnInit {
         // }
       });
     }
+    this.route.paramMap.subscribe(async params=> {
+      this.userId = params.get("id") as string;
+    });
   }
   authorPortal(){
-    this.router.navigate([`author`]);
+    this.router.navigate([`author/${this.userId}`]);
   }
 }
