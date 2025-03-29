@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, Product, ProductUpload } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductUpload, User } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,15 @@ export class BookBoostService {
 
   getAds(): Observable<Ad[]> {
     return this.http.get<Ad[]>(`${this.apiUrl}/api/Ad`);
+  }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/api/User/${username}`);
+  }
+
+  upsertUser(user: User): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<User>(`${this.apiUrl}/api/User`, user, { headers });
   }
 
   getProducts(): Observable<Product[]> {

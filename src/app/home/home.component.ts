@@ -2,24 +2,27 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { BookBoostService } from '../../services/bookboost.service';
 import { AuthorComponent } from './author/author.component';
-import { ReaderComponent } from './reader/reader.component';
 import { SuccessComponent } from './success/success.component';
+import { ReaderComponent } from './reader/reader.component';
+import { BookBoostService } from '../../services/bookboost.service';
+import { User } from '../../interfaces';
+import { UserComponent } from './user/user.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, AuthorComponent, ReaderComponent, SuccessComponent],
+  imports: [CommonModule, AuthorComponent, SuccessComponent, ReaderComponent, UserComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
 
   user: any;
+  userData!: User;
   basePath!: string;
   otherPath!: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService){
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private bookboostService: BookBoostService){
     this.route.url.subscribe(segments => {
       const path = segments.map(segment => segment.path);
       this.basePath = path[1];
@@ -27,7 +30,7 @@ export class HomeComponent implements OnInit{
     });  
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.getUser().subscribe((user) => {
       console.log(user);
       if(user.clientPrincipal !== null){

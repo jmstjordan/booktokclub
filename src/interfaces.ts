@@ -68,3 +68,14 @@ export interface AdAvailability {
     adDate: string;
     count: number;
 }
+
+export interface User {
+    username: string;
+    userId: string;
+    preferences: UserPreferences;
+}
+
+export interface UserPreferences {
+    genres: Genre[];
+}
+
