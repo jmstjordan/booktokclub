@@ -1,12 +1,13 @@
 
-<button (click)="swapPortal()">{{otherPath | titlecase}} Portal</button>
-<div *ngIf="user">
-    <h2>{{basePath | titlecase}}</h2>
-    <p>Welcome, {{user.clientPrincipal.userDetails}} </p>
+<button (click)="author()">Author Portal</button>
+<button (click)="reader()">Reader Portal</button>
+<div *ngIf="userData">
+    <p>Welcome, {{userData.username}} </p>
 </div>
-<button (click)="logout()">Logout</button>
+<button *ngIf="user" (click)="logout()">Logout</button>
+<router-outlet></router-outlet>
 <!-- <app-user *ngIf="user" [user]="user"></app-user> -->
-<div *ngIf="basePath == 'author'">
+<!-- <div *ngIf="basePath == 'author'">
     <app-author></app-author>
 </div>
 <div *ngIf="basePath == 'reader'">
@@ -14,4 +15,4 @@
 </div>
 <div *ngIf="basePath == 'success'">
     <app-success></app-success>
-</div>
+</div> -->

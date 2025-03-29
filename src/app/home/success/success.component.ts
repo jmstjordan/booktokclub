@@ -34,6 +34,6 @@ export class SuccessComponent implements OnInit {
     }
   }
   authorPortal(){
-    this.router.navigate([`home/author`]);
+    this.router.navigate([`author`]);
   }
 }

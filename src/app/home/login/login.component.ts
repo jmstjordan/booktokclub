@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
       console.log(user);
       if(user.clientPrincipal !== null){
         this.user = user;
-        // maybe revisit this. what default behavior do we want?
-        // this.router.navigate(['/author/home']);
+        // TODO: check user information from database and send to their role
+        this.router.navigate(['/author']);
       }else{
         this.user = null;
       }
