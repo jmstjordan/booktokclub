@@ -4,6 +4,7 @@ import { AuthorComponent } from './home/author/author.component';
 import { ReaderComponent } from './home/reader/reader.component';
 import { AuthorSplashComponent } from './home/splash/author-splash/author-splash.component';
 import { ReaderSplashComponent } from './home/splash/reader-splash/reader-splash.component';
+import { SignupComponent } from './home/signup/signup.component';
 
 export const routes: Routes = [
     {path: '', component: ReaderSplashComponent},
@@ -12,4 +13,5 @@ export const routes: Routes = [
     {path: 'author/:id', component: AuthorComponent},
     {path: 'reader/:id', component: ReaderComponent},
     {path: 'success/:id', component: SuccessComponent},
+    {path: 'signup/:role', component: SignupComponent},
 ];
