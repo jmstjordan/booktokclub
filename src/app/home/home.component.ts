@@ -4,11 +4,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { BookBoostService } from '../../services/bookboost.service';
 import { User } from '../../interfaces';
-import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterOutlet, LoginComponent],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -36,11 +35,13 @@ export class HomeComponent implements OnInit{
             if(error.status == 404){
               let newUser = {
                 userId: this.user.clientPrincipal.userId,
-                username: this.user.clientPrincipal.userDetails
+                username: this.user.clientPrincipal.userDetails,
+                emailAddress: "jmstjordan@gmail.com",
+                readerConfig: {},
+                authorConfig: {}
               } as User;
               this.bookboostService.upsertUser(newUser).subscribe(data => console.log(data));
               // this.router.navigate([`/reader/${this.user.clientPrincipal.userId}`]);
-
             }
           }
         );

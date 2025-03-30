@@ -1,1 +1,15 @@
-<p>reader works!</p>
+<form>
+    <div *ngFor="let genre of genres">
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="selectedGenresMap[genre]"
+          name="{{ genre }}"
+        />
+        {{ genre }}
+      </label>
+    </div>
+    <button (click)="saveUser()" type="submit">Save</button>
+</form>
+  
+<p>Selected Genres: {{ selectedGenres | json }}</p>

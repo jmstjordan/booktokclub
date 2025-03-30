@@ -72,6 +72,7 @@ export interface AdAvailability {
 export interface User {
     username: string;
     userId: string;
+    emailAddress: string;
     authorConfig: AuthorConfig;
     readerConfig: ReaderConfig;
 }
@@ -80,5 +81,5 @@ export interface AuthorConfig {
 }
 
 export interface ReaderConfig {
-    genres: Genre[];
+    genres: string[];
 }
