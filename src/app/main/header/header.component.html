@@ -1,0 +1,7 @@
+<header class="header">
+    <span (click)="home()"><img src="../../../assets/booksmall.png" alt="BooktokLogo" height="50" width="50"></span>
+    <a *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</a>
+    <a *ngIf="!(isLoggedIn$ | async)" routerLink="/login">Login</a>
+    <!-- <app-search-bar></app-search-bar> -->
+    <app-sign-up-button></app-sign-up-button>
+</header>

@@ -1,0 +1,5 @@
+<form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+    <h4>Join our Newsletter</h4>
+    <input type="email" formControlName="email" placeholder="Email Address" />
+    <button type="submit">Sign Me Up</button>
+</form>

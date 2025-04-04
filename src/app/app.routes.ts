@@ -1,17 +1,19 @@
 import { Routes } from '@angular/router';
-import { SuccessComponent } from './home/success/success.component';
-import { AuthorComponent } from './home/author/author.component';
-import { ReaderComponent } from './home/reader/reader.component';
-import { AuthorSplashComponent } from './home/splash/author-splash/author-splash.component';
-import { ReaderSplashComponent } from './home/splash/reader-splash/reader-splash.component';
-import { SignupComponent } from './home/signup/signup.component';
+import { SuccessComponent } from './main/success/success.component';
+import { AuthorComponent } from './main/author/author.component';
+import { ReaderComponent } from './main/reader/reader.component';
+import { AuthorSplashComponent } from './main/splash/author-splash/author-splash.component';
+import { ReaderSplashComponent } from './main/splash/reader-splash/reader-splash.component';
+import { SignupComponent } from './main/signup/signup.component';
+import { AuthGuard } from '../services/auth.guard';
+import { AuthRedirectGuard } from '../services/auth-redirect.guard';
 
 export const routes: Routes = [
-    {path: '', component: ReaderSplashComponent},
-    {path: 'author', component: AuthorSplashComponent},
-    {path: 'reader', component: ReaderSplashComponent},
-    {path: 'author/:id', component: AuthorComponent},
-    {path: 'reader/:id', component: ReaderComponent},
-    {path: 'success/:id', component: SuccessComponent},
-    {path: 'signup/:role', component: SignupComponent},
+    {path: '', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'author', component: AuthorSplashComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'reader', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'author/home', component: AuthorComponent, canActivate: [AuthGuard]},
+    {path: 'reader/home', component: ReaderComponent, canActivate: [AuthGuard]},
+    {path: 'success/:id', component: SuccessComponent, canActivate: [AuthGuard]},
+    {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},
 ];

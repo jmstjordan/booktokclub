@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ad, AdAvailability, Product, ProductUpload, User } from '../interfaces';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookBoostService {
 
-  apiUrl = "https://localhost:7042"
+  apiUrl = environment.bookboostApi;
   constructor(private http: HttpClient) {}
 
   getAds(): Observable<Ad[]> {
