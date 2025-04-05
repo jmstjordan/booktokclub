@@ -14,6 +14,6 @@ export const routes: Routes = [
     {path: 'reader', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
     {path: 'author/home', component: AuthorComponent, canActivate: [AuthGuard]},
     {path: 'reader/home', component: ReaderComponent, canActivate: [AuthGuard]},
-    {path: 'success/:id', component: SuccessComponent, canActivate: [AuthGuard]},
+    {path: 'success', component: SuccessComponent, canActivate: [AuthGuard]},
     {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},
 ];

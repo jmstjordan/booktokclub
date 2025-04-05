@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class SuccessComponent implements OnInit {
   ad!: Ad;
-  userId!: string;
 
   constructor(private bookBoostService: BookBoostService, private router: Router, private route: ActivatedRoute) {}
 
@@ -21,6 +20,7 @@ export class SuccessComponent implements OnInit {
 
     if (sessionId) {
       this.bookBoostService.verifyAdPurchase(sessionId).subscribe((response) => {
+        console.log(response);
         if(response){
           console.log(response);
           this.ad = response;
@@ -33,11 +33,8 @@ export class SuccessComponent implements OnInit {
         // }
       });
     }
-    this.route.paramMap.subscribe(async params=> {
-      this.userId = params.get("id") as string;
-    });
   }
   authorPortal(){
-    this.router.navigate([`author/${this.userId}`]);
+    this.router.navigate([`author/home`]);
   }
 }
