@@ -16,13 +16,13 @@ export class BookBoostService {
     return this.http.get<Ad[]>(`${this.apiUrl}/api/Ad`);
   }
 
-  getUser(userId: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/api/User/${userId}`);
+  getUser(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/api/User/Me`);
   }
 
-  upsertUser(user: User): Observable<any> {
+  updatePreferences(genres: string[]): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<User>(`${this.apiUrl}/api/User`, user, { headers });
+    return this.http.post<{}>(`${this.apiUrl}/api/User/Preferences`, {genres: genres}, { headers });
   }
 
   getProducts(): Observable<Product[]> {

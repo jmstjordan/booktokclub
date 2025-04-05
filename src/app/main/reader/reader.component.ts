@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 export class ReaderComponent implements OnInit{
 
   products!: Product[];
-  user!: User;
   genres: string[] = [];
   selectedGenres: string[] = [];
   selectedGenresMap: Record<string, boolean> = {};
@@ -22,7 +21,10 @@ export class ReaderComponent implements OnInit{
   constructor(private bookboostService: BookBoostService, private route: ActivatedRoute){}
 
   ngOnInit(){
-    // this.syncSelectedGenres(user);
+    this.bookboostService.getUser().subscribe((user) => {
+      console.log(user)
+      this.syncSelectedGenres(user);
+    });
     this.bookboostService.getGenres().subscribe((data) => {
       console.log(data);
       this.genres = data;
@@ -30,18 +32,16 @@ export class ReaderComponent implements OnInit{
   }
 
   syncSelectedGenres(user: User){
-    if(user.readerConfig.genres !== null){
-      user.readerConfig.genres.forEach((genre) => {
+    if(user.preferences !== null && user.preferences.genres !== null){
+      user.preferences.genres.forEach((genre) => {
         this.selectedGenresMap[genre] = true;        
       });
     }
   }
 
-  saveUser(){
-    this.user.readerConfig.genres = this.selectedGenres;
-
+  savePreferences(){
     //snack bar here
-    this.bookboostService.upsertUser(this.user).subscribe( res => console.log("Saved!"));
+    this.bookboostService.updatePreferences(this.selectedGenres).subscribe(res => console.log(res));
   }
 
   ngDoCheck() {

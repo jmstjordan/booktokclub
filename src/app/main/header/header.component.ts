@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SignUpButtonComponent } from './sign-up-button/sign-up-button.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
@@ -7,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [SignUpButtonComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -22,7 +21,12 @@ export class HeaderComponent {
     this.router.navigate(['/']);
   }
 
+  routeSignup(){
+    this.router.navigate(['/']);
+  }
+
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

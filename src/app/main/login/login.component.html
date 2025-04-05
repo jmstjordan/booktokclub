@@ -4,7 +4,9 @@
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div>
         <label>Email</label>
-        <input formControlName="email" type="text" />
+        <div class="input-group">
+          <input formControlName="email" type="text" />
+        </div>
         <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
           Email is required
         </div>
@@ -12,18 +14,19 @@
   
       <div>
         <label>Password</label>
-        <input formControlName="password" type="password" />
+        <div class="input-group">
+          <input formControlName="password" type="password" />
+        </div>
+
         <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
           Password is required
         </div>
       </div>
   
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button class="btn" type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
-  
+    <div class="separator">or</div>
     <a>Don't have an account?</a>
-      <button (click)="signup()">Sign Up</button>
+      <button class="btn" (click)="signup()">Sign Up</button>
     <p>Forgot your password? <a href="mailto:support@booktokclub.com">Please email us</a></p>
-    <p>or...</p>
-    <button (click)="signup()">Sign In</button>
   </div>

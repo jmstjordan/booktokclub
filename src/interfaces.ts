@@ -40,6 +40,7 @@ export interface Price {
 }
 
 export interface Ad {
+    id: string;
     adDate: Date;
     created: Date;
     user: string;
@@ -71,15 +72,10 @@ export interface AdAvailability {
 
 export interface User {
     username: string;
-    userId: string;
-    emailAddress: string;
-    authorConfig: AuthorConfig;
-    readerConfig: ReaderConfig;
+    email: string;
+    preferences: Preferences;
 }
 
-export interface AuthorConfig {
-}
-
-export interface ReaderConfig {
+export interface Preferences {
     genres: string[];
 }
