@@ -1,5 +1,6 @@
 <header class="header">
-    <span (click)="home()"><img src="../../../assets/booksmall.png" alt="BooktokLogo" height="50" width="50"></span>
+    <button class="signup-btn" (click)="home()">HOME</button>
+    <!-- <span (click)="home()"><img src="../../../assets/booksmall.png" alt="BooktokLogo" height="50" width="50"></span> -->
     <!-- <app-search-bar></app-search-bar> -->
     <!-- <button *ngIf="!(isLoggedIn$ | async)" class="signup-btn" (click)="routeSignup()">SIGN UP</button> -->
     <button *ngIf="isLoggedIn$ | async" class="signup-btn" (click)="logout()">LOG OUT</button>

@@ -10,11 +10,14 @@ import { map } from 'rxjs/operators';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.authService.isAuthenticated().pipe(
       map(isAuth => {
+        const pathBase = route.url[0].path;
+        // this assumes we have a base, which is true for now for all authguards
+        // we call this on author, reader, and success, all which require auth.
         if (!isAuth) {
-          this.router.navigate(['/']);
+          this.router.navigate([pathBase]);
           return false;
         }
         return true;
