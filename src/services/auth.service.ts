@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../environments/environment';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Login`, credentials).pipe(
+  login(email: string, password: string, role: string): Observable<any> {
+    let payload = {
+      email: email,
+      password: password,
+      role: role
+    };
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Login`, payload).pipe(
       tap(response => {
         console.log(response)
         this.setToken(response.access_token);
@@ -27,8 +33,13 @@ export class AuthService {
     );
   }
 
-  signup(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Signup`, credentials).pipe(
+  signup(email: string, password: string, role: string): Observable<any> {
+    let payload = {
+      email: email,
+      password: password,
+      role: role
+    };
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Signup`, payload).pipe(
       tap(response => {
         this.setToken(response.access_token);
         this.setRefreshToken(response.refresh_token);
@@ -82,5 +93,19 @@ export class AuthService {
   private hasValidRefreshToken(): boolean {
     const refreshToken = this.getRefreshToken();
     return refreshToken != null;
+  }
+
+  getUserRoles(): string[] {
+    const token = this.getToken();
+    if (!token) return [];
+
+    const decoded = jwtDecode(token) as any;
+    const rawRoles = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    const roles = Array.isArray(rawRoles) ? rawRoles : [rawRoles]; 
+    return Array.isArray(roles) ? roles : [roles];
+  }
+
+  hasRole(role: string): boolean {
+    return this.getUserRoles().includes(role);
   }
 }

@@ -20,6 +20,7 @@ export class AuthorComponent implements OnInit{
   constructor(private bookboostService: BookBoostService, private authService: AuthService){}
 
   ngOnInit(): void {
+    console.log(this.authService.getUserRoles());
     this.bookboostService.getAds().subscribe((data) => {
       this.ads = data;
       console.log(this.ads);

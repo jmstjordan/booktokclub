@@ -14,8 +14,11 @@ export class AuthRedirectGuard implements CanActivate {
     return this.authService.isAuthenticated().pipe(
       map(isAuth => {
         if (isAuth) {
-          // need to get prefered role here.
-          this.router.navigate([`/author/home`]); 
+           if(this.authService.hasRole("reader")){
+             this.router.navigate(["/reader/home"]);
+           }else{
+             this.router.navigate(["/author/home"]);
+           }
           return false;
         }
         return true;

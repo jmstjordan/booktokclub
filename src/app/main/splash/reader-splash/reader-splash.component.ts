@@ -15,6 +15,5 @@ export class ReaderSplashComponent implements OnInit{
   constructor(private authService: AuthService, private router: Router){}
 
   ngOnInit(){
-
   }
 }
