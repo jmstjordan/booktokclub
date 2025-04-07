@@ -1,29 +1,27 @@
-<section id="hero-reader" class="py-16 bg-blue-100">
-    <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl font-bold text-blue-700 mb-4">Discover Amazing Stories</h1>
-        <p class="text-lg text-gray-700 mb-8">Find your next favorite read from talented authors.</p>
-        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full">Browse
-            Books</a>
-    </div>
-</section>
-
-<section id="benefits-author" class="py-12 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-semibold text-gray-800 text-center mb-8">Benefits for Authors</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Reach More Readers</h3>
-                <p class="text-gray-700">Connect with a wider audience and grow your readership.</p>
+<section class="py-16 px-6 md:px-12 lg:px-24">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 flex justify-center order-2 md:order-1">
+            <div class="grid grid-cols-3 gap-4 w-full max-w-md">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+1" alt="Book Cover 1"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+2" alt="Book Cover 2"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+3" alt="Book Cover 3"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+4" alt="Book Cover 4"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+5" alt="Book Cover 5"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+6" alt="Book Cover 6"
+                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
             </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Easy Publishing Tools</h3>
-                <p class="text-gray-700">Simple and intuitive platform to publish your work.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Track Your Success</h3>
-                <p class="text-gray-700">Monitor your book's performance and engage with your fans.</p>
-            </div>
+        </div>
+        <div class="md:w-1/2 text-center md:text-left order-1 md:order-2">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight font-serif">Discover Your
+                Next Favorite Book</h2>
+            <p class="text-lg text-gray-600 mb-6">Explore curated lists, top picks, and new releases across all
+                genres.</p>
+            <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium" (click)="routeSignup()">Join Readers</button>
         </div>
     </div>
 </section>
-<app-login [splash]="'reader'"></app-login>

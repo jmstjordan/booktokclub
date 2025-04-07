@@ -1,8 +1,7 @@
 <header class="py-4 px-6 md:px-12 lg:px-24 border-b border-gray-200 sticky top-0 bg-white z-50">
     <div class="container mx-auto flex justify-between items-center">
-        <div class="flex items-center space-x-2"><a href="tailwind.html"><img src="../../../assets/logo.webp" alt="Logo" width="150"></a>
+        <div class="flex items-center space-x-2"><a (click)="home($event)"><img src="../../../assets/logo.webp" alt="Logo" width="150"></a>
         </div>
-        <button class="signup-btn" (click)="home()">HOME</button>
         <!-- <span (click)="home()"><img src="../../../assets/booksmall.png" alt="BooktokLogo" height="50" width="50"></span> -->
         <!-- <app-search-bar></app-search-bar> -->
         <!-- <button *ngIf="!(isLoggedIn$ | async)" class="signup-btn" (click)="routeSignup()">SIGN UP</button> -->
@@ -16,7 +15,7 @@
         </nav>
         <div class="flex space-x-3 items-center">
             <button class="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md text-sm">Log In</button>
-            <button class="hero-reader-button text-white px-4 py-2 rounded-md text-sm font-medium">Sign Up</button>
+            <button *ngIf="isLoggedIn$ | async" (click)="logout()" class="hero-reader-button text-white px-4 py-2 rounded-md text-sm font-medium">Log Out</button>
         </div>
         <button class="md:hidden text-gray-600 hover:text-gray-900">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -26,6 +25,5 @@
                 <line x1="4" x2="20" y1="18" y2="18" />
             </svg>
         </button>
-        <!-- <button *ngIf="isLoggedIn$ | async" class="signup-btn" (click)="logout()">LOG OUT</button> -->
     </div>
 </header>

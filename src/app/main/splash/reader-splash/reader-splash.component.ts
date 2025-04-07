@@ -1,19 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../../login/login.component';
-import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reader-splash',
-  imports: [CommonModule, LoginComponent],
+  imports: [CommonModule],
   templateUrl: './reader-splash.component.html',
   styleUrl: './reader-splash.component.scss'
 })
 export class ReaderSplashComponent implements OnInit{
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private router: Router){}
 
   ngOnInit(){
+  }
+
+  routeSignup(){
+    this.router.navigate(['signup', 'reader']);
   }
 }

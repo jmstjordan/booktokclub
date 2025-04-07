@@ -7,6 +7,7 @@ import { ReaderSplashComponent } from './main/splash/reader-splash/reader-splash
 import { SignupComponent } from './main/signup/signup.component';
 import { AuthGuard } from '../services/auth.guard';
 import { AuthRedirectGuard } from '../services/auth-redirect.guard';
+import { LoginComponent } from './main/login/login.component';
 
 export const routes: Routes = [
     {path: '', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
@@ -16,4 +17,5 @@ export const routes: Routes = [
     {path: 'reader/home', component: ReaderComponent, canActivate: [AuthGuard]},
     {path: 'success', component: SuccessComponent, canActivate: [AuthGuard]},
     {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'login/:role', component: LoginComponent, canActivate: [AuthRedirectGuard]},
 ];

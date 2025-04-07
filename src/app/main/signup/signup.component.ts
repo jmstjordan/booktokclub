@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
   }
 
   routeLogin(){
-    this.router.navigate([this.role]);
+    this.router.navigate(['login', this.role]);
   }
 
   onSignup(): void {

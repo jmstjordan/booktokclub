@@ -17,5 +17,69 @@
 </head>
 <body>
   <app-root></app-root>
+      <!-- Carousel JavaScript -->
+      <script>
+        function setupCarousel(containerSelector) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+
+            const track = container.querySelector('.carousel-track');
+            const items = Array.from(track.children);
+            const nextButton = container.querySelector('.carousel-arrow-right');
+            const prevButton = container.querySelector('.carousel-arrow-left');
+
+            if (!track || items.length === 0 || !nextButton || !prevButton) return;
+
+            let itemWidth = 0;
+            let visibleItems = 0;
+            let currentSlide = 0;
+            let maxSlide = 0;
+
+            function calculateDimensions() {
+                if (items.length > 0 && items[0].offsetWidth > 0) {
+                    const itemStyle = getComputedStyle(items[0]);
+                    const marginRight = parseInt(itemStyle.marginRight) || 0;
+                    itemWidth = items[0].offsetWidth + marginRight;
+                    visibleItems = Math.max(1, Math.floor(container.offsetWidth / itemWidth));
+                    maxSlide = Math.max(0, items.length - visibleItems);
+                    if (currentSlide > maxSlide) currentSlide = maxSlide;
+                    track.style.transform = 'translateX(-' + (itemWidth * currentSlide) + 'px)';
+                } else {
+                    requestAnimationFrame(calculateDimensions);
+                }
+            }
+
+            nextButton.addEventListener('click', () => {
+                if (currentSlide < maxSlide) {
+                    currentSlide++;
+                    track.style.transform = 'translateX(-' + (itemWidth * currentSlide) + 'px)';
+                }
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    track.style.transform = 'translateX(-' + (itemWidth * currentSlide) + 'px)';
+                }
+            });
+
+            setTimeout(calculateDimensions, 50);
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(calculateDimensions, 250);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setupCarousel('.top-picks-bg .carousel-container');
+                setupCarousel('.testimonial-carousel');
+            });
+        } else {
+            setupCarousel('.top-picks-bg .carousel-container');
+            setupCarousel('.testimonial-carousel');
+        }
+    </script>
 </body>
 </html>
