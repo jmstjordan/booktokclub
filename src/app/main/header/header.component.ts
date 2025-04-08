@@ -27,7 +27,7 @@ export class HeaderComponent {
   }
 
   routeLogin(){
-
+    this.router.navigate(['login', 'reader']);
   }
 
   logout() {

@@ -1,6 +1,6 @@
 <section class="py-16 px-6 md:px-12 lg:px-24">
   <div class="container mx-auto text-center max-w-lg">
-    <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Create an Account</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Log in</h2>
     <p class="text-lg text-gray-600 mb-8">Join our community of {{role}}s.</p>
     <form class="space-y-4 mb-6" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div>
@@ -20,6 +20,7 @@
       <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" type="submit"
       [disabled]="loginForm.invalid">Log in</button>
     </form>
+    <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()">[Sign Up]</button></p>
     <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <a href="mailto:support@booktokclub.com">Please
         email us</a></p>
   </div>

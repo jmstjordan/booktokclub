@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookBoostService } from '../../../../services/bookboost.service';
+import { Product } from '../../../../interfaces';
 
 @Component({
   selector: 'app-reader-splash',
@@ -10,9 +12,18 @@ import { Router } from '@angular/router';
 })
 export class ReaderSplashComponent implements OnInit{
 
-  constructor(private router: Router){}
+  // TODO: fill this in with default stubs
+  products: Product[] = [];
+  carouselProducts: Product[] = [];
+
+  constructor(private router: Router, private bookboost: BookBoostService){}
 
   ngOnInit(){
+    this.bookboost.getProducts().subscribe(result => {
+      console.log(result);
+      this.products = result.slice(0, 6);
+      this.carouselProducts = result.slice(6, result.length);
+    });
   }
 
   routeSignup(){

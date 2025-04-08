@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  signup(){
+  routeSignup(){
     this.router.navigate([`/signup/${this.role}`]);
   }
 

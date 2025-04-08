@@ -18,7 +18,6 @@ export enum ProductSource {
 }
 
 export interface Product {
-
     productId: string;
     productSource: ProductSource;
     title: string;

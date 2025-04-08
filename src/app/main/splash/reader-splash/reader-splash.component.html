@@ -2,18 +2,10 @@
     <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
         <div class="md:w-1/2 flex justify-center order-2 md:order-1">
             <div class="grid grid-cols-3 gap-4 w-full max-w-md">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+1" alt="Book Cover 1"
+                @for (product of products; track product) {  
+                <img [src]="product.image" 
                     class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+2" alt="Book Cover 2"
-                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+3" alt="Book Cover 3"
-                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+4" alt="Book Cover 4"
-                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+5" alt="Book Cover 5"
-                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                <img src="https://placehold.co/150x225/E5E7EB/4B5563?text=Novel+6" alt="Book Cover 6"
-                    class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                }
             </div>
         </div>
         <div class="md:w-1/2 text-center md:text-left order-1 md:order-2">
@@ -22,6 +14,46 @@
             <p class="text-lg text-gray-600 mb-6">Explore curated lists, top picks, and new releases across all
                 genres.</p>
             <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium" (click)="routeSignup()">Join Readers</button>
+        </div>
+    </div>
+</section>
+<section class="py-16 px-6 md:px-12 lg:px-24 top-picks-bg">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center font-serif">Top Picks</h2>
+        <div class="flex justify-center space-x-4 mb-6 text-sm text-gray-600">
+            <span>Self
+                Help</span><span>Romance</span><span>Biography</span><span>Fantasy</span><span>Thriller</span>
+        </div>
+        <div class="carousel-container">
+            <button class="carousel-arrow carousel-arrow-left" aria-label="Previous Slide">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </button>
+            <button class="carousel-arrow carousel-arrow-right" aria-label="Next Slide">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+            <div class="carousel-track flex space-x-6 pb-4 -mx-3 px-3">
+                @for (product of carouselProducts; track product) {  
+                <div class="carousel-item w-1/2 md:w-1/4 lg:w-1/5 flex-shrink-0">
+                    <div class="bg-white p-4 rounded-lg shadow-md text-center h-full flex flex-col">
+                        <img [src]="product.image"
+                            alt="Book: Think Again"
+                            class="w-full h-auto rounded mb-3 aspect-[2/3] object-cover">
+                        <h4 class="font-semibold text-sm mb-1 font-serif">Think Again</h4>
+                        <p class="text-xs text-gray-500 mb-2">Adam Grant</p>
+                        <div class="flex justify-center star-rating text-xs mt-auto">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span
+                                class="text-gray-300">☆</span>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
     </div>
 </section>
