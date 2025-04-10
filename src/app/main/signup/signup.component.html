@@ -24,7 +24,9 @@
               Passwords do not match
             </div>
         </div>
-        <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" type="submit" [disabled]="signupForm.invalid || isLoading">
+            {{ isLoading ? 'Creating...' : 'Sign Up' }}
+        </button>
       </form>
       <p class="text-sm text-gray-500 -mt-3 mb-4">Already have an account? <button (click)="routeLogin()">[Log In]</button></p>
       <!-- <div class="signup-divider my-6"></div>

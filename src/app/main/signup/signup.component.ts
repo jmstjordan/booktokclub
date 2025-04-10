@@ -13,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   role!: string;
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
 
@@ -43,9 +44,13 @@ export class SignupComponent implements OnInit {
 
   onSignup(): void {
     if (this.signupForm.valid) {
+      this.isLoading = true;
       console.log('Sign Up Data:', this.signupForm.value);
       this.authService.signup(this.signupForm.value["email"], this.signupForm.value["password"], this.role)
-        .subscribe(result => this.router.navigate([this.role, "home"]));
+        .subscribe(result => {
+          this.isLoading = false;
+          this.router.navigate([this.role, "home"]);
+        }, error => this.isLoading = false);
     }
   }
 }

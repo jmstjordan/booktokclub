@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         .subscribe(result => {
           this.isLoading = false;
           this.router.navigate([this.role, "home"]);
-        });
+        }, error => this.isLoading = false);
       ;
     }
   }
