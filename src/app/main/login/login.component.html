@@ -17,8 +17,10 @@
           Password is required
         </div>
       </div>
-      <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" type="submit"
-      [disabled]="loginForm.invalid">Log in</button>
+      <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" [disabled]="isLoading || loginForm.invalid">
+        <div *ngIf="isLoading" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        <span>{{ isLoading ? '' : 'Login' }}</span>
+      </button>
     </form>
     <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()">[Sign Up]</button></p>
     <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <a href="mailto:support@booktokclub.com">Please

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   role!: string;
+  isLoading = false;
 
   constructor(private router: Router, private authService: AuthService, private fb: FormBuilder, private route: ActivatedRoute) {}
 
@@ -34,8 +35,12 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
+      this.isLoading = true;
       this.authService.login(this.loginForm.value["email"], this.loginForm.value["password"], this.role)
-        .subscribe(result => this.router.navigate([this.role, "home"]));
+        .subscribe(result => {
+          this.isLoading = false;
+          this.router.navigate([this.role, "home"]);
+        });
       ;
     }
   }
