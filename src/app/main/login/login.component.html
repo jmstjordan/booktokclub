@@ -20,9 +20,11 @@
       <button class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" [disabled]="isLoading || loginForm.invalid">
         {{ isLoading ? 'Logging in...' : 'Login' }}
       </button>
+      @if(!success){
+        <p class="text-sm text-red-500 -mt-3 mb-4">Incorrect Credentials!</p>
+      }
     </form>
     <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()">[Sign Up]</button></p>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <a href="mailto:support@booktokclub.com">Please
-        email us</a></p>
+    <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <button (click)="routePasswordReset()">[Reset Password]</button></p>
   </div>
 </section>

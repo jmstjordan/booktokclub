@@ -19,11 +19,10 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
     }
-
     // Handle request
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 && !req.url.includes('/Auth/Refresh') && !this.authService.isRefreshing) {
+        if (error.status === 401 && !req.url.includes('/Auth/Login') && !req.url.includes('/Auth/Refresh') && !this.authService.isRefreshing) {
           // Try refreshing the token
           return this.authService.refreshToken().pipe(
             switchMap((response) => {

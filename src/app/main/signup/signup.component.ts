@@ -47,10 +47,12 @@ export class SignupComponent implements OnInit {
       this.isLoading = true;
       console.log('Sign Up Data:', this.signupForm.value);
       this.authService.signup(this.signupForm.value["email"], this.signupForm.value["password"], this.role)
-        .subscribe(result => {
-          this.isLoading = false;
-          this.router.navigate([this.role, "home"]);
-        }, error => this.isLoading = false);
+        .subscribe(
+          {
+            next: () => {this.router.navigate([this.role, "home"]); this.isLoading = false},
+            error: () => this.isLoading = false
+          }
+        );    
     }
   }
 }

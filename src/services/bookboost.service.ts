@@ -59,4 +59,14 @@ export class BookBoostService {
   getProductSources(): Observable<string[]>{
     return this.http.get<string[]>(`${this.apiUrl}/api/Product/Sources`);
   }
+
+  forgotPassword(email: string): Observable<any>{
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.apiUrl}/api/Auth/ForgotPassword`, { email: email }, { headers });
+  }
+
+  resetPassword(email: string, newPassword: string, token: string){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.apiUrl}/api/Auth/ResetPassword`, { email: email, newPassword: newPassword, token: token }, { headers });
+  }
 }
