@@ -1,27 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../../services/bookboost.service';
 import { AdAvailability, AdUpload, ProductUpload } from '../../../../interfaces';
 import { StripeService } from 'ngx-stripe';
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-adform',
   imports: [
-    CommonModule, ReactiveFormsModule
- ],
+    CommonModule, ReactiveFormsModule, FormsModule
+  ],
   templateUrl: './adform.component.html',
   styleUrl: './adform.component.scss'
 })
-export class AdformComponent {
+export class AdformComponent implements AfterViewInit {
 
   @Output() adCreate = new EventEmitter<any>();
   @Input() adPrices!: {};
   @Input() productSources!: string[];
+  @ViewChild('flatpickrInput') input!: ElementRef;
   adForm!: FormGroup;
   checkTitle!: string;
-  adAvailability!: AdAvailability[];
-  
+
+  selectedDate: Date | null = null;
+  private flatpickrInstance!: flatpickr.Instance;
+
   errorMessage!: string;
 
   constructor(private fb: FormBuilder, private bookBoostService: BookBoostService, public stripe: StripeService) {}
@@ -32,6 +36,18 @@ export class AdformComponent {
       adDate: ['', Validators.required],
       genre: ['', Validators.required],
       productSource: ['', Validators.required]
+    });
+  }
+
+
+  ngAfterViewInit() {
+    const today = new Date();
+    const ninetyDaysFromNow = new Date();
+    ninetyDaysFromNow.setDate(today.getDate() + 90);
+    this.flatpickrInstance = flatpickr(this.input.nativeElement, {
+      disable: [],
+      dateFormat: 'Y-m-d',
+      maxDate: ninetyDaysFromNow,
     });
   }
 
@@ -51,9 +67,19 @@ export class AdformComponent {
   getGenreAvailability(event: Event){
     const selectElement = event.target as HTMLSelectElement;
     let genre = selectElement.value;
-    this.bookBoostService.getAdAvailability(genre).subscribe((data) =>{
-      this.adAvailability = data;
-      console.log(this.adAvailability);
+    this.bookBoostService.getAdAvailability(genre).subscribe((data: AdAvailability[]) =>{
+      let disabledDates: Date[] = [];
+      console.log(data)
+      data[0].count = 0;
+      data.forEach((x) => {
+        if(x.count == 0){
+          let daySplit = x.adDate.split("-");
+          // hack to get the timezone to work
+          disabledDates.push(new Date(Number(daySplit[0]), Number(daySplit[1]) - 1, Number(daySplit[2])));
+        }
+      });
+      console.log(disabledDates);
+      this.flatpickrInstance.set('disable', disabledDates);
     });
   }
 

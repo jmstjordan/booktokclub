@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
-    provideNgxStripe(environment.stripeKey),
+    provideNgxStripe(environment.stripeKey)
     ]
 };

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, finalize, map, Observable, shareReplay, tap } from 'rxjs';
 import { environment } from '../environments/environment';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private refreshTokenKey = 'refresh_token';
   private authStatus = new BehaviorSubject<boolean>(this.hasValidRefreshToken());
+  private refreshTokenInProgress: Observable<string> | null = null;
   private apiUrl = environment.bookboostApi;
   isRefreshing = false;
 
@@ -59,11 +60,27 @@ export class AuthService {
   }
 
   refreshToken(): Observable<{ access_token: string, refresh_token: string }> {
-    this.isRefreshing = true;
     return this.http.post<{ access_token: string, refresh_token: string }>(
       `${this.apiUrl}/api/Auth/Refresh`,
-      { refreshToken: this.getRefreshToken() }
+      { token: this.getRefreshToken() }
     );
+  }
+
+  getSharedRefreshToken(): Observable<string> {
+    if (!this.refreshTokenInProgress) {
+      this.refreshTokenInProgress = this.refreshToken().pipe(
+        tap((res) => {
+          this.setToken(res.access_token);
+          this.setRefreshToken(res.refresh_token);
+        }),
+        map((res) => res.access_token),
+        finalize(() => {
+          this.refreshTokenInProgress = null; // allow future refreshes
+        }),
+        shareReplay(1) // share result with all pending subscribers
+      );
+    }
+    return this.refreshTokenInProgress;
   }
 
   getToken(): string | null {
