@@ -46,6 +46,7 @@ export interface Ad {
     product: Product;
     genre: Genre;
     state: AdState;
+    orderId: string;
 }
 
 export interface ProductUpload {

@@ -1,4 +1,4 @@
 <ul>
-    <li *ngFor="let ad of ads">{{ ad.product.title }}</li>
+    <li *ngFor="let ad of ads">{{ ad.product.productId }} - {{ ad.adDate }} - {{ ad.state }}</li>
 </ul>
 <app-adform [adPrices]="adPrices" [productSources]="productSources" (adCreate)="receiveCreateAd($event)"></app-adform>

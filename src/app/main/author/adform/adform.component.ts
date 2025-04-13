@@ -25,6 +25,7 @@ export class AdformComponent implements AfterViewInit {
 
   selectedDate: Date | null = null;
   private flatpickrInstance!: flatpickr.Instance;
+  genreSelected = false;
 
   errorMessage!: string;
 
@@ -41,14 +42,29 @@ export class AdformComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    const today = new Date();
+    const DAYS_OUT = 90;
+    const today = new Date().getDate();
     const ninetyDaysFromNow = new Date();
-    ninetyDaysFromNow.setDate(today.getDate() + 90);
+    ninetyDaysFromNow.setDate(today + DAYS_OUT);
+
     this.flatpickrInstance = flatpickr(this.input.nativeElement, {
-      disable: [],
+      disable: this.getNextNDays(DAYS_OUT + 1),
       dateFormat: 'Y-m-d',
       maxDate: ninetyDaysFromNow,
+      minDate: "today"
     });
+  }
+
+  getNextNDays(n: number): Date[] {
+    const days: Date[] = [];
+    const today = new Date();
+  
+    for (let i = 0; i < n; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      days.push(date);
+    }
+    return days;
   }
 
   checkProductId(){
@@ -67,10 +83,9 @@ export class AdformComponent implements AfterViewInit {
   getGenreAvailability(event: Event){
     const selectElement = event.target as HTMLSelectElement;
     let genre = selectElement.value;
-    this.bookBoostService.getAdAvailability(genre).subscribe((data: AdAvailability[]) =>{
+    this.bookBoostService.getAdAvailability(genre).subscribe((data: AdAvailability[]) => {
       let disabledDates: Date[] = [];
       console.log(data)
-      data[0].count = 0;
       data.forEach((x) => {
         if(x.count == 0){
           let daySplit = x.adDate.split("-");
@@ -78,8 +93,8 @@ export class AdformComponent implements AfterViewInit {
           disabledDates.push(new Date(Number(daySplit[0]), Number(daySplit[1]) - 1, Number(daySplit[2])));
         }
       });
-      console.log(disabledDates);
       this.flatpickrInstance.set('disable', disabledDates);
+      this.genreSelected = true;
     });
   }
 
