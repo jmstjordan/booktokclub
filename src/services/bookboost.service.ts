@@ -13,61 +13,61 @@ export class BookBoostService {
   constructor(private http: HttpClient) {}
 
   getAds(): Observable<Ad[]> {
-    return this.http.get<Ad[]>(`${this.apiUrl}/api/Ad`);
+    return this.http.get<Ad[]>(`${this.apiUrl}/Ad`);
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/api/User/Me`);
+    return this.http.get<User>(`${this.apiUrl}/User/Me`);
   }
 
   updatePreferences(genres: string[]): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<{}>(`${this.apiUrl}/api/User/Preferences`, {genres: genres}, { headers });
+    return this.http.post<{}>(`${this.apiUrl}/User/Preferences`, {genres: genres}, { headers });
   }
 
   getProducts(): Observable<Product[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Product[]>(`${this.apiUrl}/api/Product`, { headers });
+    return this.http.get<Product[]>(`${this.apiUrl}/Product`, { headers });
   }
 
   getPrices(): Observable<{}> {
-    return this.http.get<{}>(`${this.apiUrl}/api/Payment/Prices`);
+    return this.http.get<{}>(`${this.apiUrl}/Payment/Prices`);
   }
 
   getProduct(productUpload: ProductUpload): Observable<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Product>(`${this.apiUrl}/api/Product`, productUpload, { headers });
+    return this.http.post<Product>(`${this.apiUrl}/Product`, productUpload, { headers });
   }
 
   createCheckoutSession(metadata: {}){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/api/Payment/CreateAdCheckoutSession`, metadata, { headers });
+    return this.http.post(`${this.apiUrl}/Payment/CreateAdCheckoutSession`, metadata, { headers });
   }
 
   verifyAdPurchase(sessionId: string): Observable<Ad> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Ad>(`${this.apiUrl}/api/Payment/VerifySession/${sessionId}`, { headers });
+    return this.http.get<Ad>(`${this.apiUrl}/Payment/VerifySession/${sessionId}`, { headers });
   }
 
   getAdAvailability(genre: string): Observable<AdAvailability[]>{
-    return this.http.get<AdAvailability[]>(`${this.apiUrl}/api/Ad/Availability/${genre}`);
+    return this.http.get<AdAvailability[]>(`${this.apiUrl}/Ad/Availability/${genre}`);
   }
 
   getGenres(): Observable<string[]>{
-    return this.http.get<string[]>(`${this.apiUrl}/api/Ad/Genres`);
+    return this.http.get<string[]>(`${this.apiUrl}/Ad/Genres`);
   }
 
   getProductSources(): Observable<string[]>{
-    return this.http.get<string[]>(`${this.apiUrl}/api/Product/Sources`);
+    return this.http.get<string[]>(`${this.apiUrl}/Product/Sources`);
   }
 
   forgotPassword(email: string): Observable<any>{
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/api/Auth/ForgotPassword`, { email: email }, { headers });
+    return this.http.post(`${this.apiUrl}/Auth/ForgotPassword`, { email: email }, { headers });
   }
 
   resetPassword(email: string, newPassword: string, token: string){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/api/Auth/ResetPassword`, { email: email, newPassword: newPassword, token: token }, { headers });
+    return this.http.post(`${this.apiUrl}/Auth/ResetPassword`, { email: email, newPassword: newPassword, token: token }, { headers });
   }
 }

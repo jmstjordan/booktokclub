@@ -24,7 +24,7 @@ export class AuthService {
       password: password,
       role: role
     };
-    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Login`, payload).pipe(
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/Auth/Login`, payload).pipe(
       tap(response => {
         console.log(response)
         this.setToken(response.access_token);
@@ -40,7 +40,7 @@ export class AuthService {
       password: password,
       role: role
     };
-    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/api/Auth/Signup`, payload).pipe(
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/Auth/Signup`, payload).pipe(
       tap(response => {
         this.setToken(response.access_token);
         this.setRefreshToken(response.refresh_token);
@@ -61,7 +61,7 @@ export class AuthService {
 
   refreshToken(): Observable<{ access_token: string, refresh_token: string }> {
     return this.http.post<{ access_token: string, refresh_token: string }>(
-      `${this.apiUrl}/api/Auth/Refresh`,
+      `${this.apiUrl}/Auth/Refresh`,
       { token: this.getRefreshToken() }
     );
   }
