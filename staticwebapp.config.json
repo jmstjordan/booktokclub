@@ -13,6 +13,10 @@
             ]
         },
         {
+            "route": "/styles.css",
+            "serve": "/styles.css"
+        },
+        {
             "route": "/*",
             "rewrite": "/index.html"
         }
