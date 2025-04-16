@@ -1,13 +1,17 @@
 {
     "routes": [
       {
-        "route": "/api/*",
-        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*",
+        "route": "/api/{*rest}",
+        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/{rest}",
         "allowedMethods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+      },
+      {
+        "route": "/*",
+        "rewrite": "/index.html"
       }
     ],
     "navigationFallback": {
-        "rewrite": "/index.html",
-        "exclude": ["/api/*", "/assets/*"]
+      "rewrite": "/index.html",
+      "exclude": ["/api/*", "/assets/*"]
     }
 }
