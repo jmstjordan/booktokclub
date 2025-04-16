@@ -26,7 +26,6 @@ export class AuthService {
     };
     return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/Auth/Login`, payload).pipe(
       tap(response => {
-        console.log(response)
         this.setToken(response.access_token);
         this.setRefreshToken(response.refresh_token);
         this.authStatus.next(true);

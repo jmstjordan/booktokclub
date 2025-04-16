@@ -2,7 +2,8 @@
     "routes": [
       {
         "route": "/api/*",
-        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*"
+        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*",
+        "allowedMethods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
       }
     ],
     "navigationFallback": {

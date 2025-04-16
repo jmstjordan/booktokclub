@@ -45,7 +45,6 @@ export class SignupComponent implements OnInit {
   onSignup(): void {
     if (this.signupForm.valid) {
       this.isLoading = true;
-      console.log('Sign Up Data:', this.signupForm.value);
       this.authService.signup(this.signupForm.value["email"], this.signupForm.value["password"], this.role)
         .subscribe(
           {
