@@ -13,8 +13,16 @@
             ]
         },
         {
-            "route": "/styles.css",
-            "serve": "/styles.css"
+            "route": "/*.js",
+            "serve": "/*.js"
+        },
+        {
+            "route": "/*.css",
+            "serve": "/*.css"
+        },
+        {
+            "route": "/assets/*",
+            "serve": "/assets/*"
         },
         {
             "route": "/*",
