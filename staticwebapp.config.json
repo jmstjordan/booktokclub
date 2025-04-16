@@ -1,0 +1,12 @@
+{
+    "routes": [
+      {
+        "route": "/api/*",
+        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*"
+      },
+      {
+        "route": "/*",
+        "rewrite": "/index.html"
+      }
+    ]
+}
