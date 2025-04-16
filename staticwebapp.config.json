@@ -1,39 +1,37 @@
 {
     "routes": [
-        {
-            "route": "/api/*",
-            "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*",
-            "allowedMethods": [
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "PATCH",
-                "OPTIONS"
-            ]
-        },
-        {
-            "route": "/*.js",
-            "serve": "/*.js"
-        },
-        {
-            "route": "/*.css",
-            "serve": "/*.css"
-        },
-        {
-            "route": "/assets/*",
-            "serve": "/assets/*"
-        },
-        {
-            "route": "/*",
-            "rewrite": "/index.html"
-        }
+      {
+        "route": "/api/*",
+        "rewrite": "https://booktokclub-api-hcfxfzfxhsf8bbf7.centralus-01.azurewebsites.net/api/*",
+        "allowedMethods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "PATCH",
+          "OPTIONS"
+        ]
+      },
+      {
+        "route": "/*.js",
+        "serve": "/*.js"
+      },
+      {
+        "route": "/*.css",
+        "serve": "/*.css"
+      },
+      {
+        "route": "/assets/*",
+        "serve": "/assets/*"
+      }
     ],
     "navigationFallback": {
-        "rewrite": "/index.html",
-        "exclude": [
-            "/api/*",
-            "/assets/*"
-        ]
+      "rewrite": "/index.html",
+      "exclude": [
+        "/api/*",
+        "/assets/*",
+        "/*.js",
+        "/*.css"
+      ]
     }
-}
+  }
