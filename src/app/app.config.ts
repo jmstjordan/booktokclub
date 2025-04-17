@@ -14,5 +14,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideNgxStripe(environment.stripeKey)
-    ]
+  ]
 };

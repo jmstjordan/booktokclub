@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, finalize, map, Observable, shareReplay, tap } from 'rxjs';
 import { environment } from '../environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
   private apiUrl = environment.bookboostApi;
   isRefreshing = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string, role: string): Observable<any> {
     let payload = {
@@ -31,6 +32,16 @@ export class AuthService {
         this.authStatus.next(true);
       })
     );
+  }
+
+  loginWithGoogle(idToken: string, role: string) {
+    this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/Auth/Login/Google`, { idToken: idToken, role: role }).subscribe(response => {
+      console.log(response);
+      this.setToken(response.access_token);
+      this.setRefreshToken(response.refresh_token);
+      this.authStatus.next(true);
+      this.router.navigate([role, "home"]);
+    });
   }
 
   signup(email: string, password: string, role: string): Observable<any> {
