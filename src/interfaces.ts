@@ -10,7 +10,8 @@ export enum Genre {
 export enum AdState {
     Pending,
     Declined,
-    Accepted
+    Accepted,
+    Canceled
 }
 
 export enum ProductSource {

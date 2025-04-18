@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AdformComponent } from './adform/adform.component';
 import { BookBoostService } from '../../../services/bookboost.service';
-import { Ad } from '../../../interfaces';
+import { Ad, AdState } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -27,6 +27,16 @@ export class AuthorComponent implements OnInit{
     });
     this.bookboostService.getPrices().subscribe((adPrices) => this.adPrices = adPrices);
     this.bookboostService.getProductSources().subscribe((productSources) => this.productSources = productSources);
+  }
+
+  cancelAd(adId: string){
+    this.bookboostService.cancelAd(adId).subscribe(res =>{
+      this.ads.forEach(ad =>{
+        if(ad.id == adId){
+          ad.state = AdState.Canceled;
+        }
+      });
+    });
   }
 
   receiveCreateAd(ad: any){

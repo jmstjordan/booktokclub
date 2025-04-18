@@ -70,4 +70,9 @@ export class BookBoostService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(`${this.apiUrl}/Auth/ResetPassword`, { email: email, newPassword: newPassword, token: token }, { headers });
   }
+
+  cancelAd(adId: string){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.apiUrl}/Ad/${adId}/Cancel`, {}, { headers });
+  }
 }

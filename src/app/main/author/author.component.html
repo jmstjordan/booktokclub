@@ -1,4 +1,9 @@
 <ul>
-    <li *ngFor="let ad of ads">{{ ad.product.productId }} - {{ ad.adDate }} - {{ ad.state }}</li>
+    <li *ngFor="let ad of ads">
+        {{ ad.product.productId }} - {{ ad.adDate }} - {{ ad.state }}
+        <button (click)="cancelAd(ad.id)" class="hero-reader-button text-white px-8 py-3 rounded-md font-medium w-full md:w-auto">
+            Cancel Ad
+        </button>
+    </li>
 </ul>
 <app-adform [adPrices]="adPrices" [productSources]="productSources" (adCreate)="receiveCreateAd($event)"></app-adform>
