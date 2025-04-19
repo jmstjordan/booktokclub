@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModul
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { SocialLoginComponent } from '../social-login/social-login.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   role!: string;
   isLoading = false;
+  errorMessage!: string;
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
 
@@ -50,7 +52,12 @@ export class SignupComponent implements OnInit {
         .subscribe(
           {
             next: () => {this.router.navigate([this.role, "home"]); this.isLoading = false},
-            error: () => this.isLoading = false
+            error: (error: HttpErrorResponse) => {
+              this.isLoading = false;
+              if(error.status == 409){
+                this.errorMessage = "Account already exists";
+              }
+            }
           }
         );    
     }

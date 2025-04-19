@@ -1,7 +1,11 @@
 <section class="py-16 px-6 md:px-12 lg:px-24">
   <div class="container mx-auto text-center max-w-lg">
       <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Create an Account</h2>
-      <p class="text-lg text-gray-600 mb-8">Join our community of {{role}}s.</p>
+      @if(errorMessage){
+        <p class="text-lg text-red-600 mb-8">{{errorMessage}}</p>
+      }@else{
+        <p class="text-lg text-gray-600 mb-8">Join our community of {{role}}s.</p>
+      }
       <form class="space-y-4 mb-6" [formGroup]="signupForm" (ngSubmit)="onSignup()">
           <div>
               <input type="email" formControlName="email" placeholder="Email Address"
