@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-booktok-primary: #140900;
+  --color-booktok-primary-light: #71490C;
+  --color-booktok-accent: #713A86;
+  --color-booktok-accent-light: #A774B8;
+  --color-booktok-background: #FFFCF8;
+
+  --font-lato: "Lato", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+}
