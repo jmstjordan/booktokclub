@@ -14,8 +14,8 @@
             </ul>
         </nav>
         <div class="flex space-x-3 items-center">
-            <button *ngIf="!(isLoggedIn$ | async)" (click)="routeLogin()" class="hero-reader-button text-white px-4 py-2 rounded-md text-sm font-medium">Log In</button>
-            <button *ngIf="isLoggedIn$ | async" (click)="logout()" class="hero-reader-button text-white px-4 py-2 rounded-md text-sm font-medium">Log Out</button>
+            <button *ngIf="!(isLoggedIn$ | async)" (click)="routeLogin()" class="bg-booktok-primary-light text-white px-4 py-2 rounded-md text-sm font-medium">Log In</button>
+            <button *ngIf="isLoggedIn$ | async" (click)="logout()" class="bg-booktok-primary-light text-white px-4 py-2 rounded-md text-sm font-medium">Log Out</button>
         </div>
         <button class="md:hidden text-gray-600 hover:text-gray-900">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

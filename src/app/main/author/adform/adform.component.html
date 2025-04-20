@@ -9,7 +9,7 @@
 
     <label for="asin">ASIN:</label>
     <input id="asin" formControlName="asin" required />
-    <button type="button" (click)="checkProductId()">Validate</button>
+    <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium" type="button" (click)="checkProductId()">Validate</button>
     <p *ngIf="checkTitle">{{checkTitle}}</p>
     <br /><br />
   
@@ -32,7 +32,7 @@
     </select>
 
     <!-- Submit Button -->
-    <button type="submit">Submit</button>
+    <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium" type="submit">Submit</button>
   </form>
   
   <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
