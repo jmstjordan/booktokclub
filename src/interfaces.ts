@@ -18,6 +18,10 @@ export enum ProductSource {
     Amazon
 }
 
+export enum SubscriberSource {
+    BookTokClub
+}
+
 export interface Product {
     productId: string;
     productSource: ProductSource;
@@ -59,6 +63,11 @@ export interface AdUpload {
     adDate: Date;
     productUpload: ProductUpload;
     genre: Genre;
+}
+
+export interface SubscriberUpload {
+    email: string;
+    subscriberSource: SubscriberSource;
 }
 
 export interface ProductUpload {

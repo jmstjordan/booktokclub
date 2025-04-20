@@ -19,6 +19,7 @@ export const routes: Routes = [
     {path: 'reader/home', component: ReaderComponent, canActivate: [AuthGuard]},
     {path: 'success', component: SuccessComponent, canActivate: [AuthGuard]},
     {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'signup/:role/:email', component: SignupComponent, canActivate: [AuthRedirectGuard]},
     {path: 'login/:role', component: LoginComponent, canActivate: [AuthRedirectGuard]},
     {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthRedirectGuard]},
     {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthRedirectGuard]},

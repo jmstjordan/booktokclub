@@ -3,14 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { SocialLoginComponent } from '../social-login/social-login.component';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, SocialLoginComponent],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
@@ -23,15 +22,19 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(async params=> {
       this.role = params.get("role") as string;
+      let email = params.get("email") as string;
+      if(email == null){
+        email = '';
+      }
+      this.signupForm = this.fb.group(
+        {
+          email: [email, [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          confirmPassword: ['', Validators.required],
+        },
+        { validators: this.passwordMatchValidator }
+      );
     });
-    this.signupForm = this.fb.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required],
-      },
-      { validators: this.passwordMatchValidator }
-    );
   }
 
   // Custom validator to check if password and confirmPassword match

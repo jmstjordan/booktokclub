@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, Product, ProductUpload, User } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductUpload, SubscriberSource, SubscriberUpload, User } from '../interfaces';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -18,6 +18,15 @@ export class BookBoostService {
 
   getUser(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/User/Me`);
+  }
+
+  addSubscriber(email: string): Observable<any> {
+    let subscriber = {
+      email: email,
+      subscriberSource: SubscriberSource.BookTokClub
+    } as SubscriberUpload;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.apiUrl}/Distribution/Subscriber`, subscriber, { headers });
   }
 
   updatePreferences(genres: string[]): Observable<any> {

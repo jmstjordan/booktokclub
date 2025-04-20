@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookBoostService } from '../../../../services/bookboost.service';
 import { Product } from '../../../../interfaces';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SocialLoginComponent } from '../../social-login/social-login.component';
 
 @Component({
   selector: 'app-reader-splash',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SocialLoginComponent],
   templateUrl: './reader-splash.component.html',
   styleUrl: './reader-splash.component.scss'
 })
@@ -22,7 +24,9 @@ export class ReaderSplashComponent implements OnInit{
     "absolute bottom-0 right-16 rounded shadow-md transform -rotate-3 hover:scale-105 transition-transform duration-200 z-50",
   ];
   carouselProducts: Product[] = [];
-  constructor(private router: Router, private bookboost: BookBoostService){}
+  emailForm!: FormGroup;
+
+  constructor(private router: Router, private bookboost: BookBoostService, private fb: FormBuilder){}
 
   ngOnInit(){
     this.bookboost.getProducts().subscribe(result => {
@@ -30,12 +34,27 @@ export class ReaderSplashComponent implements OnInit{
       this.products = result.slice(0, 6);
       this.carouselProducts = result.slice(6, result.length);
     });
+    this.emailForm = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+      },
+    );
+
   }
 
   getProductClass(index: number){
     return this.productClasses[index];
   }
+
   routeSignup(){
-    this.router.navigate(['signup', 'reader']);
+    if(this.emailForm.valid){
+      this.bookboost.addSubscriber(this.emailForm.value["email"]).subscribe({
+        next: () => {},
+        error: () => {}
+      });
+      this.router.navigate(['signup', 'reader', this.emailForm.value["email"]]);
+    }else{
+      this.router.navigate(['signup', 'reader']);
+    }
   }
 }
