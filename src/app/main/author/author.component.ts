@@ -16,6 +16,7 @@ export class AuthorComponent implements OnInit{
   ads!: Ad[];
   adPrices = {};
   productSources!: string[];
+  productPrices!: number[];
   
   constructor(private bookboostService: BookBoostService, private authService: AuthService){}
 
@@ -27,6 +28,7 @@ export class AuthorComponent implements OnInit{
     });
     this.bookboostService.getPrices().subscribe((adPrices) => this.adPrices = adPrices);
     this.bookboostService.getProductSources().subscribe((productSources) => this.productSources = productSources);
+    this.bookboostService.getProductPrices().subscribe((prices) => this.productPrices = prices);
   }
 
   cancelAd(adId: string){

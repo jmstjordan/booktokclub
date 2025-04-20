@@ -57,13 +57,14 @@ export interface ProductUpload {
 
 export interface AdUpload {
     adDate: Date;
-    productUpload: ProductUpload
-    genre: Genre
+    productUpload: ProductUpload;
+    genre: Genre;
 }
 
 export interface ProductUpload {
     productId: string;
     productSource: ProductSource;
+    productPrice: number;
 }
 
 export interface AdAvailability {

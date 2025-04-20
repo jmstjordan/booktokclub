@@ -31,7 +31,7 @@ export class BookBoostService {
   }
 
   getPrices(): Observable<{}> {
-    return this.http.get<{}>(`${this.apiUrl}/Payment/Prices`);
+    return this.http.get<{}>(`${this.apiUrl}/Ad/Prices`);
   }
 
   getProduct(productUpload: ProductUpload): Observable<Product> {
@@ -59,6 +59,10 @@ export class BookBoostService {
 
   getProductSources(): Observable<string[]>{
     return this.http.get<string[]>(`${this.apiUrl}/Product/Sources`);
+  }
+
+  getProductPrices(): Observable<number[]>{
+    return this.http.get<number[]>(`${this.apiUrl}/Product/Prices`);
   }
 
   forgotPassword(email: string): Observable<any>{

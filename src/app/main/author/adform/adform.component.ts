@@ -19,6 +19,7 @@ export class AdformComponent implements AfterViewInit {
   @Output() adCreate = new EventEmitter<any>();
   @Input() adPrices!: {};
   @Input() productSources!: string[];
+  @Input() productPrices!: number[];
   @ViewChild('flatpickrInput') input!: ElementRef;
   adForm!: FormGroup;
   checkTitle!: string;
@@ -36,7 +37,8 @@ export class AdformComponent implements AfterViewInit {
       asin: ['', Validators.required],
       adDate: ['', Validators.required],
       genre: ['', Validators.required],
-      productSource: ['', Validators.required]
+      productSource: ['', Validators.required],
+      productPrice: ['', Validators.required]
     });
   }
 
@@ -102,14 +104,15 @@ export class AdformComponent implements AfterViewInit {
     const formData = this.adForm.value;
 
     // Access individual values
-    const { asin, adDate, genre, productSource } = formData;
+    const { asin, adDate, genre, productSource, productPrice } = formData;
     let adUpload = {
       adDate: adDate,
       productUpload: {
         productId: asin,
         productSource: productSource
       } as ProductUpload,
-      genre: genre
+      genre: genre,
+      productPrice: productPrice
     } as AdUpload;
     console.log(adUpload);
 

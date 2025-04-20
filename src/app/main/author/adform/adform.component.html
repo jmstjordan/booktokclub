@@ -26,6 +26,11 @@
     <input #flatpickrInput type="text" formControlName="adDate" placeholder="Select date" />
     <br /><br />
 
+    <label for="productPrice">Price</label>
+    <select id="productPrice" formControlName="productPrice" required>
+      <option *ngFor="let productPrice of productPrices" [value]="productPrice">{{ productPrice / 100 | currency }}</option>
+    </select>
+
     <!-- Submit Button -->
     <button type="submit">Submit</button>
   </form>
