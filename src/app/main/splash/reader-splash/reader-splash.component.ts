@@ -30,7 +30,6 @@ export class ReaderSplashComponent implements OnInit{
 
   ngOnInit(){
     this.bookboost.getProducts().subscribe(result => {
-      console.log(result);
       this.products = result.slice(0, 6);
       this.carouselProducts = result.slice(6, result.length);
     });

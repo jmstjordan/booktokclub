@@ -5,7 +5,8 @@
                 Book to Thousands of Readers</h1>
             <p class="text-lg text-gray-600 mb-6">Reach dedicated readers actively looking for their next
                 favorite book. Advertise with us.</p>
-            <button class="hero-author-button text-white px-8 py-3 rounded-md font-medium" (click)="routeSignup()">Get Started</button>
+            <button class="bg-booktok-accent-light text-white px-8 py-3 rounded-md font-medium cursor-pointer" (click)="routeSignup()">Get Started</button>
+            <app-social-login [role]="'author'"></app-social-login>
         </div>
         <div class="md:w-1/2 flex justify-center">
             <div class="relative w-64 h-64 md:w-80 md:h-80 hero-author-bg">

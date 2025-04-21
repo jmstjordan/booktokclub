@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../../login/login.component';
 import { Router } from '@angular/router';
+import { SocialLoginComponent } from '../../social-login/social-login.component';
 
 @Component({
   selector: 'app-author-splash',
-  imports: [CommonModule],
+  imports: [CommonModule, SocialLoginComponent],
   templateUrl: './author-splash.component.html',
   styleUrl: './author-splash.component.scss'
 })
