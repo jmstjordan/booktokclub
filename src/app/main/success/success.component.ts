@@ -3,6 +3,7 @@ import { BookBoostService } from '../../../services/bookboost.service';
 import { Ad } from '../../../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-success',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class SuccessComponent implements OnInit {
   ad!: Ad;
 
-  constructor(private bookBoostService: BookBoostService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private bookBoostService: BookBoostService, private router: Router, private toastService: ToastService) {}
 
   ngOnInit() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -20,10 +21,11 @@ export class SuccessComponent implements OnInit {
 
     if (sessionId) {
       this.bookBoostService.verifyAdPurchase(sessionId).subscribe((response) => {
-        console.log(response);
         if(response){
-          console.log(response);
           this.ad = response;
+          this.toastService.show('Ad Created!', 'success');
+        }else{
+          this.toastService.show('Error creating Ad!', 'error');
         }
         // response.
         // if (response[""] === 'succeeded') {

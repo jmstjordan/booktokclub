@@ -46,12 +46,12 @@
             <h5 class="font-semibold text-gray-800 mb-3 uppercase text-sm tracking-wider font-serif">Stay Updated
             </h5>
             <p class="text-sm text-gray-600 mb-3">Join our newsletter for updates.</p>
-            <form class="flex">
+            <form class="flex" [formGroup]="emailForm" (ngSubmit)="addEmail()">
                 <label for="footer-email" class="sr-only">Your email</label>
-                <input id="footer-email" type="email" placeholder="Your email"
+                <input id="footer-email" formControlName="email" type="email" placeholder="Your email"
                     class="flex-grow px-3 py-2 border border-gray-300 rounded-l-md text-sm focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200">
-                <button type="submit"
-                    class="newsletter-button text-white px-4 py-2 rounded-r-md text-sm font-medium">Subscribe</button>
+                <button type="submit" [disabled]="emailForm.invalid"
+                    class="newsletter-button bg-booktok-primary-light text-white px-4 py-2 rounded-r-md text-sm font-medium cursor-pointer">Subscribe</button>
             </form>
         </div>
     </div>

@@ -1,13 +1,23 @@
-<form>
-    <div *ngFor="let genre of genres">
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="selectedGenresMap[genre]"
-          name="{{ genre }}"
-        />
-        {{ genre }}
-      </label>
-    </div>
-    <button (click)="savePreferences()" class="bg-booktok-primary-light text-white px-6 py-2 rounded-md text-base font-medium" type="submit">Save</button>
-</form>
+<section class="py-16 px-6 md:px-12 lg:px-24">
+  <div class="container mx-auto text-center max-w-lg">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Subscription Preferences</h2>
+    <form>
+      <div class="space-y-2">
+        <div *ngFor="let genre of genres">
+          <label
+            class="flex items-center gap-3 p-4 rounded-lg bg-white shadow-sm hover:bg-gray-50 transition cursor-pointer">
+            <input class="h-5 w-5 text-booktok-primary-light border-gray-300 rounded focus:ring-booktok-primary-light"
+              type="checkbox" [(ngModel)]="selectedGenresMap[genre]" name="{{ genre }}" />
+            <span class="text-base font-medium text-gray-800">
+              {{ genre }}
+            </span>
+          </label>
+        </div>
+      </div>
+      <button (click)="savePreferences()"
+        class="mt-6 px-4 py-2 rounded-md text-sm font-medium bg-booktok-accent-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
+        type="submit">{{ isLoading ? 'Saving...' : 'Save' }}
+      </button>
+    </form>
+  </div>
+</section>

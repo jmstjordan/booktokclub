@@ -4,6 +4,7 @@ import { BookBoostService } from '../../../services/bookboost.service';
 import { Product, User } from '../../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-reader',
@@ -17,8 +18,9 @@ export class ReaderComponent implements OnInit{
   genres: string[] = [];
   selectedGenres: string[] = [];
   selectedGenresMap: Record<string, boolean> = {};
+  isLoading = false;
 
-  constructor(private bookboostService: BookBoostService, private route: ActivatedRoute){}
+  constructor(private bookboostService: BookBoostService, private toastService: ToastService){}
 
   ngOnInit(){
     this.bookboostService.getUser().subscribe((user) => {
@@ -41,7 +43,16 @@ export class ReaderComponent implements OnInit{
 
   savePreferences(){
     //snack bar here
-    this.bookboostService.updatePreferences(this.selectedGenres).subscribe(res => console.log(res));
+    this.isLoading = true;
+    this.bookboostService.updatePreferences(this.selectedGenres)
+      .subscribe({next: () => {
+        this.isLoading = false;
+        this.toastService.show('Preferences saved!', 'success');
+      }, error: () => {
+        this.isLoading = false;
+        this.toastService.show('Unable to save!', 'error');
+      }}
+    );
   }
 
   ngDoCheck() {
