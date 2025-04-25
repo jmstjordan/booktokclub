@@ -26,10 +26,13 @@ export interface Product {
     productId: string;
     productSource: ProductSource;
     title: string;
+    titleView: string;
     description: string;
+    descriptionTrim: string;
     descriptionView: string;
     link: string;
     price: Price;
+    offerPrice: number;
     rating: number;
     numReviews: number;
     image: string;
@@ -47,16 +50,13 @@ export interface Ad {
     id: string;
     adDate: Date;
     created: Date;
-    user: string;
-    product: Product;
+    runDate: Date;
+    productId: string;
+    userId: string;
     genre: Genre;
     state: AdState;
     orderId: string;
-}
-
-export interface ProductUpload {
-    productId: string;
-    productSource: ProductSource;
+    price: number;
 }
 
 export interface AdUpload {
@@ -74,6 +74,9 @@ export interface ProductUpload {
     productId: string;
     productSource: ProductSource;
     productPrice: number;
+    titleView: string;
+    descriptionView: string;
+    offerPrice: number;
 }
 
 export interface AdAvailability {

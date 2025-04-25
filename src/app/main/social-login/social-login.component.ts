@@ -19,6 +19,19 @@ export class SocialLoginComponent {
 
 
   ngAfterViewInit() {
+    if (!(window as any).google) {
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => this.initializeGoogleSignIn(); // init after load
+      document.body.appendChild(script);
+    } else {
+      this.initializeGoogleSignIn(); // script already available
+    }
+  }
+
+  initializeGoogleSignIn(){
     google.accounts.id.initialize({
       client_id: environment.googleClientId,
       callback: this.handleCredentialResponse.bind(this),

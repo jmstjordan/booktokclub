@@ -1,9 +1,42 @@
-<ul>
+<!-- <div class="bg-gradient-to-b from-[#FFFFFF] to-[#AD846633] text-[#140900]"> -->
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar bg-[#E5E7EB] text-[#140900] w-64 p-4 flex flex-col border-r border-[#D1D5DB]">
+        <!-- <div class="mb-8">
+            <img src="https://brave-ground-05e166710.6.azurestaticapps.net/assets/logo.webp" alt="BookTok Logo" class="w-12 h-12" onerror="this.src='https://via.placeholder.com/40x40/4A3728/4A3728?text=BT'; this.onerror=null;">
+        </div> -->
+        <nav class="flex-1">
+            <ul>
+                <li class="mb-2"><a href="#" class="block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed">Dashboard Home</a></li>
+                <li class="mb-2"><a href="#" class="block p-2 bg-[#7163B6] rounded text-[#FFFFFF] leading-relaxed">Ad Performance</a></li>
+                <li class="mb-2"><a href="#" class="block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed">My Ads</a></li>
+                <li class="mb-2"><a href="#" class="block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed">Create New Ad</a></li>
+                <li class="mb-2"><a href="#" class="block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed">Account Settings</a></li>
+            </ul>
+        </nav>
+        <button class="text-sm text-[#140900] hover:text-[#7163B6] leading-relaxed">Logout</button>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-6">
+            <h1 class="text-[36px] md:text-[36px] font-bold text-[#140900] font-['Playfair Display']">Author Dashboard</h1>
+            <div class="flex items-center">
+                <span class="mr-4 text-[16px] text-[#140900] leading-relaxed">Welcome, Jane Doe!</span>
+                <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=AD8466&color=140900&size=40" alt="Profile" class="rounded-full">
+            </div>
+        </header>
+        <app-adform [adPrices]="adPrices" [productSources]="productSources" [productPrices]="productPrices" (adCreate)="receiveCreateAd($event)"></app-adform>
+    </div>
+</div>
+<!-- </div> -->
+
+
+<!-- <ul>
     <li *ngFor="let ad of ads">
         {{ ad.product.productId }} - {{ ad.adDate }} - {{ ad.state }}
         <button (click)="cancelAd(ad.id)" class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto">
             Cancel Ad
         </button>
     </li>
-</ul>
-<app-adform [adPrices]="adPrices" [productSources]="productSources" [productPrices]="productPrices" (adCreate)="receiveCreateAd($event)"></app-adform>
+</ul> -->
