@@ -10,12 +10,20 @@ import { AuthRedirectGuard } from '../services/auth-redirect.guard';
 import { LoginComponent } from './main/login/login.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './main/reset-password/reset-password.component';
+import { AdformComponent } from './main/author/adform/adform.component';
+import { AdsComponent } from './main/author/ads/ads.component';
 
 export const routes: Routes = [
     {path: '', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
     {path: 'author', component: AuthorSplashComponent, canActivate: [AuthRedirectGuard]},
     {path: 'reader', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'author/home', component: AuthorComponent, canActivate: [AuthGuard]},
+    {path: 'author/home', component: AuthorComponent, canActivate: [AuthGuard],
+        children: [
+        { path: 'create-ad', component: AdformComponent },
+        { path: 'ads', component: AdsComponent },
+        { path: '', redirectTo: 'create-ad', pathMatch: 'full' }
+    ]
+    },
     {path: 'reader/home', component: ReaderComponent, canActivate: [AuthGuard]},
     {path: 'success', component: SuccessComponent, canActivate: [AuthGuard]},
     {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},

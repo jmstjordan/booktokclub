@@ -34,7 +34,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/flatpickr/dist/flatpickr.min.css"
+              "node_modules/flatpickr/dist/flatpickr.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },
@@ -108,7 +109,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/flatpickr/dist/flatpickr.min.css"
+              "node_modules/flatpickr/dist/flatpickr.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           }

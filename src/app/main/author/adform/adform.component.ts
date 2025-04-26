@@ -17,11 +17,10 @@ import { ToastService } from '../../../../services/toast.service';
 })
 export class AdformComponent implements AfterViewInit {
 
-  @Output() adCreate = new EventEmitter<any>();
-  @Input() adPrices!: {};
-  @Input() productSources!: string[];
-  @Input() productPrices!: number[];
   @ViewChild('flatpickrInput') input!: ElementRef;
+  adPrices!: {};
+  productSources!: string[];
+  productPrices!: number[];
   adForm!: FormGroup;
   validatedProduct!: Product;
   selectedProductSource = "Amazon";
@@ -32,9 +31,13 @@ export class AdformComponent implements AfterViewInit {
 
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private bookBoostService: BookBoostService, public stripe: StripeService, private toastService: ToastService) { }
+  constructor(private fb: FormBuilder, private bookBoostService: BookBoostService, public stripe: StripeService, private toastService: ToastService, private bookboostService: BookBoostService) { }
 
   ngOnInit(): void {
+    this.bookboostService.getPrices().subscribe((adPrices) => this.adPrices = adPrices);
+    this.bookboostService.getProductSources().subscribe((productSources) => this.productSources = productSources);
+    this.bookboostService.getProductPrices().subscribe((prices) => this.productPrices = prices);
+
     this.adForm = this.fb.group({
       asin: ['', Validators.required],
       adDate: ['', Validators.required],

@@ -39,6 +39,11 @@ export class BookBoostService {
     return this.http.get<Product[]>(`${this.apiUrl}/Product`, { headers });
   }
 
+  getProductsByUser(): Observable<Product[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<Product[]>(`${this.apiUrl}/Product/Me`, { headers });
+  }
+
   getPrices(): Observable<{}> {
     return this.http.get<{}>(`${this.apiUrl}/Ad/Prices`);
   }

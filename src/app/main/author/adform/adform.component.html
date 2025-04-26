@@ -60,37 +60,3 @@
       </div>
   </div>
 </section>
-
-
-<!-- <form [formGroup]="adForm" (ngSubmit)="startExpressCheckout()">
-    <label for="productSource">Source</label>
-    <select id="productSource" formControlName="productSource" required>
-      <option *ngFor="let productSource of productSources" [value]="productSource">{{ productSource }}</option>
-    </select>
-    <br /><br />
-
-    <label for="asin">ASIN:</label>
-    <input id="asin" formControlName="asin" required />
-    <button class="bg-booktok-primary-light text-white px-4 py-1.5 rounded-md text-sm font-medium" type="button" (click)="checkProductId()">Validate</button>
-    <p *ngIf="checkTitle">{{checkTitle}}</p>
-    <br /><br />
-  
-    <label for="genre">Genre:</label>
-    <select (change)="getGenreAvailability($event)" id="genre" formControlName="genre" required>
-      <option value="" disabled>Select a Genre</option>
-      <option *ngFor="let item of adPrices | keyvalue" [value]="item.key">{{ item.value / 100 | currency }} {{ item.key }}</option>
-      <tr *ngFor="let item of adPrices | keyvalue">
-      </tr>
-
-    </select>
-    <br /><br />
-
-    <input #flatpickrInput type="text" formControlName="adDate" placeholder="Select date" />
-    <br /><br />
-
-
-
-    <button class="bg-booktok-primary-light text-white px-6 py-2 rounded-md text-base font-medium" type="submit">Submit</button>
-  </form> -->
-  
-  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>

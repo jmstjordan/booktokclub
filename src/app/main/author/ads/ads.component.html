@@ -1,0 +1,40 @@
+<section class="mb-8">
+    <h2 class="text-[28px] md:text-[28px] font-bold text-[#AD8466] font-['Playfair Display'] mb-4">Ad Management</h2>
+    <div class="bg-[#FFFFFF] p-6 rounded-lg shadow-lg">
+        <!-- Table -->
+        <table class="w-full text-left mt-4">
+            <thead>
+                <tr class="bg-[#C4A07F]">
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Product ID</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Title</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Genre</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Order ID</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Ad Date</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Status</th>
+                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Cancel Ad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (ad of adProducts; track ad) {
+                    <tr>
+                        <td class="p-2 text-[16px] leading-relaxed">{{ ad.product.productId }}</td>
+                        <td class="p-2 text-[16px] leading-relaxed">{{ ad.product.title | slice:0:20}}</td>
+                        <td class="p-2 text-[16px] leading-relaxed">{{ ad.genre }}</td>
+                        <td class="p-2 text-[16px] leading-relaxed">{{ ad.orderId }}</td>
+                        <td class="p-2 text-[16px] leading-relaxed">{{ ad.adDate }}</td>
+                        <td class="p-2 text-[#7163B6] text-[16px] leading-relaxed">{{ ad.state }}</td>
+                        <td class="p-2 text-center">
+                            <button [disabled]="isLoading || ad.state == 'Canceled'" (click)="cancelAd(ad.id)" class="text-red-400 hover:text-red-700 font-bold cursor-pointer">
+                                @if((isLoading && cancelingAdId == ad.id)) {
+                                    <i class="fas fa-spinner"></i>
+                                } @else {
+                                    <i class="fas fa-trash"></i>
+                                }
+                            </button>
+                          </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

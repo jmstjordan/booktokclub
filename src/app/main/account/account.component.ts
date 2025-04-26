@@ -1,37 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-author',
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './author.component.html',
-  styleUrl: './author.component.scss'
+  imports: [CommonModule],
+  templateUrl: './account.component.html',
+  styleUrl: './account.component.scss'
 })
-export class AuthorComponent implements OnInit{
+export class AccountComponent implements OnInit{
 
   // notSelected = "block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed";
   // selected = "block p-2 bg-[#7163B6] rounded text-[#FFFFFF] leading-relaxed";
+  
   navItems = [
     "Create Ad",
     "My Ads",
     "Log Out"
   ]
-  authorPath!: string;
-  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute){}
+  constructor(private router: Router, private authService: AuthService){}
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const child = this.route.firstChild;
-        if (child?.snapshot?.routeConfig?.path) {
-          this.authorPath = child.snapshot.routeConfig.path;
-          console.log(this.authorPath);
-        }
-      });
+
   }
 
   navigate(path: string){

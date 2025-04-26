@@ -23,6 +23,7 @@ export enum SubscriberSource {
 }
 
 export interface Product {
+    id: string;
     productId: string;
     productSource: ProductSource;
     title: string;
@@ -54,7 +55,7 @@ export interface Ad {
     productId: string;
     userId: string;
     genre: Genre;
-    state: AdState;
+    state: string;
     orderId: string;
     price: number;
 }
@@ -93,3 +94,7 @@ export interface User {
 export interface Preferences {
     genres: string[];
 }
+
+export interface AdWithProduct extends Omit<Ad, 'productId'> {
+    product: Product;
+}  
