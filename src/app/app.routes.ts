@@ -31,4 +31,5 @@ export const routes: Routes = [
     {path: 'login/:role', component: LoginComponent, canActivate: [AuthRedirectGuard]},
     {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthRedirectGuard]},
     {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthRedirectGuard]},
+    {path: '**', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
 ];

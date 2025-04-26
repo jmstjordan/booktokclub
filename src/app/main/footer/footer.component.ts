@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { ToastService } from '../../../services/toast.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,8 +14,11 @@ import { ToastService } from '../../../services/toast.service';
 })
 export class FooterComponent {
   emailForm!: FormGroup;
+  isLoggedIn = false;
 
-  constructor(private bookboost: BookBoostService, private fb: FormBuilder, private toastService: ToastService){}
+  constructor(private bookboost: BookBoostService, private fb: FormBuilder, private toastService: ToastService, private router: Router, private authService: AuthService){
+    this.authService.isAuthenticated().subscribe((res) => this.isLoggedIn = res);
+  }
 
   ngOnInit(){
     this.emailForm = this.fb.group(
@@ -22,6 +27,19 @@ export class FooterComponent {
       },
     );
   }
+
+  navigate(path: string){
+    if(this.isLoggedIn){
+      this.router.navigate([path, 'home']).then(() => {
+        window.scrollTo(0, 0);
+      });
+    }else{
+      this.router.navigate([path]).then(() => {
+        window.scrollTo(0, 0);
+      });
+    }
+  }
+
   addEmail(){
     this.bookboost.addSubscriber(this.emailForm.value["email"]).subscribe({
       next: () => {

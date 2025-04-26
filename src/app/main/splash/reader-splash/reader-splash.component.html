@@ -1,5 +1,7 @@
-<section id="hero_reader" class="py-16 px-6 md:px-12 lg:px-24">
-    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+<section class="py-6 px-6 md:px-12 lg:px-6 min-h-screen book-section">
+    <div class="flex items-center cursor-pointer"><a><img src="../../../assets/logo.webp" alt="Logo" width="150"></a>
+    </div>
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
         <div class="md:w-1/2 flex justify-center order-2 md:order-1">
             <div class="grid grid-cols-3 gap-4 w-full max-w-md">
                 @for (product of products; track product) {
@@ -11,46 +13,19 @@
         <div class="md:w-1/2 text-center md:text-left order-1 md:order-2">
             <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight font-serif">Discover Your
                 Next Favorite Book</h2>
-            @if(emailForm.invalid && emailForm.controls['email'].touched){
-            <p class="text-lg text-red-600 mb-6">Invalid Email</p>
-            }@else{
             <p class="text-lg text-gray-600 mb-6">Explore curated lists and new releases across all genres.</p>
-            }
             <form class="space-y-4 mb-6" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
-                <input type="email" formControlName="email" placeholder="Email Address"
-                    class="flex-grow px-8 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200">
-                <button type="submit"
-                    class="bg-booktok-primary-light text-white px-4 py-3 rounded-r-md font-medium cursor-pointer"
-                    [disabled]="emailForm.invalid">Join Readers</button>
-                <!-- <input id="footer-email" formControlName="email" type="email" placeholder="Your email"
-                    class="flex-grow px-3 py-2 border border-gray-300 rounded-l-md text-sm focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200">
-                <button type="submit" [disabled]="emailForm.invalid"
-                    class="newsletter-button bg-booktok-primary-light text-white px-4 py-2 rounded-r-md text-sm font-medium cursor-pointer">Subscribe</button> -->
-
-                <app-social-login [role]="'reader'"></app-social-login>
+                <div class="flex items-center">
+                    <app-social-login [role]="'reader'"></app-social-login>
+                    <input type="email" formControlName="email" placeholder="Email Address"
+                    class="flex-grow px-8 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200 ml-2">
+                        <button type="submit"
+                            class="bg-booktok-primary-light text-white px-4 py-3 rounded-r-md font-medium cursor-pointer">Join Readers</button>
+                    </div>
             </form>
         </div>
     </div>
 </section>
-<!-- <section id="hero_reader2" class="py-16 px-6 md:px-12 lg:px-24 bg-[#FFFCF8] h-[70vh] shadow-[inset_0_0_32px_#AD846677]">
-    <div class="container mx-auto h-full flex flex-col justify-center items-center md:flex-row md:items-center gap-12">
-        <div class="md:flex-1 text-center md:text-left">
-            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight font-serif">Discover Your Next
-                Favorite Book</h2>
-            <p class="text-lg text-purple-600 mb-6">Get the Best eBook Deals Delivered to Your Inbox.</p>
-            <button class="bg-booktok-accent-light text-white px-8 py-3 rounded-md font-medium cursor-pointer"
-                (click)="routeSignup()">Join Readers</button>
-        </div>
-        <div class="md:flex-1 flex justify-center relative">
-            <div class="relative w-full max-w-md h-96">
-                @for (product of products; track product; let i = $index) {  
-                <img [src]="product.image" alt="Book 1"
-                    [ngClass]="getProductClass(i)">
-                }
-            </div>
-        </div>
-    </div>
-</section> -->
 <section class="py-16 px-6 md:px-12 lg:px-24 top-picks-bg">
     <div class="container mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center font-serif">Top Picks</h2>

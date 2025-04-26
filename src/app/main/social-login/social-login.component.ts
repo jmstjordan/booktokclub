@@ -39,18 +39,17 @@ export class SocialLoginComponent {
 
     google.accounts.id.renderButton(
       document.getElementById('googleSignInDiv'),
-      { 
-        theme: 'outline',   // or 'filled_blue', 'filled_black'
-        size: 'large',      // 'small' | 'medium' | 'large'
-        text: 'continue_with', // or 'signup_with', 'continue_with', 'signin'
-        logo_alignment: 'left' // or 'left'
+      {
+        type: 'icon',        // 👈 this makes it icon-only
+        shape: 'circle',     // 👈 optional, circle shape
+        theme: 'outline', 
+        size: 'large',
       }
     );
   }
 
   handleCredentialResponse(response: any) {
     const idToken = response.credential;
-    console.log('Google ID Token:', idToken);
     this.authService.loginWithGoogle(idToken, this.role);
   }
 

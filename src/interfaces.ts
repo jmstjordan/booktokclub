@@ -88,7 +88,9 @@ export interface AdAvailability {
 export interface User {
     username: string;
     email: string;
+    name?: string;
     preferences: Preferences;
+    profilePicture?: string;
 }
 
 export interface Preferences {

@@ -1,19 +1,21 @@
-<section class="py-16 px-6 md:px-12 lg:px-24 bg-gray-50">
-    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+<section class="py-6 px-6 md:px-12 lg:px-6 min-h-screen bg-gray-50 book-section">
+    <div class="flex items-center"><img src="../../../assets/logo.webp" alt="Logo" width="150">
+    </div>
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
         <div class="md:w-1/2 text-center md:text-left">
             <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight font-serif">Promote Your
                 Book to Thousands of Readers</h1>
             <p class="text-lg text-gray-600 mb-6">Reach dedicated readers actively looking for their next
                 favorite book. Advertise with us.</p>
-            <button class="bg-booktok-accent-light text-white px-8 py-3 rounded-md font-medium cursor-pointer" (click)="routeSignup()">Get Started</button>
-            <app-social-login [role]="'author'"></app-social-login>
+                <div class="flex items-center">
+                    <app-social-login [role]="'author'"></app-social-login>
+                    <button class="bg-booktok-accent-light text-white px-8 py-3 rounded-md font-medium cursor-pointer ml-2" (click)="routeSignup()">Join Authors</button>
+                </div>
         </div>
         <div class="md:w-1/2 flex justify-center">
             <div class="relative w-64 h-64 md:w-80 md:h-80 hero-author-bg">
                 <img src="https://placehold.co/300x450/EAB308/333333?text=Book+Cover" alt="Book Cover"
                     class="relative z-10 w-48 md:w-56 h-auto mx-auto shadow-lg rounded-md transform -rotate-6">
-                <img src="https://placehold.co/100x100/transparent/6B7280?text=Hand+Art" alt="Hand illustration"
-                    class="absolute bottom-0 right-0 z-0 w-24 h-auto opacity-30">
             </div>
         </div>
     </div>

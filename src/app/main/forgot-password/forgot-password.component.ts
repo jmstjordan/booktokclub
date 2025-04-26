@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,10 +16,14 @@ export class ForgotPasswordComponent {
   isLoading = false;
   success = false;
 
-  constructor(private fb: FormBuilder, private bookService: BookBoostService) {
+  constructor(private fb: FormBuilder, private bookService: BookBoostService, private router: Router) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
+  }
+
+  navigate(){
+    this.router.navigate(['login', 'reader']);
   }
 
   onSubmit() {

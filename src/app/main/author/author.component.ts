@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { filter } from 'rxjs';
+import { BookBoostService } from '../../../services/bookboost.service';
+import { User } from '../../../interfaces';
 
 @Component({
   selector: 'app-author',
@@ -16,11 +18,13 @@ export class AuthorComponent implements OnInit{
   // selected = "block p-2 bg-[#7163B6] rounded text-[#FFFFFF] leading-relaxed";
   navItems = [
     "Create Ad",
-    "My Ads",
+    "Ad Management",
     "Log Out"
   ]
   authorPath!: string;
-  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute){}
+  user!: User;
+
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private bookboostService: BookBoostService){}
 
   ngOnInit(): void {
     this.router.events
@@ -32,12 +36,18 @@ export class AuthorComponent implements OnInit{
           console.log(this.authorPath);
         }
       });
+      this.bookboostService.getUser().subscribe((user) => {
+        this.user = user;
+        if(user.profilePicture == null){
+          this.user.profilePicture = 'https://ui-avatars.com/api/?name=' + this.user.username + '&background=AD8466&color=140900&size=40';
+        }
+      });
   }
 
   navigate(path: string){
     if(path == "Create Ad"){
       this.router.navigate(['author', 'home', 'create-ad']);
-    }else if(path == "My Ads"){
+    }else if(path == "Ad Management"){
       this.router.navigate(['author', 'home', 'ads']);
     }else if(path == "Log Out"){
       this.authService.logout();

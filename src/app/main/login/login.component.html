@@ -17,14 +17,20 @@
           Password is required
         </div>
       </div>
-      <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto" [disabled]="isLoading || loginForm.invalid">
+      <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer" [disabled]="isLoading || loginForm.invalid">
         {{ isLoading ? 'Logging in...' : 'Login' }}
       </button>
       @if(!success){
         <p class="text-sm text-red-500 -mt-3 mb-4">Incorrect Credentials!</p>
       }
     </form>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()">[Sign Up]</button></p>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <button (click)="routePasswordReset()">[Reset Password]</button></p>
+    <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()" class="cursor-pointer">[Sign Up]</button></p>
+    <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <button (click)="routePasswordReset()" class="cursor-pointer">[Reset Password]</button></p>
+    <div class="signup-divider my-6"></div>
+    <p class="text-sm text-gray-500 -mt-3 mb-4">Or sign up with</p>
+    <div class="flex justify-center space-x-4 mt-4">
+      <app-social-login [role]="'author'"></app-social-login>
+    </div>
+    
   </div>
 </section>
