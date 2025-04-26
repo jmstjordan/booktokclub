@@ -28,30 +28,16 @@
               Passwords do not match
             </div>
         </div>
-        <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer" type="submit" [disabled]="signupForm.invalid || isLoading">
-            {{ isLoading ? 'Creating...' : 'Sign Up' }}
-        </button>
-      </form>
-      <p class="text-sm text-gray-500 -mt-3 mb-4">Already have an account? <button (click)="routeLogin()" class="cursor-pointer">[Log In]</button></p>
-      <div class="signup-divider my-6"></div>
-        <p class="text-sm text-gray-500 -mt-3 mb-4">Or sign in with</p>
-        <div class="flex justify-center space-x-4 mt-4">
+        <div class="flex items-center justify-center gap-2">
           <app-social-login [role]="'author'"></app-social-login>
-        </div>
-
-          <!-- <button class="social-button" aria-label="Sign up with Twitter">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path
-                      d="M22 4s-.7 2.1-2 3.4c1.6 1.4 3.3 4.9 3.3 4.9s-5.2-.6-7.1-.7c-.4 .1-1.1 .8-1.1 .8s-2.8-.1-4.9-.6c-2.1.5-7 .7-7 .7s1.8-3.5 3.4-4.9c-1.3-1.3-2-3.4-2-3.4s.7 .1 1.3 .3c1.3 .5 2.3 1 2.3 1s1.1-1.7 3.2-1.7c2.1 0 3.2 1.7 3.2 1.7s1-.5 2.3-1c.6-.2 1.3-.3 1.3-.3z" />
-              </svg>
+          <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer" type="submit" [disabled]="signupForm.invalid || isLoading">
+              {{ isLoading ? 'Creating...' : 'Sign Up' }}
           </button>
-          <button class="social-button" aria-label="Sign up with GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path
-                      d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-1.5 6-8a5.4 5.4 0 0 0-1.5-4A5.2 5.2 0 0 0 18 2h-3.8a4.4 4.4 0 0 0-4.4 4.4c0 1.4.5 2.9 1.5 4 .9 1 2.2 2.5 2.2 2.5h-1a4.9 4.9 0 0 0-5 4.9v4H5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2h-2Z" />
-              </svg>
-          </button> -->
+        </div>
+      </form>
+      <hr class="border-t border-gray-300 my-6">
+      <div class="flex items-center justify-center gap-2 mt-16">
+        <button (click)="routeLogin()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer">Log in Page</button>
+      </div>
   </div>
 </section>

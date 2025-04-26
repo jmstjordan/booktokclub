@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SocialLoginComponent } from '../social-login/social-login.component';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +17,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   role!: string;
   isLoading = false;
-  success = true;
 
-  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder, private route: ActivatedRoute) {}
+  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder, private route: ActivatedRoute, private toastService: ToastService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(async params=> {
@@ -45,7 +45,10 @@ export class LoginComponent implements OnInit {
         .subscribe(
           {
             next: () => {this.router.navigate([this.role, "home"]); this.isLoading = false;},
-            error: () => {this.success = false; this.isLoading = false},
+            error: () => {
+              this.isLoading = false; 
+              this.toastService.show('Invalid Credentials!', 'error');
+            },
           }
         );
     }

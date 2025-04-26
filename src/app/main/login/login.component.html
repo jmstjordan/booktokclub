@@ -1,6 +1,6 @@
 <section class="py-16 px-6 md:px-12 lg:px-24">
   <div class="container mx-auto text-center max-w-lg">
-    <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Log in</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">{{role | titlecase}} Log in</h2>
     <p class="text-lg text-gray-600 mb-8">Join our community of {{role}}s.</p>
     <form class="space-y-4 mb-6" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div>
@@ -17,20 +17,17 @@
           Password is required
         </div>
       </div>
-      <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer" [disabled]="isLoading || loginForm.invalid">
-        {{ isLoading ? 'Logging in...' : 'Login' }}
-      </button>
-      @if(!success){
-        <p class="text-sm text-red-500 -mt-3 mb-4">Incorrect Credentials!</p>
-      }
+      <div class="flex items-center justify-center gap-2">
+        <app-social-login [role]="'author'"></app-social-login>
+        <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer" [disabled]="isLoading || loginForm.invalid">
+          {{ isLoading ? 'Logging in...' : 'Login' }}
+        </button>
+      </div>
     </form>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Don't have an account? <button (click)="routeSignup()" class="cursor-pointer">[Sign Up]</button></p>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Forgot your password? <button (click)="routePasswordReset()" class="cursor-pointer">[Reset Password]</button></p>
-    <div class="signup-divider my-6"></div>
-    <p class="text-sm text-gray-500 -mt-3 mb-4">Or sign up with</p>
-    <div class="flex justify-center space-x-4 mt-4">
-      <app-social-login [role]="'author'"></app-social-login>
+    <hr class="border-t border-gray-300 my-6">
+    <div class="flex items-center justify-center gap-2">
+      <button (click)="routeSignup()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer">Sign Up Page</button>
+      <button (click)="routePasswordReset()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer">Reset Password</button>
     </div>
-    
   </div>
 </section>

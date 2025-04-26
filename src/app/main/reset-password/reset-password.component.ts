@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 import { BookBoostService } from '../../../services/bookboost.service';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,7 +22,8 @@ export class ResetPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookBoostService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
     this.form = this.fb.group(
       {
@@ -47,6 +49,10 @@ export class ResetPasswordComponent implements OnInit {
     }
   }
 
+  home(){
+    this.router.navigate(['/']);
+  }
+
   onSubmit() {
     if (this.form.invalid){
       return;
@@ -59,6 +65,7 @@ export class ResetPasswordComponent implements OnInit {
       this.token,
     ).subscribe({
       next: () => {
+        this.toastService.show('Password Reset!', 'success');
         this.isLoading = false;
         if(this.authService.hasRole("reader")){
           setTimeout(() => this.router.navigate(['login', "reader"]), 2000);
@@ -69,6 +76,7 @@ export class ResetPasswordComponent implements OnInit {
         }
       },
       error: () => {
+        this.toastService.show('Unable to Reset Password!', 'error');
         this.isLoading = false;
       },
     });
