@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, Product, ProductUpload, SubscriberSource, SubscriberUpload, User } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductUpload, ProductValidate, SubscriberSource, SubscriberUpload, User } from '../interfaces';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -48,9 +48,9 @@ export class BookBoostService {
     return this.http.get<{}>(`${this.apiUrl}/Ad/Prices`);
   }
 
-  getProduct(productUpload: ProductUpload): Observable<Product> {
+  validateProduct(product: ProductValidate): Observable<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Product>(`${this.apiUrl}/Product`, productUpload, { headers });
+    return this.http.post<Product>(`${this.apiUrl}/Product/Validate`, product, { headers });
   }
 
   createCheckoutSession(metadata: {}){

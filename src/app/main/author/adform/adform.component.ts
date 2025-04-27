@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookBoostService } from '../../../../services/bookboost.service';
-import { AdAvailability, AdUpload, Product, ProductUpload } from '../../../../interfaces';
+import { AdAvailability, AdUpload, Product, ProductUpload, ProductValidate } from '../../../../interfaces';
 import { StripeService } from 'ngx-stripe';
 import flatpickr from 'flatpickr';
 import { ToastService } from '../../../../services/toast.service';
@@ -81,11 +81,11 @@ export class AdformComponent implements AfterViewInit {
   checkProductId() {
     if (this.adForm.value["asin"] !== "" && this.adForm.value["productSource"] !== "") {
       this.isLoading = true;
-      let upload = {
+      let payload = {
         productId: this.adForm.value["asin"],
         productSource: this.adForm.value["productSource"]
-      } as ProductUpload;
-      this.bookBoostService.getProduct(upload).subscribe(
+      } as ProductValidate;
+      this.bookBoostService.validateProduct(payload).subscribe(
         {
           next: (data) => {
             this.validatedProduct = data;

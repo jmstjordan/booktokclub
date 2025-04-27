@@ -33,7 +33,6 @@ export class AuthorComponent implements OnInit{
         const child = this.route.firstChild;
         if (child?.snapshot?.routeConfig?.path) {
           this.authorPath = child.snapshot.routeConfig.path;
-          console.log(this.authorPath);
         }
       });
       this.bookboostService.getUser().subscribe((user) => {

@@ -71,10 +71,12 @@ export interface SubscriberUpload {
     subscriberSource: SubscriberSource;
 }
 
-export interface ProductUpload {
+export interface ProductValidate {
     productId: string;
     productSource: ProductSource;
-    productPrice: number;
+}
+
+export interface ProductUpload extends ProductValidate {
     titleView: string;
     descriptionView: string;
     offerPrice: number;
