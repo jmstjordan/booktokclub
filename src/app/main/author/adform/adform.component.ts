@@ -95,12 +95,12 @@ export class AdformComponent implements AfterViewInit {
               description: data.descriptionTrim,
             });
             this.isLoading = false;
-            this.adForm.get('asin')?.disable();
+            // this.adForm.get('asin')?.disable();
             this.toastService.show('Book Retrieved', 'success');
           },
           error: () => {
             this.isLoading = false;
-            this.adForm.get('asin')?.reset();
+            // this.adForm.get('asin')?.reset();
             this.toastService.show('Unable to find Book!', 'error');
           }
         });
