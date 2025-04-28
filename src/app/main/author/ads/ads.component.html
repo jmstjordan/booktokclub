@@ -24,7 +24,7 @@
                         <td class="p-2 text-[16px] leading-relaxed">{{ ad.adDate }}</td>
                         <td class="p-2 text-[#7163B6] text-[16px] leading-relaxed">{{ ad.state }}</td>
                         <td class="p-2 text-center">
-                            <button [disabled]="isLoading || ad.state == 'Canceled'" (click)="cancelAd(ad.id)" class="text-red-400 hover:text-red-700 font-bold cursor-pointer">
+                            <button [disabled]="isLoading || ad.state == 'Canceled'" (click)="cancelAd(ad.id)" class="text-red-400 hover:brightness-90 font-bold cursor-pointer">
                                 @if((isLoading && cancelingAdId == ad.id)) {
                                     <i class="fas fa-spinner"></i>
                                 } @else {
