@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { Product, User } from '../../../interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../services/toast.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-reader',
@@ -20,7 +21,7 @@ export class ReaderComponent implements OnInit{
   selectedGenresMap: Record<string, boolean> = {};
   isLoading = false;
 
-  constructor(private bookboostService: BookBoostService, private toastService: ToastService){}
+  constructor(private bookboostService: BookBoostService, private toastService: ToastService, private authService: AuthService, private router: Router){}
 
   ngOnInit(){
     this.bookboostService.getUser().subscribe((user) => {
@@ -53,6 +54,11 @@ export class ReaderComponent implements OnInit{
         this.toastService.show('Unable to save!', 'error');
       }}
     );
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   ngDoCheck() {

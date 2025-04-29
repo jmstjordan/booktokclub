@@ -63,7 +63,7 @@ export class AdformComponent implements AfterViewInit {
         maxDate: ninetyDaysFromNow,
         minDate: "today"
       });
-    }, 0);
+    }, 1000);
   }
 
   getNextNDays(n: number): Date[] {

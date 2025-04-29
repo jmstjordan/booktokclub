@@ -1,6 +1,9 @@
 <section class="py-16 px-6 md:px-12 lg:px-24">
   <div class="container mx-auto text-center max-w-lg">
     <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Subscription Preferences</h2>
+    <p class="text-base sm:text-lg text-gray-600 mb-6">
+      Customize which genres you are interested in!
+    </p>
     <form>
       <div class="space-y-2">
         <div *ngFor="let genre of genres">
@@ -19,5 +22,13 @@
         type="submit">{{ isLoading ? 'Saving...' : 'Save' }}
       </button>
     </form>
+    <hr class="border-t border-gray-300 my-6">
+    <p class="text-base sm:text-lg text-gray-600 mb-6">
+      That's all we have for now. Check back later for more subscription options!
+
+    </p>
+    <div class="flex items-center justify-center gap-2 mt-8">
+      <button (click)="logout()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer hover:brightness-90">Log Out</button>
+    </div>
   </div>
 </section>
