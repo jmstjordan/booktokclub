@@ -58,7 +58,7 @@ export class AdformComponent implements AfterViewInit {
       ninetyDaysFromNow.setDate(today + DAYS_OUT);
 
       this.flatpickrInstance = flatpickr(this.input.nativeElement, {
-        disable: this.getNextNDays(DAYS_OUT + 1),
+        disable: this.getNextNDays(DAYS_OUT),
         dateFormat: 'Y-m-d',
         maxDate: ninetyDaysFromNow,
         minDate: "today"
@@ -69,11 +69,11 @@ export class AdformComponent implements AfterViewInit {
   getNextNDays(n: number): Date[] {
     const days: Date[] = [];
     const today = new Date();
-
-    for (let i = 0; i < n; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      days.push(date);
+  
+    for (let i = 1; i <= n; i++) {
+      const nextDate = new Date(today);
+      nextDate.setDate(today.getDate() + i);
+      days.push(new Date(nextDate)); // ensure a copy is pushed
     }
     return days;
   }
