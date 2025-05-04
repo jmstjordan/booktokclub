@@ -55,7 +55,7 @@
                 <img [src]="validatedProduct.image" alt="Book Cover" class="mb-2 border border-[#AD8466] w-24 h-auto" onerror="this.src='https://via.placeholder.com/100/AD8466/AD8466?text=Book'; this.onerror=null;">
                 <div class="absolute inset-0 bg-[#140900] opacity-20"></div>
                 <h4 class="font-bold text-[#140900] text-[18px] font-['Lato'] relative z-10">Summer Sale</h4>
-                <p class="text-[16px] text-[#140900] relative z-10 leading-relaxed">Get {{validatedProduct.title}} for only {{adForm.value["productPrice"] / 100 | currency}} on {{validatedProduct.productSource}}!</p>
+                <p class="text-[16px] text-[#140900] relative z-10 leading-relaxed">Get {{validatedProduct.title}} for only <s>{{validatedProduct.price.raw}}</s> {{adForm.value["productPrice"] / 100 | currency}} on {{validatedProduct.productSource}}!</p>
                 <p class="text-[14px] text-[#7163B6] mt-2 relative z-10 leading-relaxed">Scheduled: {{adForm.value["adDate"] | date: 'shortDate'}}</p>
             </div>
         </div>
