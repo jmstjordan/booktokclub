@@ -29,22 +29,21 @@ export interface Product {
     title: string;
     titleView: string;
     description: string;
-    descriptionTrim: string;
     descriptionView: string;
     link: string;
-    price: Price;
+    price: number;
     offerPrice: number;
     rating: number;
     numReviews: number;
     image: string;
+    userId: string;
+    author: Author;
 }
 
-export interface Price {
-    symbol: string;
-    listPrice: string;
-    currency: string;
-    raw: string;
-    value: number;
+export interface Author {
+    name: string;
+    link: string;
+    asin: string;
 }
 
 export interface Ad {

@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { Product, User } from '../../../interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../services/toast.service';
 import { AuthService } from '../../../services/auth.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-reader',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
   templateUrl: './reader.component.html',
   styleUrl: './reader.component.scss'
 })
@@ -25,12 +26,14 @@ export class ReaderComponent implements OnInit{
 
   ngOnInit(){
     this.bookboostService.getUser().subscribe((user) => {
-      console.log(user)
       this.syncSelectedGenres(user);
     });
     this.bookboostService.getGenres().subscribe((data) => {
-      console.log(data);
       this.genres = data;
+    });
+    this.bookboostService.getProducts().subscribe((data) => {
+      console.log(data)
+      this.products = data.slice(0, 48);
     });
   }
 

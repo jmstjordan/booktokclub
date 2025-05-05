@@ -23,7 +23,6 @@ export class ReaderSplashComponent implements OnInit{
     "absolute bottom-8 left-8 rounded shadow-md transform rotate-8 hover:scale-105 transition-transform duration-200 z-40",
     "absolute bottom-0 right-16 rounded shadow-md transform -rotate-3 hover:scale-105 transition-transform duration-200 z-50",
   ];
-  carouselProducts: Product[] = [];
   emailForm!: FormGroup;
 
   constructor(private router: Router, private bookboost: BookBoostService, private fb: FormBuilder){}
@@ -31,7 +30,6 @@ export class ReaderSplashComponent implements OnInit{
   ngOnInit(){
     this.bookboost.getProducts().subscribe(result => {
       this.products = result.slice(0, 6);
-      this.carouselProducts = result.slice(6, result.length);
     });
     this.emailForm = this.fb.group(
       {

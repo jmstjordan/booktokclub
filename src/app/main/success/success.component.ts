@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookBoostService } from '../../../services/bookboost.service';
 import { Ad } from '../../../interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../../services/toast.service';
 
@@ -22,6 +22,7 @@ export class SuccessComponent implements OnInit {
     if (sessionId) {
       this.bookBoostService.verifyAdPurchase(sessionId).subscribe((response) => {
         if(response){
+          console.log(response)
           this.ad = response;
           this.toastService.show('Ad Created!', 'success');
         }else{

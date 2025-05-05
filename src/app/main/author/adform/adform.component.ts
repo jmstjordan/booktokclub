@@ -92,7 +92,7 @@ export class AdformComponent implements AfterViewInit {
             console.log(data);
             this.adForm.patchValue({
               title: data.title,
-              description: data.descriptionTrim,
+              description: data.description,
             });
             this.isLoading = false;
             // this.adForm.get('asin')?.disable();
