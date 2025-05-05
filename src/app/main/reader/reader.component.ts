@@ -33,7 +33,7 @@ export class ReaderComponent implements OnInit{
     });
     this.bookboostService.getProducts().subscribe((data) => {
       console.log(data)
-      this.products = data.slice(0, 48);
+      this.products = data.slice(0, 24);
     });
   }
 

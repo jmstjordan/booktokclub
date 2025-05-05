@@ -38,7 +38,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 w-full">
           @for (product of products; track product) {
             <div class="bg-white p-2 rounded shadow text-center">
-              <p class="text-sm text-gray-600 mb-1">Fiction</p>
+              <p class="text-sm text-booktok-accent mb-1">Fiction</p>
               <a [href]="product.link">
                 <img [src]="product.image" class="w-full aspect-[2/3] object-cover rounded shadow-md transition-transform duration-200 hover:scale-105 mb-4 cursor-pointer">
               </a>
@@ -49,7 +49,7 @@
               <p class="text-sm text-gray-600 mb-1">{{ product.author.name }}</p>
 
               <!-- Price -->
-              <p class="text-sm font-medium text-gray-900 mb-2">
+              <p class="text-sm font-medium text-booktok-accent mb-2">
                 @if(product.offerPrice){
                   <s>{{ product.price / 100 | currency }}</s>
                   {{ product.offerPrice / 100 | currency }}
