@@ -32,12 +32,13 @@ export interface Product {
     descriptionView: string;
     link: string;
     price: number;
-    offerPrice: number;
+    offerPrice?: number;
     rating: number;
     numReviews: number;
     image: string;
-    userId: string;
+    userId?: string;
     author: Author;
+    genres?: Genre[];
 }
 
 export interface Author {
