@@ -18,29 +18,30 @@
                 Next Favorite Book</h2>
             <p class="text-lg text-gray-600 mb-6">Explore curated lists and new releases across all genres.</p>
             <form class="space-y-4 mb-6" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
-                <div class="flex items-center w-full gap-4">
-                  <app-social-login [role]="'reader'"></app-social-login>
-                  <div class="flex flex-grow">
-                    <input
-                      type="email"
-                      formControlName="email"
-                      placeholder="Email Address"
-                      class="flex-grow px-4 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200"
-                    />
-                    <button
-                      type="submit"
-                      class="bg-booktok-primary-light text-white px-6 py-3 rounded-r-md font-small cursor-pointer hover:brightness-90"
-                    >
-                    <i class="fa-solid fa-book"></i> Join Readers
-                    </button>
-                  </div>
+              <div class="flex items-center w-full gap-4">
+                <app-social-login [role]="'reader'"></app-social-login>
+                <div class="flex flex-grow">
+                  <input
+                    type="email"
+                    formControlName="email"
+                    placeholder="Email Address"
+                    class="flex-grow px-4 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200"
+                  />
+                  <button
+                    type="submit"
+                    class="bg-booktok-primary-light text-white px-6 py-3 rounded-r-md font-small cursor-pointer hover:brightness-90"
+                  >
+                  Subscribe
+                  </button>
                 </div>
+              </div>
+
               </form>
         </div>
     </div>
 </section>
 <section class="p-16 md:px-6 lg:px-6">
-  <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+  <div class="container mx-auto px-8 mt-10 mb-10 flex flex-col md:flex-row items-center justify-between">
     
     <!-- Left side image -->
     <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
@@ -48,17 +49,33 @@
     </div>
 
     <!-- Right side text -->
-    <div class="md:w-1/2 text-center md:text-left">
+    <div class="px-16 md:w-1/2 text-center md:text-left">
       <h2 class="text-4xl font-bold text-gray-900 mb-6 leading-tight font-serif">
-        Discover the biggest ebook deals — <br class="hidden sm:inline"> up to <span class="text-booktok-accent-light">95% off</span>.
+        Browse the biggest ebook deals — <br class="hidden sm:inline"> up to <span class="text-booktok-accent-light">95% off</span>.
       </h2>
       <p class="text-lg text-gray-600 mb-6">
         Enjoy top reads without breaking the bank. Find bestsellers and hidden gems at unbeatable prices — new deals every day!
       </p>
-      <a href="/signup/reader" class="inline-block bg-booktok-accent-light text-white font-semibold px-6 py-3 rounded shadow  cursor-pointer hover:brightness-90">
-        Browse Deals
-      </a>
     </div>
     
+  </div>
+</section>
+<section class="p-16 md:px-6 lg:px-6 book-section">
+  <div class="container mx-auto px-8 mt-10 mb-10 flex flex-col md:flex-row items-center justify-between">
+    
+    <div class="px-16 md:w-1/2 text-center md:text-left">
+      <h2 class="text-4xl font-bold text-gray-900 mb-6 leading-tight font-serif">
+        Your next great read is just a click away.
+      </h2>
+      <p class="text-lg text-gray-600 mb-6">
+        Discover bestselling ebooks and indie favorites at incredible prices.
+        Daily deals, no subscriptions — just pure reading joy, whenever you want it.
+      </p>
+    </div>
+
+    <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+      <img src="../../../assets/reading.jpg" alt="Ebook Deals Preview" class="max-w-xs md:max-w-sm lg:max-w-md rounded-lg shadow-lg">
+    </div>
+
   </div>
 </section>
