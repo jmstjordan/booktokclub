@@ -41,10 +41,12 @@
                 <input class="w-full p-2 border rounded text-[16px] text-[#140900] leading-relaxed" #flatpickrInput type="text" formControlName="adDate" placeholder="Schedule Date" />
             </div>
           </div>
+          <p [hidden]="!validatedProduct" class="text-base sm:text-lg text-gray-600 mb-6">Ad availability starting {{startDate | date: 'mediumDate'}}</p>
           <hr class="border-t border-gray-300 my-6">
           <p [hidden]="!validatedProduct" class="text-base sm:text-lg text-gray-600 mb-6">
             <i class="fa-solid fa-circle-exclamation"></i> You'll be redirected to capture your payment information, but will <strong>NOT</strong> be charged until your book is approved.
           </p>
+
           <button [disabled]="!adForm.valid || isLoading" [hidden]="!validatedProduct" class="bg-[#7163B6] text-[#FFFFFF] px-6 py-3 rounded-[4px] hover:brightness-90 text-[16px] font-bold leading-relaxed cursor-pointer" type="submit">
             {{ isLoading ? 'Processing...' : 'Confirm Purchase' }}
           </button>

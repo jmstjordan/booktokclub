@@ -25,6 +25,7 @@ export class AdformComponent implements AfterViewInit {
   validatedProduct!: Product;
   selectedProductSource = "Amazon";
   isLoading = false;
+  startDate = new Date('2025-09-01');
 
   private flatpickrInstance!: flatpickr.Instance;
   genreSelected = false;
@@ -52,30 +53,15 @@ export class AdformComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      const DAYS_OUT = 90;
-      const today = new Date().getDate();
-      const ninetyDaysFromNow = new Date();
-      ninetyDaysFromNow.setDate(today + DAYS_OUT);
-
+      const maxDate = new Date(this.startDate);
+      maxDate.setDate(this.startDate.getDate() + 180);
+  
       this.flatpickrInstance = flatpickr(this.input.nativeElement, {
-        disable: this.getNextNDays(DAYS_OUT),
         dateFormat: 'Y-m-d',
-        maxDate: ninetyDaysFromNow,
-        minDate: "today"
+        minDate: this.startDate,
+        maxDate: maxDate
       });
     }, 1000);
-  }
-
-  getNextNDays(n: number): Date[] {
-    const days: Date[] = [];
-    const today = new Date();
-  
-    for (let i = 1; i <= n; i++) {
-      const nextDate = new Date(today);
-      nextDate.setDate(today.getDate() + i);
-      days.push(new Date(nextDate)); // ensure a copy is pushed
-    }
-    return days;
   }
 
   checkProductId() {
