@@ -29,7 +29,11 @@ export class ReaderSplashComponent implements OnInit{
 
   ngOnInit(){
     this.bookboost.getProducts().subscribe(result => {
-      this.products = result.slice(0, 6);
+      if (window.innerWidth <= 640) { 
+        this.products = result.slice(0, 3);
+      }else{
+        this.products = result.slice(0, 6);
+      }
     });
     this.emailForm = this.fb.group(
       {
