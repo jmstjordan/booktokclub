@@ -20,12 +20,20 @@
           <span>{{ genre }}</span>
         </label>
       </div>
-      <button 
+      <div class="flex justify-between">
+        <button 
+          (click)="unsubscribe()"
+          class="mt-6 px-6 py-3 rounded-md text-base font-medium text-gray-600 shadow-sm hover:brightness-105 transition cursor-pointer"
+          type="submit">
+          Unsubscribe
+        </button>
+        <button 
         (click)="savePreferences()"
-        class="mt-6 px-6 py-3 rounded-md text-base font-medium bg-booktok-accent-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
+        class="mt-6 px-6 py-3 rounded-md text-base font-medium bg-booktok-primary-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
         type="submit">
         {{ isLoading ? 'Saving...' : 'Save' }}
       </button>
+      </div>
     </form>
   </div>
 </section>

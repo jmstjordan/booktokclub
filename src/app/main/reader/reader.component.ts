@@ -46,7 +46,6 @@ export class ReaderComponent implements OnInit{
   }
 
   savePreferences(){
-    //snack bar here
     this.isLoading = true;
     this.bookboostService.updatePreferences(this.selectedGenres)
       .subscribe({next: () => {
@@ -57,6 +56,14 @@ export class ReaderComponent implements OnInit{
         this.toastService.show('Unable to save!', 'error');
       }}
     );
+  }
+
+  unsubscribe(){
+    this.selectedGenres = [];
+    this.genres.forEach((genre) => {
+      this.selectedGenresMap[genre] = false;
+    });
+    this.savePreferences();
   }
 
   logout(){
