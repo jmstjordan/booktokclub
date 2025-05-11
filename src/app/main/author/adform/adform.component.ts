@@ -25,7 +25,6 @@ export class AdformComponent implements AfterViewInit {
   validatedProduct!: Product;
   selectedProductSource = "Amazon";
   isLoading = false;
-  startDate = new Date('2025-09-01');
 
   private flatpickrInstance!: flatpickr.Instance;
   genreSelected = false;
@@ -53,13 +52,8 @@ export class AdformComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      const maxDate = new Date(this.startDate);
-      maxDate.setDate(this.startDate.getDate() + 180);
-  
       this.flatpickrInstance = flatpickr(this.input.nativeElement, {
-        dateFormat: 'Y-m-d',
-        minDate: this.startDate,
-        maxDate: maxDate
+        dateFormat: 'Y-m-d'
       });
     }, 1000);
   }
@@ -97,16 +91,16 @@ export class AdformComponent implements AfterViewInit {
     const selectElement = event.target as HTMLSelectElement;
     let genre = selectElement.value;
     this.bookBoostService.getAdAvailability(genre).subscribe((data: AdAvailability[]) => {
-      let disabledDates: Date[] = [];
+      let enabledDates: Date[] = [];
       console.log(data)
       data.forEach((x) => {
-        if (x.count == 0) {
+        if (x.count > 0) {
           let daySplit = x.adDate.split("-");
           // hack to get the timezone to work
-          disabledDates.push(new Date(Number(daySplit[0]), Number(daySplit[1]) - 1, Number(daySplit[2])));
+          enabledDates.push(new Date(Number(daySplit[0]), Number(daySplit[1]) - 1, Number(daySplit[2])));
         }
       });
-      this.flatpickrInstance.set('disable', disabledDates);
+      this.flatpickrInstance.set('enable', enabledDates);
       this.genreSelected = true;
     });
   }
