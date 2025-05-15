@@ -91,8 +91,12 @@ export interface User {
     username: string;
     email: string;
     name?: string;
-    preferences: Preferences;
     profilePicture?: string;
+}
+
+export interface Subscriber {
+    isSubscribed: boolean;
+    preferences: Preferences;
 }
 
 export interface Preferences {

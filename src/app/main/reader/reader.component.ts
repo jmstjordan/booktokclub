@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BookBoostService } from '../../../services/bookboost.service';
-import { Product, User } from '../../../interfaces';
+import { Product, Subscriber } from '../../../interfaces';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../services/toast.service';
@@ -21,12 +21,14 @@ export class ReaderComponent implements OnInit{
   selectedGenres: string[] = [];
   selectedGenresMap: Record<string, boolean> = {};
   isLoading = false;
+  subscribed!: boolean;
 
   constructor(private bookboostService: BookBoostService, private toastService: ToastService, private authService: AuthService, private router: Router){}
 
   ngOnInit(){
-    this.bookboostService.getUser().subscribe((user) => {
-      this.syncSelectedGenres(user);
+    this.bookboostService.getSubscriber().subscribe((sub) => {
+      this.subscribed = sub.isSubscribed;
+      this.syncSelectedGenres(sub);
     });
     this.bookboostService.getGenres().subscribe((data) => {
       this.genres = data;
@@ -37,9 +39,9 @@ export class ReaderComponent implements OnInit{
     });
   }
 
-  syncSelectedGenres(user: User){
-    if(user.preferences !== null && user.preferences.genres !== null){
-      user.preferences.genres.forEach((genre) => {
+  syncSelectedGenres(subscriber: Subscriber){
+    if(subscriber.preferences !== null && subscriber.preferences.genres !== null){
+      subscriber.preferences.genres.forEach((genre) => {
         this.selectedGenresMap[genre] = true;        
       });
     }
@@ -58,12 +60,18 @@ export class ReaderComponent implements OnInit{
     );
   }
 
-  unsubscribe(){
-    this.selectedGenres = [];
-    this.genres.forEach((genre) => {
-      this.selectedGenresMap[genre] = false;
-    });
-    this.savePreferences();
+  subscribe(){
+    this.isLoading = true;
+    this.bookboostService.updateSubscriptionStatus(!this.subscribed)
+    .subscribe({next: () => {
+      this.isLoading = false;
+      this.subscribed = !this.subscribed;
+      this.toastService.show('Updated!', 'success');
+    }, error: () => {
+      this.isLoading = false;
+      this.toastService.show('Unable to save!', 'error');
+    }}
+  );
   }
 
   logout(){
