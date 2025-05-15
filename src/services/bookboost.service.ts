@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, Product, ProductUpload, ProductValidate, Subscriber, SubscriberSource, SubscriberUpload, User } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductUpload, ProductValidate, Subscriber, SubscriberPatch, SubscriberSource, SubscriberUpload, User } from '../interfaces';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -33,14 +33,9 @@ export class BookBoostService {
     return this.http.post<any>(`${this.apiUrl}/Distribution/Subscriber`, subscriber, { headers });
   }
 
-  updatePreferences(genres: string[]): Observable<any> {
+  updateSubscriber(subscriber: SubscriberPatch): Observable<Subscriber> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.patch<{}>(`${this.apiUrl}/Distribution/Subscriber/Preferences`, {genres: genres}, { headers });
-  }
-
-  updateSubscriptionStatus(subscribe: boolean): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.patch<{}>(`${this.apiUrl}/Distribution/Subscriber/Subscribe`, {subscribe: subscribe}, { headers });
+    return this.http.patch<Subscriber>(`${this.apiUrl}/Distribution/Subscriber`, subscriber, { headers });
   }
 
   getProducts(): Observable<Product[]> {

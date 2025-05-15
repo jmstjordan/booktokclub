@@ -96,11 +96,12 @@ export interface User {
 
 export interface Subscriber {
     isSubscribed: boolean;
-    preferences: Preferences;
+    topics: string[];
 }
 
-export interface Preferences {
-    genres: string[];
+export interface SubscriberPatch {
+    topics: string[];
+    isSubscribed: boolean;
 }
 
 export interface AdWithProduct extends Omit<Ad, 'productId'> {
