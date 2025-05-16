@@ -6,6 +6,15 @@
       <p class="text-base sm:text-lg text-gray-600 mb-6">
         Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
       </p>
+      @if(subscriber.isSubscribed){
+          <p class="text-base sm:text-lg text-green-600 mb-6">
+            <i class="fa-solid fa-check"></i> Subscribed
+          </p>
+        }@else{
+          <p class="text-base sm:text-lg text-red-600 mb-6">
+            <i class="fa-solid fa-xmark"></i> Unsubscribed
+          </p>
+        }
       <form>
         <div class="grid grid-cols-3 grid-rows-2 gap-3">
           <label 
@@ -22,23 +31,14 @@
           </label>
         </div>
         <div class="flex justify-between">
-          @if(subscriber.isSubscribed){
             <button
               [disabled]="isLoading"
               (click)="subscribe()"
-              class="mt-6 px-6 py-3 rounded-md text-base font-medium text-white bg-red-400 shadow-sm hover:brightness-105 transition cursor-pointer"
+              class="mt-6 px-6 py-3 rounded-md text-base font-medium text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
               type="submit">
-              <i class="fa-solid fa-xmark"></i> Click to {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
+              {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
             </button>
-          } @else {
-            <button
-            [disabled]="isLoading"
-            (click)="subscribe()"
-            class="mt-6 px-6 py-3 rounded-md text-base font-medium text-white bg-green-400 shadow-sm hover:brightness-105 transition cursor-pointer"
-            type="submit">
-            <i class="fa-solid fa-check"></i> Click to {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
-          </button>
-          }
+
           <button 
           [disabled]="isLoading"
           (click)="saveTopics()"

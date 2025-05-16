@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SocialLoginComponent } from '../social-login/social-login.component';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,7 @@ export class SignupComponent implements OnInit {
   isLoading = false;
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private authService: AuthService, private toastService: ToastService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(async params=> {
@@ -59,7 +60,7 @@ export class SignupComponent implements OnInit {
             error: (error: HttpErrorResponse) => {
               this.isLoading = false;
               if(error.status == 409){
-                this.errorMessage = "Account already exists";
+                this.toastService.show('Account already exists!', 'error');
               }
             }
           }

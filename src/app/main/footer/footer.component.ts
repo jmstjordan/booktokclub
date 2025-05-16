@@ -46,8 +46,12 @@ export class FooterComponent {
         this.toastService.show('Email Added!', 'success');
         this.emailForm.reset();
       },
-      error: () => {
-        this.toastService.show('Invalid Email!', 'error');
+      error: (res) => {
+        if(res.status != 409){
+          this.toastService.show('Invalid Email!', 'error');
+        }else{
+          this.toastService.show('Email already exists!', 'info');
+        }
       }
     });
   }

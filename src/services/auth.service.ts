@@ -36,7 +36,6 @@ export class AuthService {
 
   loginWithGoogle(idToken: string, role: string) {
     this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/Auth/Login/Google`, { idToken: idToken, role: role }).subscribe(response => {
-      console.log(response);
       this.setToken(response.access_token);
       this.setRefreshToken(response.refresh_token);
       this.authStatus.next(true);
