@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { SocialLoginComponent } from '../social-login/social-login.component';
 })
 export class HeaderComponent {
   isLoggedIn$: Observable<boolean>;
-  role!: string;
+  @Input() role!: string;
 
   constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute){
     this.isLoggedIn$ = this.authService.isAuthenticated();
@@ -28,7 +28,7 @@ export class HeaderComponent {
   }
 
   routeLogin(){
-    this.router.navigate(['login', 'reader']);
+    this.router.navigate(['login', this.role]);
   }
 
   logout() {
