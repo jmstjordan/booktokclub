@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { BookBoostService } from '../../../services/bookboost.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })

@@ -25,6 +25,7 @@ export class AdformComponent implements AfterViewInit {
   validatedProduct!: Product;
   selectedProductSource = "Amazon";
   isLoading = false;
+  isValidating = false;
 
   private flatpickrInstance!: flatpickr.Instance;
   genreSelected = false;
@@ -53,14 +54,15 @@ export class AdformComponent implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.flatpickrInstance = flatpickr(this.input.nativeElement, {
-        dateFormat: 'Y-m-d'
+        dateFormat: 'Y-m-d',
+        defaultDate: new Date(2025, 8, 1)
       });
     }, 1000);
   }
 
   checkProductId() {
     if (this.adForm.value["asin"] !== "" && this.adForm.value["productSource"] !== "") {
-      this.isLoading = true;
+      this.isValidating = true;
       let payload = {
         productId: this.adForm.value["asin"],
         productSource: this.adForm.value["productSource"]
@@ -74,12 +76,12 @@ export class AdformComponent implements AfterViewInit {
               title: data.title,
               description: data.description,
             });
-            this.isLoading = false;
+            this.isValidating = false;
             // this.adForm.get('asin')?.disable();
             this.toastService.show('Book Retrieved', 'success');
           },
           error: () => {
-            this.isLoading = false;
+            this.isValidating = false;
             // this.adForm.get('asin')?.reset();
             this.toastService.show('Unable to find Book!', 'error');
           }

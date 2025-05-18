@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SocialLoginComponent } from '../social-login/social-login.component';
 import { ToastService } from '../../../services/toast.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, SocialLoginComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

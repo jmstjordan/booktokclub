@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { SocialLoginComponent } from '../social-login/social-login.component';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [CommonModule, SocialLoginComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

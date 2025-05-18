@@ -15,7 +15,9 @@ export class SocialLoginComponent {
 
   @Input() role!: string;
 
-  constructor(private authService: AuthService){ }
+  constructor(private authService: AuthService){
+
+   }
 
 
   ngAfterViewInit() {
@@ -36,14 +38,16 @@ export class SocialLoginComponent {
       client_id: environment.googleClientId,
       callback: this.handleCredentialResponse.bind(this),
     });
-
+    
     google.accounts.id.renderButton(
-      document.getElementById('googleSignInDiv'),
+      document.getElementById('googleSignInFull'),
       {
-        type: 'icon',        // 👈 this makes it icon-only
-        shape: 'circle',     // 👈 optional, circle shape
-        theme: 'outline', 
+        type: 'standard',
+        shape: 'rectangular',
         size: 'large',
+        theme: 'outline',
+        text: 'signin_with',
+        logo_alignment: 'left'
       }
     );
   }

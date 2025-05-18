@@ -6,21 +6,21 @@
         <form [formGroup]="adForm" (ngSubmit)="startExpressCheckout()">
           <div class="mb-4"> 
               <h3 class="text-[22px] md:text-[22px] text-[#7163B6] font-serif">Step 1: Book Details</h3>
-              <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed" for="productSource">Platform</label>
+              <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed" for="productSource">Platform (We only support Amazon for now!)</label>
               <select class="w-full p-2 border rounded text-[16px] text-[#140900] leading-relaxed" id="productSource" formControlName="productSource" [(ngModel)]="selectedProductSource" required>
                 <option *ngFor="let productSource of productSources" [value]="productSource">{{ productSource }}</option>
               </select>
 
-              <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed" for="productPrice">Book Sell Price</label>
+              <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed" for="productPrice">Book Sell Price (What price you will list your book for?)</label>
               <select class="w-full p-2 border rounded text-[16px] text-[#140900] leading-relaxed" id="productPrice" formControlName="productPrice" required>
                 <option *ngFor="let productPrice of productPrices" [value]="productPrice">{{ productPrice / 100 | currency }}</option>
               </select>
 
               <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed" for="asin">ASIN:</label>
               <input class="w-full p-2 border rounded text-[16px] text-[#140900] leading-relaxed" id="asin" formControlName="asin" [readonly]="validatedProduct != null" required />
-              <button [disabled]="isLoading" class="bg-[#7163B6] text-[#FFFFFF] px-4 py-2 rounded-[4px] mt-2 hover:brightness-90 text-[16px] font-bold leading-relaxed cursor-pointer" type="button" (click)="checkProductId()">
+              <button [disabled]="isValidating" class="bg-[#7163B6] text-[#FFFFFF] px-4 py-2 rounded-[4px] mt-2 hover:brightness-90 text-[16px] font-bold leading-relaxed cursor-pointer" type="button" (click)="checkProductId()">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                {{ isLoading ? 'Validating...' : 'Validate' }}
+                {{ isValidating ? 'Validating...' : 'Validate' }}
               </button>
           </div>
           <div class="mb-4" [hidden]="!validatedProduct">
@@ -37,7 +37,7 @@
                 <option *ngFor="let item of adPrices | keyvalue" [value]="item.key">{{ item.key }} ({{ item.value / 100 | currency }}) </option>
               </select>
               <div [hidden]="adForm.value['genre'] == ''">
-                <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed">Scheduled Date</label>
+                <label class="block text-[16px] mb-1 text-[#140900] mt-2 leading-relaxed">Ad Scheduled Run Date</label>
                 <input class="w-full p-2 border rounded text-[16px] text-[#140900] leading-relaxed" #flatpickrInput type="text" formControlName="adDate" placeholder="Schedule Date" />
             </div>
           </div>

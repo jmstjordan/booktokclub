@@ -4,14 +4,14 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModul
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SocialLoginComponent } from '../social-login/social-login.component';
 import { ToastService } from '../../../services/toast.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, SocialLoginComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;

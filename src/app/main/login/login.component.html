@@ -1,7 +1,5 @@
 <section class="py-6 px-6 md:px-6 lg:px-6">
-  <div class="flex justify-center md:justify-start">
-    <img src="../../../assets/logo-gpt.png" alt="Logo" class="w-24 md:w-24">
-  </div>
+  <app-header></app-header>
   <div class="container mx-auto text-center max-w-lg">
     <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">{{role | titlecase}} Log in</h2>
     <p class="text-lg text-gray-600 mb-8">Join our community of {{role}}s.</p>
@@ -21,7 +19,6 @@
         </div>
       </div>
       <div class="flex items-center justify-center gap-2">
-        <app-social-login [role]="role"></app-social-login>
         <button class="bg-booktok-primary-light text-white px-8 py-3 rounded-md font-medium w-full md:w-auto cursor-pointer hover:brightness-90" [disabled]="isLoading || loginForm.invalid">
           {{ isLoading ? 'Logging in...' : 'Login' }}
         </button>
@@ -29,8 +26,8 @@
     </form>
     <hr class="border-t border-gray-300 my-6">
     <div class="flex items-center justify-center gap-2">
-      <button (click)="routeSignup()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer hover:brightness-90">Sign Up Page</button>
-      <button (click)="routePasswordReset()" class="bg-booktok-background border border-gray-300 px-4 py-1 rounded-sm font-small w-full md:w-auto cursor-pointer hover:brightness-90">Reset Password</button>
+      <button (click)="routeSignup()" class="bg-booktok-accent-light text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:brightness-90">Sign Up Page</button>
+      <button (click)="routePasswordReset()" class="bg-booktok-accent-light text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:brightness-90">Forgot Password</button>
     </div>
   </div>
 </section>
