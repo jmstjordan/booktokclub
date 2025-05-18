@@ -5,10 +5,11 @@ import { BookBoostService } from '../../../../services/bookboost.service';
 import { Product } from '../../../../interfaces';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SocialLoginComponent } from '../../social-login/social-login.component';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-reader-splash',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, SocialLoginComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SocialLoginComponent, HeaderComponent],
   templateUrl: './reader-splash.component.html',
   styleUrl: './reader-splash.component.scss'
 })
