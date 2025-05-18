@@ -4,6 +4,7 @@ import { BookBoostService } from '../../../services/bookboost.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,7 +18,7 @@ export class ForgotPasswordComponent {
   isLoading = false;
   success = false;
 
-  constructor(private fb: FormBuilder, private bookService: BookBoostService, private router: Router) {
+  constructor(private fb: FormBuilder, private bookService: BookBoostService, private router: Router, private toastService: ToastService) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -33,6 +34,12 @@ export class ForgotPasswordComponent {
     }
     this.isLoading = true;
     this.bookService.forgotPassword(this.forgotPasswordForm.value["email"])
-      .subscribe( {next:() => {this.success = true; this.isLoading = false}, error: () => this.isLoading = false});
+      .subscribe( {next:() => {
+        this.isLoading = false; 
+        this.toastService.show("Success! Please check your email", "success");
+      }, error: () => {
+        this.isLoading = false;
+        this.toastService.show("Unable to reset password. Please contact support@booktokusa.com", "error");
+      }});
   }
 }

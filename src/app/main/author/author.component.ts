@@ -37,7 +37,6 @@ export class AuthorComponent implements OnInit{
       });
       this.bookboostService.getUser().subscribe((user) => {
         this.user = user;
-        console.log(this.user)
         if(user.profilePicture == null){
           this.user.profilePicture = 'https://ui-avatars.com/api/?name=' + this.user.username + '&background=AD8466&color=140900&size=40';
         }

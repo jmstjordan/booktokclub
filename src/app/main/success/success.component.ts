@@ -22,7 +22,6 @@ export class SuccessComponent implements OnInit {
     if (sessionId) {
       this.bookBoostService.verifyAdPurchase(sessionId).subscribe((response) => {
         if(response){
-          console.log(response)
           this.ad = response;
           this.toastService.show('Ad Created!', 'success');
         }else{

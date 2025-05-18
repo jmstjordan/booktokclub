@@ -43,8 +43,10 @@ export class AuthService {
     });
   }
 
-  signup(email: string, password: string, role: string): Observable<any> {
+  signup(firstName: string, lastName: string, email: string, password: string, role: string): Observable<any> {
     let payload = {
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: password,
       role: role

@@ -31,6 +31,24 @@ export class SignupComponent implements OnInit {
       this.signupForm = this.fb.group(
         {
           email: [email, [Validators.required, Validators.email]],
+          firstName: [
+            '',
+            [
+              Validators.required,
+              Validators.minLength(2),
+              Validators.maxLength(50),
+              Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/)
+            ]
+          ],
+          lastName: [
+            '',
+            [
+              Validators.required,
+              Validators.minLength(2),
+              Validators.maxLength(50),
+              Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/)
+            ]
+          ],
           password: ['', [Validators.required, Validators.minLength(6)]],
           confirmPassword: ['', Validators.required],
         },
@@ -53,7 +71,12 @@ export class SignupComponent implements OnInit {
   onSignup(): void {
     if (this.signupForm.valid) {
       this.isLoading = true;
-      this.authService.signup(this.signupForm.value["email"], this.signupForm.value["password"], this.role)
+      this.authService.signup(
+        this.signupForm.value["firstName"], 
+        this.signupForm.value["lastName"], 
+        this.signupForm.value["email"], 
+        this.signupForm.value["password"], 
+        this.role)
         .subscribe(
           {
             next: () => {this.router.navigate([this.role, "home"]); this.isLoading = false},

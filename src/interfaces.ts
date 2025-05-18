@@ -90,7 +90,8 @@ export interface AdAvailability {
 export interface User {
     username: string;
     email: string;
-    name?: string;
+    firstName: string;
+    lastName: string;
     profilePicture?: string;
 }
 

@@ -34,7 +34,6 @@ export class ReaderComponent implements OnInit{
       this.genres = data;
     });
     this.bookboostService.getProducts().subscribe((data) => {
-      console.log(data)
       this.products = data.slice(0, 24);
     });
   }

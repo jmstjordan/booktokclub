@@ -71,7 +71,6 @@ export class AdformComponent implements AfterViewInit {
         {
           next: (data) => {
             this.validatedProduct = data;
-            console.log(data);
             this.adForm.patchValue({
               title: data.title,
               description: data.description,
@@ -94,7 +93,6 @@ export class AdformComponent implements AfterViewInit {
     let genre = selectElement.value;
     this.bookBoostService.getAdAvailability(genre).subscribe((data: AdAvailability[]) => {
       let enabledDates: Date[] = [];
-      console.log(data)
       data.forEach((x) => {
         if (x.count > 0) {
           let daySplit = x.adDate.split("-");
@@ -124,7 +122,6 @@ export class AdformComponent implements AfterViewInit {
       } as ProductUpload,
       genre: genre,
     } as AdUpload;
-    console.log(adUpload);
 
     this.bookBoostService.createCheckoutSession(adUpload)
       .subscribe( 
@@ -133,7 +130,6 @@ export class AdformComponent implements AfterViewInit {
             if (response?.sessionId) {
               this.stripe.redirectToCheckout({ sessionId: response.sessionId })
                 .subscribe((result) => {
-                  console.log(result);
                   if (result.error) {
                     this.errorMessage = result.error.message as string;
                   }
