@@ -50,7 +50,7 @@ export class AuthorComponent implements OnInit{
       this.router.navigate(['author', 'home', 'ads']);
     }else if(path == "Log Out"){
       this.authService.logout();
-      this.router.navigate(['/']);
+      this.router.navigate(['/author']);
     }
   }
 }
