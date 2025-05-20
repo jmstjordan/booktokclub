@@ -1,42 +1,88 @@
+<section class="md:px-6 lg:px-6">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="bg-white p-6 text-gray-800 max-w-2xl mb-8">
+            <p class="mb-3">
+                The below table displays the status of the ads you've submitted for your eBooks. Here's what's
+                important:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li>
+                    <strong>Cancel Ad: </strong>If your ad is still Pending, you can click Cancel to withdraw it and
+                    avoid any charges.
+                </li>
+                <li>
+                    <strong>Status:</strong> Indicates where your ad is in the review process
+                    <ul class="list-disc pl-6 mt-2 space-y-1">
+                      <li>
+                        <strong>Pending</strong>: Under review. You can still cancel the ad
+                        before it's approved.
+                      </li>
+                      <li>
+                        <strong>Approved</strong>: Your ad has been accepted and is scheduled
+                        to run. You will be charged for the ad when it is approved.
+                      </li>
+                      <li>
+                        <strong>Canceled</strong>: The ad was withdrawn by you.
+                      </li>
+                      <li>
+                        <strong>Declined</strong>: The ad was not accepted.
+                      </li>
+                    </ul>
+                  </li>
+            </ul>
+            <p>
+                💡 Once an ad is approved, it cannot be canceled through the table. If you need help with a pending or
+                approved ad, email us at <a
+                    href="mailto:support@booktokusa.com"><strong>support&#64;booktokusa.com</strong>.</a>
+            </p>
+        </div>
+        <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+            <img src="../../../assets/poster.jpg" alt="Ebook Deals Preview" class="max-w-[12rem] md:max-w-[14rem] lg:max-w-[16rem] rounded-lg shadow-lg">
+          </div>
+    </div>
+</section>
+
 <section class="mb-8">
     <h2 class="text-[28px] md:text-[28px] font-bold text-[#AD8466] font-serif mb-4">Ad Management</h2>
     <div class="bg-[#FFFFFF] p-6 rounded-lg shadow-lg">
         <!-- Table -->
         <div class="overflow-x-auto">
-        <table class="w-full text-left mt-4 min-w-[700px]">
-            <thead>
-                <tr class="bg-[#C4A07F]">
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Product ID</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Title</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Genre</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Order ID</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Ad Date</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Status</th>
-                    <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Cancel Ad</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (ad of adProducts; track ad) {
+            <table class="w-full text-left mt-4 min-w-[700px]">
+                <thead>
+                    <tr class="bg-[#C4A07F]">
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Product ID</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Title</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Genre</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Order ID</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Ad Date</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Status</th>
+                        <th class="p-2 text-[#140900] text-[16px] font-bold leading-relaxed">Cancel Ad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (ad of adProducts; track ad) {
                     <tr>
-                        <td class="p-2 text-[16px] leading-relaxed"><i class="fa-regular fa-bookmark"></i> {{ ad.product.productId }}</td>
+                        <td class="p-2 text-[16px] leading-relaxed"><i class="fa-regular fa-bookmark"></i> {{
+                            ad.product.productId }}</td>
                         <td class="p-2 text-[16px] leading-relaxed">{{ ad.product.title | slice:0:20}}</td>
                         <td class="p-2 text-[16px] leading-relaxed">{{ ad.genre }}</td>
                         <td class="p-2 text-[16px] leading-relaxed">{{ ad.orderId }}</td>
                         <td class="p-2 text-[16px] leading-relaxed">{{ ad.adDate }}</td>
                         <td class="p-2 text-[#7163B6] text-[16px] leading-relaxed">{{ ad.state }}</td>
                         <td class="p-2 text-center">
-                            <button [disabled]="isLoading || ad.state == 'Canceled'" (click)="cancelAd(ad.id)" class="text-red-400 hover:brightness-90 font-bold cursor-pointer">
+                            <button [disabled]="isLoading || ad.state == 'Canceled'" (click)="cancelAd(ad.id)"
+                                class="text-red-400 hover:brightness-90 font-bold cursor-pointer">
                                 @if((isLoading && cancelingAdId == ad.id)) {
-                                    <i class="fas fa-spinner"></i>
+                                <i class="fas fa-spinner"></i>
                                 } @else {
-                                    <i class="fas fa-trash"></i>
+                                <i class="fas fa-trash"></i>
                                 }
                             </button>
-                          </td>
+                        </td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
