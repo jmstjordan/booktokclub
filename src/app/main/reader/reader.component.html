@@ -2,7 +2,7 @@
   <app-header [role]="'reader'"></app-header>
   @if(subscriber){
     <div class="container mx-auto text-center max-w-xl">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4 font-serif">Subscription Preferences</h2>
+      <h2 class="text-3xl font-bold text-booktok-primary-light mb-4 font-serif">Subscription Preferences</h2>
       <p class="text-base sm:text-lg text-gray-600 mb-6">
         Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
       </p>
@@ -34,7 +34,7 @@
             <button
               [disabled]="isLoading"
               (click)="subscribe()"
-              class="mt-6 px-6 py-3 rounded-md text-base font-medium text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
+              class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
               type="submit">
               {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
             </button>
@@ -42,7 +42,7 @@
           <button 
           [disabled]="isLoading"
           (click)="saveTopics()"
-          class="mt-6 px-6 py-3 rounded-md text-base font-medium bg-booktok-primary-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
+          class="mt-6 px-4 py-2 rounded-md text-base font-sm bg-booktok-primary-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
           type="submit">
           {{ isLoading ? 'Saving...' : 'Save' }}
         </button>
@@ -53,7 +53,7 @@
 </section>
 <section class="py-6 px-6 md:px-6 lg:px-6 min-h-screen mt-12">
     <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center font-serif">Today's Top Picks</h2>
+        <h2 class="text-3xl font-bold text-booktok-primary-light mb-6 text-center font-serif">Today's Top Picks</h2>
         <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
           Take a look at what's hot! 🔥
         </p>

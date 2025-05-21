@@ -12,7 +12,7 @@
                 @for (item of navItems; track item) {
                 <li class="mb-2">
                     <a (click)="navigate(item)"
-                        class="block p-2 hover:bg-[#7163B6] rounded text-[#140900] hover:text-[#FFFFFF] leading-relaxed cursor-pointer">
+                        class="block p-2 hover:bg-booktok-accent-light rounded text-[#140900] hover:text-white leading-relaxed cursor-pointer">
                         {{ item }}
                     </a>
                 </li>
@@ -24,9 +24,9 @@
     <!-- Main Content -->
     <div class="flex-1 p-4 md:p-8 overflow-auto">
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-            <h1 class="text-[28px] md:text-[36px] font-bold text-[#140900] font-serif">Author Dashboard</h1>
+            <h1 class="text-[28px] md:text-[36px] font-bold text-booktok-primary-light font-serif">Author Dashboard</h1>
             <div class="flex items-center mt-4 md:mt-0">
-                <span class="mr-4 text-[16px] text-[#140900] leading-relaxed font-serif">Welcome, {{user.firstName}}</span>
+                <span class="mr-4 text-[16px] text-booktok-primary-light leading-relaxed font-serif">Welcome, {{user.firstName}}</span>
                 <img [src]="user.profilePicture" alt="Profile" class="rounded-full w-10 h-10">
             </div>
         </header>
