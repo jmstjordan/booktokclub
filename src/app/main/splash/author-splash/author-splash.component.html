@@ -12,11 +12,13 @@
         </p>
         <div class="flex flex-grow sm:flex-row justify-center md:justify-start items-center gap-4">
           <button
-            class="bg-booktok-accent-light text-white px-8 py-3 rounded-md font-small cursor-pointer hover:brightness-90"
+            class="bg-booktok-accent-light text-white px-4 py-2 rounded-md font-small cursor-pointer hover:brightness-90"
             (click)="routeSignup()"
           >
           Join Authors
           </button>
+            <p class="text-center"> <i>or</i> </p>
+          <app-social-login [buttonText]="'Sign in with Google'" [role]="'author'"></app-social-login>
         </div>
       </div>
   

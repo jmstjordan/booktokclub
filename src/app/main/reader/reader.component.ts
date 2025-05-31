@@ -32,7 +32,7 @@ export class ReaderComponent implements OnInit{
       this.subscriber = sub;
       this.syncSelectedGenres(sub);
     });
-    this.bookboostService.getGenres().subscribe((data) => {
+    this.bookboostService.getDistributionTopics().subscribe((data) => {
       this.genres = data;
     });
     this.bookboostService.getProducts().subscribe((data) => {

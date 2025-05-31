@@ -75,6 +75,10 @@ export class BookBoostService {
     return this.http.get<string[]>(`${this.apiUrl}/Ad/Genres`);
   }
 
+  getDistributionTopics(): Observable<string[]>{
+    return this.http.get<string[]>(`${this.apiUrl}/Distribution/Topics`);
+  }
+
   getProductSources(): Observable<string[]>{
     return this.http.get<string[]>(`${this.apiUrl}/Product/Sources`);
   }
