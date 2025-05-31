@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { environment } from '../../../environments/environment';
-
-declare const google: any;
 
 @Component({
   selector: 'app-social-login',
@@ -14,60 +11,23 @@ declare const google: any;
 export class SocialLoginComponent {
 
   @Input() role!: string;
-  @Input() templateId!: string;
-  @Input() iconStyle!: string;
+  @Input() buttonText!: string;
 
-  constructor(private authService: AuthService){
+  startGoogleLogin() {
+    const clientId = environment.googleClientId;
+    const redirectUri = 'http://localhost:4200/google-callback'; // Set in Google Cloud Console
+    const scope = 'openid email profile';
+    const responseType = 'id_token';
+    const nonce = Math.random().toString(36).substring(2); // Random string
+    const state = this.role;
 
-   }
-
-
-  ngAfterViewInit() {
-    if (!(window as any).google) {
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => this.initializeGoogleSignIn(); // init after load
-      document.body.appendChild(script);
-    } else {
-      this.initializeGoogleSignIn(); // script already available
-    }
+    const url = `https://accounts.google.com/o/oauth2/v2/auth` +
+                `?client_id=${clientId}` +
+                `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+                `&response_type=${responseType}` +
+                `&scope=${encodeURIComponent(scope)}` +
+                `&nonce=${nonce}` +
+                `&state=${state}`;
+    window.location.href = url;
   }
-
-  initializeGoogleSignIn(){
-    google.accounts.id.initialize({
-      client_id: environment.googleClientId,
-      callback: this.handleCredentialResponse.bind(this),
-    });
-    let icon = {};
-    if(this.iconStyle != "full"){
-      icon = {
-        type: "icon",           // Makes it a circular icon button
-        theme: "outline",
-        size: "large",
-        text: "icon",           // Required to render only the icon
-        shape: "circle",
-        logo_alignment: "center"     
-      };
-    }else{
-      icon = {
-         shape: 'rectangular',
-         size: 'large',
-         theme: 'outline',
-         text: 'signin_with',
-         logo_alignment: 'left'
-      }
-    }
-    google.accounts.id.renderButton(
-      document.getElementById(this.templateId),
-        icon
-    );
-  }
-
-  handleCredentialResponse(response: any) {
-    const idToken = response.credential;
-    this.authService.loginWithGoogle(idToken, this.role);
-  }
-
 }

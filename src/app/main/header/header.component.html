@@ -1,7 +1,7 @@
 <div class="flex justify-between items-start">
     <img src="../../../assets/logo-gpt.png" alt="Logo" class="w-24 md:w-24">
     <div class="flex space-x-4">
-        <div *ngIf="!(isLoggedIn$ | async)"><app-social-login [iconStyle]="'full'" [templateId]="'googleSignInFull'" [role]="role"></app-social-login></div>
+        <div *ngIf="!(isLoggedIn$ | async)"><app-social-login [buttonText]="''" [role]="role"></app-social-login></div>
         <button *ngIf="!(isLoggedIn$ | async)" (click)="routeLogin()" class="bg-booktok-primary-light text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:brightness-90">Log In</button>
         <button *ngIf="isLoggedIn$ | async" (click)="logout()" class="bg-booktok-primary-light text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:brightness-90">Log Out</button>
     </div>

@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.
 import { ResetPasswordComponent } from './main/reset-password/reset-password.component';
 import { AdformComponent } from './main/author/adform/adform.component';
 import { AdsComponent } from './main/author/ads/ads.component';
+import { GoogleCallbackComponent } from './main/google-callback/google-callback.component';
 
 export const routes: Routes = [
     {path: '', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
@@ -31,5 +32,6 @@ export const routes: Routes = [
     {path: 'login/:role', component: LoginComponent, canActivate: [AuthRedirectGuard]},
     {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthRedirectGuard]},
     {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'google-callback', component: GoogleCallbackComponent, canActivate: [AuthRedirectGuard]},
     {path: '**', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
 ];

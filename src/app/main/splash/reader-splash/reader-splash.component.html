@@ -16,7 +16,7 @@
             <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
               👉 Today’s Best Picks — Trending, On Sale, Unmissable</h2>
               <p class="text-lg text-gray-600 mb-6 p-2">Take a look at what’s hot — bestselling and indie reads on sale now. 🔥</p>
-              <form class="space-y-4 mb-6" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
+              <form class="space-y-4 mb-4" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
                 <div class="flex items-center w-full gap-4">
                   <div class="flex flex-grow">
                     <input
@@ -34,6 +34,8 @@
                   </div>
                 </div>
               </form>
+              <p class="mb-4 text-center"> <i>or</i> </p>
+              <app-social-login [buttonText]="'Sign in with Google'" [role]="'reader'"></app-social-login>
           </div>
       </div>
   </section>
@@ -42,7 +44,7 @@
       
       <!-- Left side image -->
       <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
-        <img src="../../../assets/pen-removebg-preview.png" alt="Ebook Deals Preview" class="max-w-[200px] sm:max-w-[280px] md:max-w-[400px]">
+        <img src="../../../assets/coffeecup.png" alt="Ebook Deals Preview" class="max-w-[400px] sm:max-w-[480px] md:max-w-[600px]">
       </div>
 
       <!-- Right side text -->
