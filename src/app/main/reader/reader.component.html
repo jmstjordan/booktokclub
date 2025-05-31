@@ -1,100 +1,141 @@
 <section class="py-6 px-6 md:px-6 lg:px-6 book-section">
   <app-header [role]="'reader'"></app-header>
   @if(subscriber){
-    <div class="container mx-auto text-center max-w-xl">
-      <h2 class="text-3xl font-bold text-booktok-primary-light mb-4 font-serif">Subscription Preferences</h2>
-      <p class="text-base sm:text-lg text-gray-600 mb-6">
-        Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
-      </p>
-      @if(subscriber.isSubscribed){
-          <p class="text-base sm:text-lg text-green-600 mb-6">
-            <i class="fa-solid fa-check"></i> Subscribed
-          </p>
-        }@else{
-          <p class="text-base sm:text-lg text-red-600 mb-6">
-            <i class="fa-solid fa-xmark"></i> Unsubscribed
-          </p>
-        }
-      <form>
-        <div class="grid grid-cols-3 grid-rows-2 gap-3">
-          <label 
-            *ngFor="let genre of genres" 
-            class="flex items-center space-x-3 bg-white px-4 py-3 rounded shadow-sm text-base hover:bg-gray-50 cursor-pointer transition">
-            
-            <input 
-              type="checkbox" 
-              class="h-5 w-5 text-booktok-primary-light border-gray-300 rounded focus:ring-booktok-primary-light" 
-              [(ngModel)]="selectedGenresMap[genre]" 
-              name="{{ genre }}" />
-            
-            <span>{{ genre }}</span>
-          </label>
-        </div>
-        <div class="flex justify-between">
-            <button
-              [disabled]="isLoading"
-              (click)="subscribe()"
-              class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
-              type="submit">
-              {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
-            </button>
+  <div class="container mx-auto text-center max-w-xl">
+    <h2 class="text-3xl font-bold text-booktok-primary-light mb-4 font-serif">Subscription Preferences</h2>
+    <p class="text-base sm:text-lg text-gray-600 mb-6">
+      Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
+    </p>
+    @if(subscriber.isSubscribed){
+    <p class="text-base sm:text-lg text-green-600 mb-6">
+      <i class="fa-solid fa-check"></i> Subscribed
+    </p>
+    }@else{
+    <p class="text-base sm:text-lg text-red-600 mb-6">
+      <i class="fa-solid fa-xmark"></i> Unsubscribed
+    </p>
+    }
+    <form>
+      <div class="grid grid-cols-3 grid-rows-2 gap-3">
+        <label *ngFor="let genre of genres"
+          class="flex items-center space-x-3 bg-white px-4 py-3 rounded shadow-sm text-base hover:bg-gray-50 cursor-pointer transition">
 
-          <button 
-          [disabled]="isLoading"
-          (click)="saveTopics()"
+          <input type="checkbox"
+            class="h-5 w-5 text-booktok-primary-light border-gray-300 rounded focus:ring-booktok-primary-light"
+            [(ngModel)]="selectedGenresMap[genre]" name="{{ genre }}" />
+
+          <span>{{ genre }}</span>
+        </label>
+      </div>
+      <div class="flex justify-between">
+        <button [disabled]="isLoading" (click)="subscribe()"
+          class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
+          type="submit">
+          {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
+        </button>
+
+        <button [disabled]="isLoading" (click)="saveTopics()"
           class="mt-6 px-4 py-2 rounded-md text-base font-sm bg-booktok-primary-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
           type="submit">
           {{ isLoading ? 'Saving...' : 'Save' }}
         </button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
+  </div>
   }
 </section>
 <section class="py-6 px-6 md:px-6 lg:px-6 min-h-screen mt-12">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-booktok-primary-light mb-6 text-center font-serif">Today's Top Picks</h2>
-        <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
-          Take a look at what's hot! 🔥
-        </p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 w-full">
-          @for (product of products; track product) {
-            <div class="bg-white p-2 rounded shadow text-center">
-              <p class="text-sm text-booktok-accent mb-1">
-                <span *ngIf="product.genres && product.genres.length > 0">{{ product.genres[0] }}</span>
-                <span *ngIf="product.genres == null || product.genres.length == 0">Ebook</span>
-              </p>
-              <a target="_blank" [href]="product.link">
-                <img [src]="product.image" class="w-full aspect-[2/3] object-cover rounded shadow-md transition-transform duration-200 hover:scale-105 mb-4 cursor-pointer">
-              </a>
-              <h5 class="text-base font-semibold text-gray-800 mb-1 font-serif">
-                {{ product.title }}
-              </h5>
-              <!-- Author -->
-              <p class="text-sm text-gray-600 mb-1">{{ product.author.name }}</p>
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold text-booktok-primary-light mb-6 text-center font-serif">Today's Top Picks</h2>
+    <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
+      Take a look at what's hot! 🔥
+    </p>
+    @for (genre of trendingMap | keyvalue; track genre.key) {
+      <h3 class="text-2xl font-bold text-booktok-primary-light mb-6 mt-6 text-left font-serif">{{ genre.key }} Now...</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 w-full">
+      @for (product of genre.value; track product.id) {
+        <div class="bg-white p-2 rounded shadow text-center">
+          <!-- <p class="text-sm text-booktok-accent mb-1">
+            <span *ngIf="product.genres && product.genres.length > 0">{{ product.genres[0] }}</span>
+            <span *ngIf="product.genres == null || product.genres.length == 0">Ebook</span>
+          </p> -->
+          <a target="_blank" [href]="product.link">
+            <img [src]="product.image"
+              class="w-full aspect-[2/3] object-cover rounded shadow-md transition-transform duration-200 hover:scale-105 mb-4 cursor-pointer">
+          </a>
+          <h5 class="text-base font-semibold text-gray-800 mb-1 font-serif">
+            {{ product.title }}
+          </h5>
+          <p class="text-sm text-gray-600 mb-1">{{ product.author.name }}</p>
 
-              <!-- Price -->
-              <p class="text-sm font-medium text-booktok-accent mb-2">
+          <p class="text-sm font-medium text-booktok-accent mb-2">
+              @if(product.price == 0){
+                Free!
+              }@else{
                 @if(product.offerPrice){
                   <s>{{ product.price / 100 | currency }}</s>
                   {{ product.offerPrice / 100 | currency }}
                 } @else {
+                  <s>{{ product.price * 1.25 / 100 | currency }}</s>
                   {{ product.price / 100 | currency}}
                 }
-              </p>
+              }
+          </p>
 
-              <!-- Rating -->
-              <div class="flex justify-center text-yellow-400 text-sm">
-                <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
-                  <span [class.text-gray-300]="i >= product.rating">★</span>
-                </ng-container>
-              </div>
+            <div class="flex justify-center text-yellow-400 text-sm">
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <span [class.text-gray-300]="i >= product.rating">★</span>
+              </ng-container>
             </div>
+          </div>
           }
         </div>
-    </div>
-    <hr class="border-t border-gray-300 my-6">
-    <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
-      That's all for today. Check back tomorrow for more amazing deals! 🚀
-    </p>
+      }
+      @for (genre of genreProductMap | keyvalue; track genre.key) {
+      <h3 class="text-2xl font-bold text-booktok-primary-light mb-6 mt-6 text-left font-serif">{{ genre.key }}</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 w-full">
+      @for (product of genre.value; track product.id) {
+        <div class="bg-white p-2 rounded shadow text-center">
+          <!-- <p class="text-sm text-booktok-accent mb-1">
+            <span *ngIf="product.genres && product.genres.length > 0">{{ product.genres[0] }}</span>
+            <span *ngIf="product.genres == null || product.genres.length == 0">Ebook</span>
+          </p> -->
+          <a target="_blank" [href]="product.link">
+            <img [src]="product.image"
+              class="w-full aspect-[2/3] object-cover rounded shadow-md transition-transform duration-200 hover:scale-105 mb-4 cursor-pointer">
+          </a>
+          <h5 class="text-base font-semibold text-gray-800 mb-1 font-serif">
+            {{ product.title }}
+          </h5>
+          <p class="text-sm text-gray-600 mb-1">{{ product.author.name }}</p>
+
+          <p class="text-sm font-medium text-booktok-accent mb-2">
+              @if(product.price == 0){
+                Free!
+              }@else{
+                @if(product.offerPrice){
+                  <s>{{ product.price / 100 | currency }}</s>
+                  {{ product.offerPrice / 100 | currency }}
+                } @else {
+                  <s>{{ product.price * 1.25 / 100 | currency }}</s>
+                  {{ product.price / 100 | currency}}
+                }
+              }
+          </p>
+
+            <div class="flex justify-center text-yellow-400 text-sm">
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <span [class.text-gray-300]="i >= product.rating">★</span>
+              </ng-container>
+            </div>
+          </div>
+          }
+        </div>
+      }
+
+  </div>
+  <hr class="border-t border-gray-300 my-6">
+  <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
+    That's all for today. Check back tomorrow for more amazing deals! 🚀
+  </p>
 </section>

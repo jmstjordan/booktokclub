@@ -14,6 +14,8 @@ declare const google: any;
 export class SocialLoginComponent {
 
   @Input() role!: string;
+  @Input() templateId!: string;
+  @Input() iconStyle!: string;
 
   constructor(private authService: AuthService){
 
@@ -38,17 +40,28 @@ export class SocialLoginComponent {
       client_id: environment.googleClientId,
       callback: this.handleCredentialResponse.bind(this),
     });
-    
-    google.accounts.id.renderButton(
-      document.getElementById('googleSignInFull'),
-      {
-        type: 'standard',
-        shape: 'rectangular',
-        size: 'large',
-        theme: 'outline',
-        text: 'signin_with',
-        logo_alignment: 'left'
+    let icon = {};
+    if(this.iconStyle != "full"){
+      icon = {
+        type: "icon",           // Makes it a circular icon button
+        theme: "outline",
+        size: "large",
+        text: "icon",           // Required to render only the icon
+        shape: "circle",
+        logo_alignment: "center"     
+      };
+    }else{
+      icon = {
+         shape: 'rectangular',
+         size: 'large',
+         theme: 'outline',
+         text: 'signin_with',
+         logo_alignment: 'left'
       }
+    }
+    google.accounts.id.renderButton(
+      document.getElementById(this.templateId),
+        icon
     );
   }
 

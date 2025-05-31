@@ -1,74 +1,118 @@
-<section class="py-6 px-6 md:px-6 lg:px-6 min-h-screen book-section">
-  <app-header [role]="'reader'"></app-header>
-    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
-        <div class="md:w-1/2 flex justify-center order-2 md:order-1">
-            <div class="grid grid-cols-3 gap-4 w-full max-w-md">
-                @for (product of products; track product) {
-                  <a [href]="product.link">
-                    <img [src]="product.image"
-                        class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
-                  </a>
-                }
-            </div>
-        </div>
-        <div class="md:w-1/2 text-center md:text-left order-1 md:order-2 p-4">
-          <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
-            Turn the Page to Something New</h2>
-            <p class="text-lg text-gray-600 mb-6 p-2">Explore handpicked lists, new releases, and must-reads from every genre — whether you're into thrillers, romance, or hidden gems, there's always something waiting to be discovered</p>
-            <form class="space-y-4 mb-6" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
-              <div class="flex items-center w-full gap-4">
-                <div class="flex flex-grow">
-                  <input
-                    type="email"
-                    formControlName="email"
-                    placeholder="Email Address"
-                    class="flex-grow w-[90%] px-4 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200"
-                  />
-                  <button
-                    type="submit"
-                    class="bg-booktok-primary-light text-white px-6 py-3 rounded-r-md font-small cursor-pointer hover:brightness-90"
-                  >
-                  Subscribe
-                  </button>
-                </div>
+<div class="book-section">
+  <section class="py-6 px-6 md:px-6 lg:px-6 min-h-screen">
+    <app-header [role]="'reader'"></app-header>
+      <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
+          <div class="md:w-1/2 flex justify-center order-2 md:order-1">
+              <div class="grid grid-cols-3 gap-4 w-full max-w-md">
+                  @for (product of products; track product) {
+                    <a [href]="product.link">
+                      <img [src]="product.image"
+                          class="rounded shadow-md aspect-[2/3] object-cover transition-transform duration-200 hover:scale-105">
+                    </a>
+                  }
               </div>
-            </form>
-        </div>
-    </div>
-</section>
-<section class="p-16 md:px-6 lg:px-6">
-  <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
-    
-    <!-- Left side image -->
-    <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
-      <img src="../../../assets/library.jpeg" alt="Ebook Deals Preview" class="max-w-[200px] sm:max-w-[280px] md:max-w-[400px] rounded-lg shadow-lg">
-    </div>
+          </div>
+          <div class="md:w-1/2 text-center md:text-left order-1 md:order-2 p-4">
+            <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
+              👉 Today’s Best Picks — Trending, On Sale, Unmissable</h2>
+              <p class="text-lg text-gray-600 mb-6 p-2">Take a look at what’s hot — bestselling and indie reads on sale now. 🔥</p>
+              <form class="space-y-4 mb-6" [formGroup]="emailForm" (ngSubmit)="routeSignup()">
+                <div class="flex items-center w-full gap-4">
+                  <div class="flex flex-grow">
+                    <input
+                      type="email"
+                      formControlName="email"
+                      placeholder="Email Address"
+                      class="flex-grow w-[70%] px-4 py-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition duration-200"
+                    />
+                    <button
+                      type="submit"
+                      class="bg-booktok-primary-light text-white px-6 py-3 rounded-r-md font-small cursor-pointer hover:brightness-90"
+                    >
+                    👉 Join Free
+                    </button>
+                  </div>
+                </div>
+              </form>
+          </div>
+      </div>
+  </section>
+  <section class="p-16 md:px-6 lg:px-6">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
+      
+      <!-- Left side image -->
+      <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+        <img src="../../../assets/pen-removebg-preview.png" alt="Ebook Deals Preview" class="max-w-[200px] sm:max-w-[280px] md:max-w-[400px]">
+      </div>
 
-    <!-- Right side text -->
-    <div class="p-2 md:w-1/2 text-center md:text-left">
-      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
-        Browse the biggest ebook deals, <br class="hidden sm:inline"> up to <span class="text-booktok-accent-light">95% off</span>
-      </h2>
-      <p class="text-lg text-gray-600 mb-6">
-        Explore a thoughtfully curated collection of books where great stories come first — not high prices. From beloved bestsellers to undiscovered gems, there’s always something worth reading. New selections arrive daily to keep your bookshelf fresh 📚
-      </p>
+      <!-- Right side text -->
+      <div class="p-2 md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
+          🔥 Trending on TikTok
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          See the books that are blowing up across BookTok right now — the hottest viral picks everyone’s talking about.
+        </p>
+      </div>
+      
     </div>
-    
-  </div>
-</section>
-<section class="p-16 md:px-6 lg:px-6 book-section">
-  <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
-    
-    <div class="p-2 md:w-1/2 text-center md:text-left">
-      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
-        Never Miss a Deal
-      </h2>
-      <p class="text-lg text-gray-600 mb-6">
-        Stay in the loop with personalized alerts for book deals from your favorite authors — so you never miss a chance to grab their latest titles or beloved classics at a great price 🔎
-      </p>
+  </section>
+  <section class="p-16 md:px-6 lg:px-6 ">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
+      
+      <div class="p-2 md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
+          ✨ Curated Indie Favorites
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Discover rising stars, indie gems, and under-the-radar books making waves — all handpicked by our team.
+        </p>
+      </div>
+      <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+        <img src="../../../assets/sketch-window-read.jpeg" alt="Ebook Deals Preview" class="max-w-xs md:max-w-sm lg:max-w-md rounded-lg shadow-lg">
+      </div>
     </div>
-    <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
-      <img src="../../../assets/sketch-window-read.jpeg" alt="Ebook Deals Preview" class="max-w-xs md:max-w-sm lg:max-w-md rounded-lg shadow-lg">
+  </section>
+    <section class="p-16 md:px-6 lg:px-6">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
+      
+      <!-- Left side image -->
+      <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+        <img src="../../../assets/library.jpeg" alt="Ebook Deals Preview" class="max-w-[200px] sm:max-w-[280px] md:max-w-[400px] rounded-lg shadow-lg">
+      </div>
+
+      <!-- Right side text -->
+      <div class="p-2 md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
+          💥 Viral Backlist Hits You Missed
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Catch up on the breakout hits and past favorites that rocked BookTok — now on sale and ready for your shelf.
+        </p>
+      </div>
+      
     </div>
-  </div>
-</section>
+  </section>
+    <section class="p-16 md:px-6 lg:px-6 ">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 mt-8">
+      
+      <div class="p-2 md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-booktok-primary-light mb-4 leading-tight font-serif">
+          📣 Join the BookTok Club Community
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Join free today and get access to viral trending picks, curated indie hits, and the best book deals — all in one place.
+        </p>
+        <button
+          (click)="routeSignup()"
+          class="bg-booktok-primary-light text-white px-6 py-3 rounded-md font-small cursor-pointer hover:brightness-90"
+        >
+        👉 Join Free
+        </button>
+      </div>
+      <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+        <img src="../../../assets/sketch-window-read.jpeg" alt="Ebook Deals Preview" class="max-w-xs md:max-w-sm lg:max-w-md rounded-lg shadow-lg">
+      </div>
+    </div>
+  </section>
+</div>

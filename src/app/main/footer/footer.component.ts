@@ -5,10 +5,11 @@ import { BookBoostService } from '../../../services/bookboost.service';
 import { ToastService } from '../../../services/toast.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { SocialLoginComponent } from '../social-login/social-login.component';
 
 @Component({
   selector: 'app-footer',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SocialLoginComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
@@ -20,7 +21,7 @@ export class FooterComponent {
     this.authService.isAuthenticated().subscribe((res) => this.isLoggedIn = res);
   }
 
-  ngOnInit(){
+  ngOnInit(){ 
     this.emailForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
