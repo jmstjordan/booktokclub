@@ -15,7 +15,7 @@ export class SocialLoginComponent {
 
   startGoogleLogin() {
     const clientId = environment.googleClientId;
-    const redirectUri = 'http://localhost:4200/google-callback'; // Set in Google Cloud Console
+    const redirectUri = window.location.origin + '/google-callback'; // Set in Google Cloud Console
     const scope = 'openid email profile';
     const responseType = 'id_token';
     const nonce = Math.random().toString(36).substring(2); // Random string
