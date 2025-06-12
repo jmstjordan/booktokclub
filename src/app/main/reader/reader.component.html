@@ -1,7 +1,7 @@
 <div class="book-section">
   <section class="py-6 px-6 md:px-6 lg:px-6">
     <app-header [role]="'reader'"></app-header>
-    <div class="container mx-auto text-center max-w-xl">
+    <div class="container mx-auto text-center max-w-2xl">
       <h2 class="text-3xl font-bold text-booktok-primary-light mb-4 font-serif">Subscription Preferences</h2>
       <p class="text-base sm:text-lg text-gray-600 mb-6">
         Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
@@ -17,7 +17,7 @@
       </p>
       }
       <form>
-        <div class="grid grid-cols-3 grid-rows-2 gap-3">
+        <div [class]="subColumns">
           <label *ngFor="let genre of genres"
             class="flex items-center space-x-3 bg-white px-4 py-3 rounded shadow-sm text-base hover:bg-gray-50 cursor-pointer transition">
 

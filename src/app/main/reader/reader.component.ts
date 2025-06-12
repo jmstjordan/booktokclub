@@ -26,10 +26,14 @@ export class ReaderComponent implements OnInit{
   isLoading = false;
   subscriber!: Subscriber;
   affiliateId: string = environment.affiliateId;
+  subColumns = "grid grid-cols-2 grid-rows-2 gap-3";
 
   constructor(private bookboostService: BookBoostService, private toastService: ToastService, private authService: AuthService, private router: Router){}
 
   ngOnInit(){
+    if (window.innerWidth <= 640) { 
+      this.subColumns = "grid grid-cols-1 grid-rows-2 gap-3";
+    }
     this.bookboostService.getSubscriber().subscribe((sub) => {
       this.subscriber = sub;
       this.syncSelectedGenres(sub);
