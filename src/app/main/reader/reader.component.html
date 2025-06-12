@@ -60,7 +60,7 @@
               <span *ngIf="product.genres && product.genres.length > 0">{{ product.genres[0] }}</span>
               <span *ngIf="product.genres == null || product.genres.length == 0">Ebook</span>
             </p> -->
-            <a target="_blank" [href]="product.link">
+            <a target="_blank" [href]="product.link + '?tag=' + affiliateId">
               <img [src]="product.image"
                 class="w-full aspect-[2/3] object-cover rounded shadow-md transition-transform duration-200 hover:scale-105 mb-4 cursor-pointer">
             </a>

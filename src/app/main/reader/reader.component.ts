@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../services/toast.service';
 import { AuthService } from '../../../services/auth.service';
 import { HeaderComponent } from '../header/header.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-reader',
@@ -24,6 +25,7 @@ export class ReaderComponent implements OnInit{
   selectedGenresMap: Record<string, boolean> = {};
   isLoading = false;
   subscriber!: Subscriber;
+  affiliateId: string = environment.affiliateId;
 
   constructor(private bookboostService: BookBoostService, private toastService: ToastService, private authService: AuthService, private router: Router){}
 

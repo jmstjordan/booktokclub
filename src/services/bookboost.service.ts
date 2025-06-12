@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, AdAvailability, Product, ProductUpload, ProductValidate, Subscriber, SubscriberPatch, SubscriberSource, SubscriberUpload, User } from '../interfaces';
+import { Ad, AdAvailability, Product, ProductValidate, Subscriber, SubscriberPatch, SubscriberSource, SubscriberUpload, User } from '../interfaces';
 import { environment } from '../environments/environment';
 
 @Injectable({
