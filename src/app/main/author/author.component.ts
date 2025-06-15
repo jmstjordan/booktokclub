@@ -43,6 +43,10 @@ export class AuthorComponent implements OnInit{
       });
   }
 
+  home(){
+    this.router.navigate(['/author']);
+  }
+
   navigate(path: string){
     if(path == "Create Ad"){
       this.router.navigate(['author', 'home', 'create-ad']);

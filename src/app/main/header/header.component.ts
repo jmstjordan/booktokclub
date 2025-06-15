@@ -19,8 +19,8 @@ export class HeaderComponent {
     this.isLoggedIn$ = this.authService.isAuthenticated();
   }
 
-  home(event: any){
-    this.router.navigate(['/']);
+  home(){
+    this.router.navigate(['/', this.role]);
   }
 
   routeSignup(){

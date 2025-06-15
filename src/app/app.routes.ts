@@ -15,9 +15,9 @@ import { AdsComponent } from './main/author/ads/ads.component';
 import { GoogleCallbackComponent } from './main/google-callback/google-callback.component';
 
 export const routes: Routes = [
-    {path: '', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'author', component: AuthorSplashComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'reader', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
+    {path: '', component: ReaderSplashComponent},
+    {path: 'author', component: AuthorSplashComponent},
+    {path: 'reader', component: ReaderSplashComponent},
     {path: 'author/home', component: AuthorComponent, canActivate: [AuthGuard],
         children: [
         { path: 'create-ad', component: AdformComponent },
@@ -30,8 +30,8 @@ export const routes: Routes = [
     {path: 'signup/:role', component: SignupComponent, canActivate: [AuthRedirectGuard]},
     {path: 'signup/:role/:email', component: SignupComponent, canActivate: [AuthRedirectGuard]},
     {path: 'login/:role', component: LoginComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthRedirectGuard]},
-    {path: 'google-callback', component: GoogleCallbackComponent, canActivate: [AuthRedirectGuard]},
+    {path: 'forgot-password', component: ForgotPasswordComponent},
+    {path: 'reset-password', component: ResetPasswordComponent},
+    {path: 'google-callback', component: GoogleCallbackComponent},
     {path: '**', component: ReaderSplashComponent, canActivate: [AuthRedirectGuard]},
 ];

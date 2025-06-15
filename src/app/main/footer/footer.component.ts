@@ -30,14 +30,20 @@ export class FooterComponent {
   }
 
   navigate(path: string){
-    if(this.isLoggedIn){
-      this.router.navigate([path, 'home']).then(() => {
+    if(path == 'forgot-password'){
+      this.router.navigate(['forgot-password']).then(() => {
         window.scrollTo(0, 0);
       });
     }else{
-      this.router.navigate([path]).then(() => {
-        window.scrollTo(0, 0);
-      });
+      if(this.isLoggedIn){
+        this.router.navigate([path, 'home']).then(() => {
+          window.scrollTo(0, 0);
+        });
+      }else{
+        this.router.navigate([path]).then(() => {
+          window.scrollTo(0, 0);
+        });
+      }
     }
   }
 
