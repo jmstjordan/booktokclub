@@ -29,12 +29,6 @@
           </label>
         </div>
         <div class="flex justify-between">
-          <button [disabled]="isLoading" (click)="subscribe()"
-            class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
-            type="submit">
-            {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
-          </button>
-
           <button [disabled]="isLoading" (click)="saveTopics()"
             class="mt-6 px-4 py-2 rounded-md text-base font-sm bg-booktok-primary-light text-white shadow-sm hover:brightness-105 transition cursor-pointer"
             type="submit">
@@ -139,5 +133,12 @@
     <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
       That's all for today. Check back tomorrow for more amazing deals! 🚀
     </p>
+    <div class="text-center">
+      <button [disabled]="isLoading" (click)="subscribe()"
+        class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
+        type="submit">
+        {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
+      </button>
+    </div>
   </section>
 </div>
