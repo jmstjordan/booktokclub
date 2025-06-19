@@ -7,15 +7,15 @@
         Customize which genres you are interested in! We'll keep you posted on all the hot deals based on your settings 📚
       </p>
       @if(subscriber){
-      @if(subscriber.isSubscribed){
-      <p class="text-base sm:text-lg text-green-600 mb-6">
-        <i class="fa-solid fa-check"></i> Subscribed
-      </p>
-      }@else{
-      <p class="text-base sm:text-lg text-red-600 mb-6">
-        <i class="fa-solid fa-xmark"></i> Unsubscribed
-      </p>
-      }
+          <!-- @if(subscriber.isSubscribed){
+          <p class="text-base sm:text-lg text-green-600 mb-6">
+            <i class="fa-solid fa-check"></i> Subscribed
+          </p>
+          }@else{
+          <p class="text-base sm:text-lg text-red-600 mb-6">
+            <i class="fa-solid fa-xmark"></i> Unsubscribed
+          </p>
+          } -->
       <form>
         <div [class]="subColumns">
           <label *ngFor="let genre of genres"
@@ -133,12 +133,12 @@
     <p class="text-base sm:text-lg text-gray-600 mb-6 text-center">
       That's all for today. Check back tomorrow for more amazing deals! 🚀
     </p>
-    <div class="text-center">
+    <!-- <div class="text-center">
       <button [disabled]="isLoading" (click)="subscribe()"
         class="mt-6 px-4 py-2 rounded-md text-base font-sm text-white bg-booktok-accent-light shadow-sm hover:brightness-105 transition cursor-pointer"
         type="submit">
         {{ subscriber.isSubscribed ? 'Unsubscribe' : 'Resubscribe' }}
       </button>
-    </div>
+    </div> -->
   </section>
 </div>
